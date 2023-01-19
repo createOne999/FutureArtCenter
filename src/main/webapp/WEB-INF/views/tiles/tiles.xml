@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- client -->
+	<definition name="mainLayout" template="/WEB-INF/views/client/main/mainLayout.jsp">
+		<put-attribute name="title" value="Main" />
+		<put-attribute name="header" value="/WEB-INF/views/client/main/header.jsp" />
+		<put-attribute name="aside1" value="/WEB-INF/views/client/main/aside1.jsp" />
+		<put-attribute name="aside2" value="/WEB-INF/views/client/main/aside2.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/client/main/footer.jsp" />
+	</definition>
+	<definition name="main" extends="mainLayout">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/views/client/main/mainPage.jsp" />
+	</definition>
+	
+	<!-- admin -->
+	<definition name="adminMainLayout" template="/WEB-INF/views/admin/template/adminMainLayout.jsp">
+		<put-attribute name="title" value="Main" />
+		<put-attribute name="adminHeader" value="/WEB-INF/views/admin/template/adminHeader.jsp" />
+		<put-attribute name="adminNav" value="/WEB-INF/views/admin/template/adminNav.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/admin/template/footer.jsp" />
+	</definition>
+	<definition name="admin/*" extends="adminMainLayout">
+		<put-attribute name="title" value="adminMain" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
+	</definition>
+</tiles-definitions>
