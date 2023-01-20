@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.client.show.dao.ConcertDAO">
+	<!-- 콘서트 목록 페이지 -->
+	<select id="list" resultType="com.futureArtCenter.client.show.vo.ConcertVO">
+		SELECT show_no,
+				show_name,
+				show_startdate,
+				show_closedate,
+				show_round,
+				show_time1,
+				<if test="show_round == 2"> show_time2,</if>
+				show_poster
+		FROM concert_tb
+		WHERE show_status = 1
+		ORDER BY show_startdate DESC
+	</select>
+	
+	<!-- 콘서트 예정 공연 목록 -->
+	<select id="planList" resultType="com.futureArtCenter.client.show.vo.ConcertVO">
+		SELECT show_no,
+				show_name,
+				show_startdate,
+				show_closedate,
+				show_round,
+				show_time1,
+				<if test="show_round == 2"> show_time2,</if>
+				show_poster
+		FROM concert_tb
+		WHERE show_status = 0
+		ORDER BY show_startdate DESC
+	</select>
+</mapper>
