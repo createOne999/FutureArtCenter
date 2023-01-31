@@ -4,5 +4,5 @@ import com.futureArtCenter.client.user.vo.UserVO;
 
 public interface LoginService {
 
-	public String userLogin(UserVO user) throws Exception;
+	public UserVO userLogin(UserVO user) throws Exception;
 }

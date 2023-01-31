@@ -37,21 +37,26 @@ public class LoginController {
 		// 로그인 처리
 		@RequestMapping(value="/loginForm", method=RequestMethod.POST)
 		public String userLogin(HttpServletRequest request, UserVO user, RedirectAttributes rttr) throws Exception {
-			HttpSession session = request.getSession();
+			
 			String rawPwd = ""; // 입력 받은 비밀번호
 			String encodePwd = ""; // DB 암호화한 비밀번호
 			
-			String uvo = service.userLogin(user); // 제출한 아이디와 일치하는 아이디가 있는지
-			System.out.println(uvo);
+			System.out.println("login 메서드 진입");
+			System.out.println("전달된 데이터 : " + user);
 			
-			if(uvo != null) {
+			HttpSession session = request.getSession();
+			UserVO userOutput = service.userLogin(user); // 제출한 아이디와 일치하는 아이디가 있는지
+			
+			System.out.println("UserVO 반환 객체 : " + userOutput);
+			
+			if(userOutput != null) {
 				// 일치하는 아이디 존재
 				rawPwd = user.getUser_pwd(); // 사용자가 제출한 비밀번호
-				encodePwd = uvo; // 데이터베이스에 저장한 인코딩된 비밀먼호
+				encodePwd = userOutput.getUser_pwd(); // 데이터베이스에 저장한 인코딩된 비밀먼호
 				
 				
 				if(true == passwordEncoder.matches(rawPwd, encodePwd)) { // 비밀번호 일치여부 판단
-					session.setAttribute("user", uvo); // session에 사용자 정보 저장
+					session.setAttribute("user", userOutput); // session에 사용자 정보 저장
 					return "redirect:/main"; // 메인페이지 이동
 				} else {
 					rttr.addFlashAttribute("result",0); 

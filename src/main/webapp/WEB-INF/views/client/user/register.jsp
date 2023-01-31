@@ -50,7 +50,7 @@ function checkAll() {
 	// 입력 비밀번호
 	var pwd = $("#user_pwd").val(); 
 	// 정규식
-	var pwdRegExp = /^[a-zA-z0-9]{8,20}$/; 
+	var pwdRegExp = /^[a-zA-z0-9!@#$%^&*]{8,20}$/; 
 	// 비밀번호 유효성검사
 	if (!pwdRegExp.test(pwd)) {
         alert("[비밀번호]모든 항목이 올바르게 입력되어야 합니다.");
@@ -122,11 +122,11 @@ function checkAll() {
         </tr>
         <tr>
           <td><label for="user_pwd">비밀번호</label></td>
-          <td><input type="password" id="user_pwd" name="user_pwd" placeholder="영문 대소문자,숫자 8-20자" maxlength="20" required></td>
+          <td><input type="password" id="user_pwd" name="user_pwd" placeholder="영문대소문자,숫자,!@#$%^&* 8-20자" maxlength="20" required></td>
         </tr>
         <tr>
           <td><label for="user_pwdCheck">비밀번호 확인</label></td>
-          <td><input type="password" id="user_pwdCheck" name="user_pwdCheck" placeholder="영문 대소문자,숫자 8-20자" maxlength="20" required >
+          <td><input type="password" id="user_pwdCheck" name="user_pwdCheck" placeholder="비밀번호와 동일하게 입력" maxlength="20" required >
           <span id="pwdmessage"></span>
         </tr>
   

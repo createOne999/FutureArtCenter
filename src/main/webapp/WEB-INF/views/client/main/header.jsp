@@ -7,8 +7,8 @@
 		<tr>
 			<!-- 로그인 하지 않은 상태 -->
 			<c:if test = "${user == null }">
-			<div class="login_button"><a href="/login/loginForm">로그인</a>
-			&nbsp;&nbsp;&nbsp;<a href="/user/agreement">회원가입</a></div>
+			<a href="/login/loginForm">로그인</a>
+			&nbsp;&nbsp;&nbsp;<a href="/user/agreement">회원가입</a>
 			</c:if>
 			
 			<!-- 로그인한 상태 -->

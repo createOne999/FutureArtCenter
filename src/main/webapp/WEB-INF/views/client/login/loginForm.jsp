@@ -32,12 +32,12 @@
 	 $(".login_button").click(function(){
 		 
 		if (!$("#user_id").val()){
-			alert("아이디를 입력하세요");
+			alert("아이디를 입력해 주세요");
 			return false;
 		}
 		
 		if (!$("#user_pwd").val()){
-			alert("비밀번호를 입력하세요");
+			alert("비밀번호를 입력해 주세요");
 			return false;
 		}
 		
@@ -48,7 +48,7 @@
     })
     
     <c:if test = "${result == 0 }">
-    alert("로그인 실패...");
+    alert("회원정보가 일치하지 않습니다.");
     </c:if>
     
     

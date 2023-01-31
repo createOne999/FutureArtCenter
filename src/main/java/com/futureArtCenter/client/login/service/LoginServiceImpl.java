@@ -16,8 +16,10 @@ public class LoginServiceImpl implements LoginService {
 	
 	// 로그인
 	@Override
-	public String userLogin(UserVO user) throws Exception {
-		return loginDAO.userLogin(user);
+	public UserVO userLogin(UserVO userInput) throws Exception {
+		log.info("입력받은 UserVO 확인 : "+userInput);
+		log.info("반환 객체 : " +loginDAO.userLogin(userInput));
+		return loginDAO.userLogin(userInput);
 		
 	}
 

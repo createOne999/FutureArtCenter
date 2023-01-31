@@ -5,5 +5,5 @@ import com.futureArtCenter.client.user.vo.UserVO;
 public interface LoginDAO {
 
 	// 회원 로그인
-	public String userLogin(UserVO user) throws Exception;
+	public UserVO userLogin(UserVO user) throws Exception;
 }
