@@ -18,9 +18,10 @@
 			</tr>
 		</table>
 	</div>
-
+	
+	
 	<div align="center">
-		<tiles:insertAttribute name="content" />
+	<tiles:insertAttribute name="content" />
 	</div>
 
 	<tiles:insertAttribute name="footer" />

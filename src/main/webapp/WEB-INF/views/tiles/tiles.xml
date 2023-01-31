@@ -13,6 +13,16 @@
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="content" value="/WEB-INF/views/client/main/mainPage.jsp" />
 	</definition>
+	<!-- 회원가입 페이지 -->
+	<definition name="user/*" extends="mainLayout">
+		<put-attribute name="title" value="회원가입" />
+		<put-attribute name="content" value="/WEB-INF/views/client/user/{1}.jsp" />
+	</definition>
+	<!-- 로그인 페이지 -->
+	<definition name="login/*" extends="mainLayout">
+		<put-attribute name="title" value="로그인" />
+		<put-attribute name="content" value="/WEB-INF/views/client/login/{1}.jsp" />
+	</definition>
 	
 	<!-- 공연 리스트 페이지에 대한 템플릿 -->
 	<definition name="show/*" extends="mainLayout">

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.client.user.dao.UserDAO">
+
+	<!-- 등록 처리 -->
+	<insert id="create">
+		INSERT INTO user_tb
+			(
+				user_no,
+				user_id,
+				user_pwd,
+				agree_site,
+				agree_personal,
+				user_name,
+				user_birth,
+				user_phone,
+				agree_SMS,
+				user_regdate,
+				user_out
+			) 
+		VALUES
+			(
+				user_seq.NEXTVAL,
+				#{user_id},
+				#{user_pwd},
+				1,
+				1,
+				#{user_name},
+				#{user_birth},
+				#{user_phone},
+				#{agree_SMS},
+				sysdate,
+				0
+			)
+	</insert>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="userIdConfirm" parameterType="com.futureArtCenter.client.user.vo.UserVO" resultType="int">
+	SELECT count(*)
+	FROM user_tb 
+	WHERE user_id = #{user_id}
+	</select>
+	
+</mapper>
