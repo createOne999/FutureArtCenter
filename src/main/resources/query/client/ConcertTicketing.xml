@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.client.ticketing.dao.ConcertTicketingDAO">
+	<resultMap type="com.futureArtCenter.client.ticketing.vo.ConcertTicketingVO" id="inputVO">
+		<result property="ticketingNo" column="ticketing_no" />
+		<result property="showNo" column="show_no" />
+		<result property="userNo" column="user_no" />
+		<result property="ticketingAmount" column="ticketing_amount" />
+		<result property="ticketingDate" column="ticketing_date" />
+		<result property="showDate" column="show_date" />
+		<result property="ticketingPayment" column="ticketing_payment" />
+		<result property="ticketingCancel" column="ticketing_cancel" />
+		<result property="ticketingCancelDate" column="ticketing_cancel_date" />
+		<result property="ticketingSit1" column="ticketing_sit1" />
+		<result property="ticketingSit2" column="ticketing_sit2" />
+		<result property="ticketingPayamount" column="ticketing_payamount" />
+		<result property="ticketingCancelAmount" column="ticketing_cancel_amount" />
+		<result property="ticketingCode1" column="ticketing_code1" />
+		<result property="ticketingCode2" column="ticketing_code2" />
+		<result property="ticketingRound" column="ticketing_round" />
+	</resultMap>
+
+	<!-- 좌석정보 -->
+	<select id="restSit" resultType="Integer">
+		SELECT ticketing_sit1
+		FROM ticketing2_tb
+		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd')
+		
+		UNION
+		
+		SELECT ticketing_sit2 as ticketing_sit1
+		FROM ticketing2_tb
+		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd')
+		
+		ORDER BY ticketing_sit1
+	</select>
+
+	<!-- 콘서트 예매 -->
+	<insert id="concertTicketing"  >
+		INSERT INTO ticketing2_tb
+		(
+		ticketing_no,
+		show_no,
+		user_no,
+		ticketing_amount,
+		ticketing_date,
+		show_date,
+		ticketing_payment,
+		ticketing_cancel,
+		ticketing_sit1,
+		<if test="inputVO.ticketingAmount == 2">
+		ticketing_sit2,
+		</if>
+		ticketing_payamount,
+		ticketing_code1,
+		<if test="inputVO.ticketingAmount == 2">
+		ticketing_code2,
+		</if>
+		ticketing_round
+		)
+		VALUES
+		(
+		ticketing2_seq.nextval,
+		#{inputVO.showNo},
+		(
+		SELECT user_no
+		FROM user_tb
+		WHERE user_id = #{user_id}
+		),
+		#{inputVO.ticketingAmount},
+		sysdate,
+		#{inputVO.showDate},
+		#{inputVO.ticketingPayment},
+		0,
+		#{inputVO.ticketingSit1} ,
+		<if test="inputVO.ticketingAmount == 2">
+		#{inputVO.ticketingSit2} ,
+		</if>
+		<!-- 총 결제금액 -->
+		(
+		SELECT show_price
+		FROM concert_tb
+		WHERE show_no = #{inputVO.showNo}
+		) * #{inputVO.ticketingAmount} ,
+		<!-- 티켓코드 1 -->
+		TO_CHAR(#{inputVO.showDate} , 'YYMMDD') ||
+		TO_CHAR( #{inputVO.ticketingRound} ) ||
+		'1' ||
+		LPAD(TO_CHAR(( SELECT NVL(SUM( ticketing_amount ), 0) + 1 FROM
+		ticketing2_tb WHERE show_no = #{inputVO.showNo} AND ticketing_round =
+		#{inputVO.ticketingRound} and show_date = #{inputVO.showDate} )) ,3, '0')
+		,
+		<!-- 티켓코드2 추가 -->
+		<if test="inputVO.ticketingAmount == 2">
+			TO_CHAR
+			( #{inputVO.showDate} , 'YYMMDD') ||
+			TO_CHAR( #{inputVO.ticketingRound} ) ||
+			'1' ||
+			LPAD(TO_CHAR(( SELECT NVL(SUM( ticketing_amount ), 0) + 2 FROM
+			ticketing2_tb WHERE show_no = #{inputVO.showNo} AND ticketing_round =
+			#{inputVO.ticketingRound} and show_date = #{inputVO.showDate} )) ,3, '0')
+			,
+		</if>
+		#{inputVO.ticketingRound}
+		)
+	</insert>
+</mapper>

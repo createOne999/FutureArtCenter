@@ -22,4 +22,14 @@ public class TalkServiceImpl implements TalkService {
 	public List<TalkVO> planList() throws Exception {
 		return dao.planList();
 	}
+
+	@Override
+	public TalkVO detail(int showNo) throws Exception {
+		return dao.detail(showNo);
+	}
+
+	@Override
+	public TalkVO detailPlan(int showNo) throws Exception {
+		return dao.detailPlan(showNo);
+	}
 }

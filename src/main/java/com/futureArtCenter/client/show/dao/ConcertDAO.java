@@ -10,4 +10,8 @@ public interface ConcertDAO {
 
 	public List<ConcertVO> planList() throws Exception;
 
+	public ConcertVO detail(int showNo) throws Exception;
+
+	public ConcertVO detailPlan(int showNo) throws Exception;
+
 }

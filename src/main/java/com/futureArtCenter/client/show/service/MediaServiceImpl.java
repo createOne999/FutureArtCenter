@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.futureArtCenter.client.show.dao.MediaDAO;
 import com.futureArtCenter.client.show.vo.MediaVO;
 
-import lombok.extern.java.Log;
 
 @Service
 public class MediaServiceImpl implements MediaService {
@@ -23,6 +22,16 @@ public class MediaServiceImpl implements MediaService {
 	@Override
 	public List<MediaVO> planList() throws Exception {
 		return dao.planList();
+	}
+
+	@Override
+	public MediaVO detail(int showNo) throws Exception {
+		return dao.detail(showNo);
+	}
+
+	@Override
+	public MediaVO detailPlan(int showNo) throws Exception {
+		return dao.detailPlan(showNo);
 	}
 
 

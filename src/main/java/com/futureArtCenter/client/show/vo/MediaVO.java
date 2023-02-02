@@ -16,7 +16,8 @@ public class MediaVO {
 	private int showRound;
 	private String showTime1;
 	private String showTime2;
-	private String showContent;
+	private String showContent1;
+	private String showContent2;
 	private String showPoster;
 	private Date showStartdate;
 	private Date showClosedate;

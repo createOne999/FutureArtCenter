@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.futureArtCenter.client.show.dao.MediaDAO">
+	<resultMap type="com.futureArtCenter.client.show.vo.MediaVO" id="MediaVO">
+		<result property="showNo" column="show_no" />
+		<result property="showName" column="show_name" />
+		<result property="showPrice" column="show_price" />
+		<result property="showRound" column="show_round" />
+		<result property="showTime1" column="show_time1" />
+		<result property="showTime2" column="show_time2" />
+		<result property="showContent1" column="show_content1" />
+		<result property="showContent2" column="show_content2" />
+		<result property="showPoster" column="show_poster" />
+		<result property="showStartdate" column="show_startdate" />
+		<result property="showClosedate" column="show_closedate" />
+		<result property="showStatus" column="show_status" />
+		<result property="mediaName" column="media_name" />
+		<result property="mediaDirector" column="media_director" />
+	</resultMap>
+
 	<!-- 미디어 목록 페이지 -->
-	<select id="list" resultType="com.futureArtCenter.client.show.vo.MediaVO" >
+	<select id="list" resultMap="MediaVO" >
 		SELECT show_no,
 				show_name,
 				show_startdate,
 				show_closedate,
 				show_round,
 				show_time1,
-				<if test="show_round == 2"> show_time2,</if>
+				show_time2,
 				show_poster
 		FROM media_tb
 		WHERE show_status = 1
@@ -17,17 +34,55 @@
 	</select>
 	
 	<!-- 미디어 공연예정 목록 -->
-	<select id="planList" resultType="com.futureArtCenter.client.show.vo.MediaVO" >
+	<select id="planList" resultMap="MediaVO" >
 		SELECT show_no,
 				show_name,
 				show_startdate,
 				show_closedate,
 				show_round,
 				show_time1,
-				<if test="show_round == 2"> show_time2,</if>
+				show_time2,
 				show_poster
 		FROM media_tb
 		WHERE show_status = 0
 		ORDER BY show_startdate DESC
+	</select>
+	
+	<!-- 미디어 상세 -->
+	<select id="detail" resultMap="MediaVO">
+		SELECT show_no,
+				show_name,
+				show_price,
+				show_round,
+				show_time1,
+				show_time2, 
+				show_content1,
+				show_content2,
+				show_poster,
+				show_startdate,
+				show_closedate,
+				media_name,
+				media_director
+		FROM media_tb
+		WHERE show_no = #{showNo} AND show_status = 1
+	</select>
+	
+	<!-- 미디어 상세 예정-->
+	<select id="detailPlan" resultMap="MediaVO">
+		SELECT show_no,
+				show_name,
+				show_price,
+				show_round,
+				show_time1,
+				show_time2, 
+				show_content1,
+				show_content2,
+				show_poster,
+				show_startdate,
+				show_closedate,
+				media_name,
+				media_director
+		FROM media_tb
+		WHERE show_no = #{showNo} AND show_status = 0
 	</select>
 </mapper>

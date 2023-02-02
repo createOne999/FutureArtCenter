@@ -10,4 +10,8 @@ public interface TalkService {
 
 	public List<TalkVO> planList() throws Exception;
 
+	public TalkVO detail(int showNo) throws Exception;
+
+	public TalkVO detailPlan(int showNo) throws Exception;
+
 }

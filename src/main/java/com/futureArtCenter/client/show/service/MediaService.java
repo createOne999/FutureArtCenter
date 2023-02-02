@@ -11,4 +11,8 @@ public interface MediaService {
 
 	public List<MediaVO> planList() throws Exception;
 
+	public MediaVO detail(int showNo) throws Exception;
+
+	public MediaVO detailPlan(int showNo) throws Exception;
+
 }
