@@ -20,5 +20,16 @@ public class MainController {
 		String formatted = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formatted);
+		
 	}
+	
+//	//로그인 화면 메소드
+//	@RequestMapping(value = "/login") 
+//	 public String adminLoginPage() {
+//		 
+//		 return "client/login/login"; 
+//	}
+	
+	//
+	
 }

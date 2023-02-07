@@ -5,6 +5,7 @@
 <div align="center">
 	<table>
 		<tr>
+
 			<!-- 로그인 하지 않은 상태 -->
 			<c:if test = "${user == null }">
 			<a href="/login/loginForm">로그인</a>
@@ -16,6 +17,7 @@
 			<a href="/login/logout.do">로그아웃</a>
 			&nbsp;&nbsp;&nbsp;<a href="/user/userInfo">마이페이지</a>
 			</c:if>
+
 		</tr>
 	</table>
 </div>

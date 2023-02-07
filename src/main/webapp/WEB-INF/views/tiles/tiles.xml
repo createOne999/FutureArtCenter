@@ -54,4 +54,24 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
 	</definition>
 	
+	<!-- <definition name="admin/main" extends="adminMainLayout">
+		<put-attribute name="title" value="adminMain" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
+	</definition> -->
+	
+	<!-- <definition name="admin/media/*" extends="adminMainLayout">
+		<put-attribute name="title" value="mediaReg" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/media/adminMediaReg.jsp" />
+	</definition> -->
+	
+	
+	
+	
+	
+	<!-- 
+	  관리자 로그인
+	<definition name="admin/*" extends="adminLoginPage">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/login/adminLoginPage.jsp"></put-attribute>
+	</definition> -->
 </tiles-definitions>

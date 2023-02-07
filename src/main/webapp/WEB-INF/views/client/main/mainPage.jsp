@@ -9,5 +9,6 @@
 <body>
 	<h1>Future Art Center 에 오신것을 환영합니다.</h1>
 	<p>${serverTime }</p>
+	
 </body>
 </html>

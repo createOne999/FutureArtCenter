@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.admin.talk.dao.AdminTalkDAO">
+	<resultMap type="com.futureArtCenter.admin.talk.vo.AdminTalkVO" id="talkMap">
+		<result property="show_no" column="show_no"/>
+		<result property="show_name" column="show_name"/>
+		<result property="show_price" column="show_price"/>
+		<result property="show_round" column="show_round"/>
+		<result property="show_content1" column="show_content1"/>
+		<result property="show_content2" column="show_content2"/>
+		<result property="show_poster" column="show_poster"/>
+		<result property="show_startdate" column="show_startdate"/>
+		<result property="show_closedate" column="show_closedate"/>
+		<result property="show_status" column="show_status"/>
+		<result property="talk_user" column="talk_user"/>
+		<result property="talk_subject" column="talk_subject"/>
+	</resultMap>
+	
+	<!-- 공연 등록 -->
+	<insert id="register">
+		INSERT INTO talk_tb
+				(
+					show_no,
+					show_name,
+					show_price,
+					show_round,
+					show_content1,
+					show_content2,
+					show_time1,
+					show_time2,
+					show_poster,
+					show_startdate,
+					show_closedate,
+					show_status,
+					talk_user,
+					talk_subject
+				) 
+				VALUES 
+				
+				(
+					talk_seq.NEXTVAL,
+					#{show_name},
+					#{show_price},
+					#{show_round},
+					#{show_content1},
+					#{show_content2},
+					#{show_time1},
+					#{show_time2},
+					#{show_poster},
+					#{show_startdate},
+					#{show_closedate},
+					#{show_status},
+					#{talk_user},
+					#{talk_subject}
+				)
+	</insert>
+	
+	<select id="list" resultType="com.futureArtCenter.admin.talk.vo.AdminTalkVO">
+		<![CDATA[
+			SELECT show_no,
+					show_name,
+					show_round,
+					show_time1,
+					show_time2,
+					show_startdate,
+					show_closedate,
+					show_price,
+					show_status
+			FROM talk_tb
+			ORDER BY show_no DESC
+		]]>
+	</select>
+	
+	<!-- 포스터 이미지 표시 -->
+	<select id="getShow_poster" resultType="String">
+		SELECT show_poster
+		FROM talk_tb
+		WHERE show_no = #{show_no}
+	</select>
+</mapper>
