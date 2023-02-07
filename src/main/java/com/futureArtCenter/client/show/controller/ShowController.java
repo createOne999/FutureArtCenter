@@ -68,6 +68,7 @@ public class ShowController {
 		// 예매 가능일 종료일
 		Calendar close = Calendar.getInstance();
 		close.add(Calendar.DATE, 8);
+		showCloseDate.add(Calendar.DATE, 1);
 		// 티켓팅 가능한 날짜를 저장할 리스트
 		List<Date> ticketingDate = new ArrayList<Date>();
 
@@ -94,7 +95,7 @@ public class ShowController {
 				ticketingDate.add(date.getTime());
 			}
 		}
-				
+
 		model.addAttribute("ticketingDateList", ticketingDate);
 		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
 		model.addAttribute("mediaRestTicketList", mediaService.mediaRestTicketList(showNo));
@@ -125,6 +126,7 @@ public class ShowController {
 		// 예매 가능일 종료일
 		Calendar close = Calendar.getInstance();
 		close.add(Calendar.DATE, 8);
+		showCloseDate.add(Calendar.DATE, 1);
 		// 티켓팅 가능한 날짜를 저장할 리스트
 		ArrayList<Date> ticketingDate = new ArrayList<Date>();
 
@@ -151,6 +153,7 @@ public class ShowController {
 				ticketingDate.add(date.getTime());
 			}
 		}
+		System.out.println(ticketingDate);
 		model.addAttribute("ticketingDateList", ticketingDate);
 		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
 		model.addAttribute("talkRestTicketList", talkService.talkRestTicketList(showNo));
@@ -181,6 +184,7 @@ public class ShowController {
 		// 예매 가능일 종료일
 		Calendar close = Calendar.getInstance();
 		close.add(Calendar.DATE, 8);
+		showCloseDate.add(Calendar.DATE, 1);
 		// 티켓팅 가능한 날짜를 저장할 리스트
 		ArrayList<Date> ticketingDate = new ArrayList<Date>();
 
