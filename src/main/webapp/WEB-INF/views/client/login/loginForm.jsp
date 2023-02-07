@@ -9,6 +9,7 @@
 <body>
 <div>
     <form:form id="login_form" method="post">
+    <h1>로  그  인</h1>
         <div>
             <label for="user_id" class="form-label">아 이 디</label>
             <input type="text" class="idInput" name="user_id" id="user_id" >
@@ -17,9 +18,11 @@
             <label for="user_pwd" class="form-label">비밀번호</label>
             <input type="password" class="pwdInput" name="user_pwd" id="user_pwd" >
         </div>
-        <button type="button" class="login_button">로그인</button>
-        <button type="button" class="idFind_button">아이디 찾기</button>
-        <button type="button" class="pwdFind_button">비밀번호 찾기</button>
+        <br>
+        <input type="submit" class="login_button" value="로그인">
+        <br>
+        <input type="button" class="idFind_button" value="아이디 찾기" onclick="idFindPop()">
+        <input type="button" class="pwdFind_button" value="비밀번호 찾기" onclick="pwdFindPop()">
     </form:form>
 </div>
 </body>
@@ -51,5 +54,17 @@
     alert("회원정보가 일치하지 않습니다.");
     </c:if>
     
+    // 아이디찾기 버튼
+    function idFindPop(){
+    	window.open("idFindPopup","아이디 찾기","width=470,height=250,left=400")
+
+    }
+    
+ 	// 비밀번호찾기 버튼
+    function pwdFindPop(){
+    	window.open("pwdFindPopup","비밀번호 찾기","width=470,height=300,left=400")
+
+    }
     
 </script>
+

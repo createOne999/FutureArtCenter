@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.client.info.dao.InfoDAO">
+
+<!-- 회원 정보 불러오기 -->
+	<select id="userInfoRead" resultType="com.futureArtCenter.client.user.vo.UserVO">
+	SELECT user_id, user_name, user_birth, user_phone, agree_SMS
+	FROM user_tb
+	WHERE user_id = #{user_id}
+	</select>
+
+<!-- 회원 정보 수정 -->
+	<!-- 이름,생년월일,SMS수신여부 정보 저장 -->
+	<update id="userInfoModify">
+	UPDATE user_tb
+	SET user_name = #{user_name},
+		user_phone = #{user_phone},
+		agree_SMS = #{agree_SMS}
+	WHERE user_id = #{user_id}
+	</update>
+
+	<!-- 비밀번호 변경 & 이름,생년월일,SMS수신여부 정보 저장 -->
+	<update id="userPwdModify">
+	UPDATE user_tb
+	SET user_pwd = #{user_pwdCheck},
+		user_name = #{user_name},
+		user_phone = #{user_phone},
+		agree_SMS = #{agree_SMS}
+	WHERE user_id = #{user_id}
+	</update>
+	
+<!-- 회원 탈퇴 -->
+	<update id="userOut">
+	UPDATE user_tb
+	SET user_out = '1',
+		user_outdate = sysdate
+	WHERE user_id = #{user_id}
+	</update>
+
+</mapper>

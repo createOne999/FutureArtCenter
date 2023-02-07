@@ -62,6 +62,5 @@ public class UserController {
 	int result = service.userIdConfirm(user);
 	return result;
 	}
-
 	
 }

@@ -14,8 +14,9 @@
 			
 			<!-- 로그인한 상태 -->
 			<c:if test = "${user != null }">
-			<a href="/login/logout.do">로그아웃</a>
-			&nbsp;&nbsp;&nbsp;<a href="/user/userInfo">마이페이지</a>
+			<strong>( ${user.user_id } )</strong>
+			&nbsp;&nbsp;&nbsp;<a href="/login/logout.do">로그아웃</a>
+			&nbsp;&nbsp;&nbsp;<a href="/info/ticketinglist">마이페이지</a>
 			</c:if>
 
 		</tr>
