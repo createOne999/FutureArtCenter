@@ -105,20 +105,47 @@
 </c:if>
 <script type="text/javascript">
 	$(document).ready(function(){
+		const dateInputString = $("#showDate").val();
+		const dateInput = new Date(dateInputString);
+		
 		$("#BtnPay").on("click", function(){
-			const isPay = confirm("결제하시겠습니까?");
-			
 			if (!$("input[name='ticketingPayment']").is(":checked")) {
 				alert("결제방법을 선택해 주세요");
 				return false;
 			}
 			
+			const isPay = confirm("결제하시겠습니까?");
+			
 			if (isPay) {
-				alert("결제되었습니다.");
-				$("#payment").submit();
+				var showNo = $("input[name='showNo']").val();
+				var ticketingRound = $("input[name='ticketingRound']").val();
+				var ticketingAmount = $("input[name='ticketingAmount']").val();
+				var showObject = {showDate : new Date(dateInput), showNo : showNo, ticketingRound : ticketingRound, ticketingAmount : ticketingAmount};
+
+				// 잔여좌석 검사
+				$.ajax({
+					url: "/ticketing/mediaCheck",
+					type: "post",
+					data: JSON.stringify(showObject),
+					dataType: "json",
+					contentType: "application/json; charset=utf-8",
+					success: function(data){
+						if (data.result === "SUCCESS") {
+							alert("결제되었습니다.");
+							$("#payment").submit();
+						}else if(data.result === "FAIL"){
+							alert("좌석이 매진되었습니다.");
+						}
+					},
+					error: function(){
+						alert("통신에 실패했습니다.");
+					}
+					
+				});// ajax End
+				
 			}else{
 				alert("결제를 취소합니다.");
-			}
+			}// isPay end
 		});
 	});
 	

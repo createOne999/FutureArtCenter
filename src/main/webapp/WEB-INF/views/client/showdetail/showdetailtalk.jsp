@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <div class="main_content">
-	<!-- 공연번호 저장용 -->
+	<%-- 공연번호 저장용 --%>
 	<form action="/ticketing/talkpayment" method="post" id="ticketingForm">
 		<input type="hidden" name="showNo" value="${showVO.showNo }">
 
-		<!-- 공연 정보 -->
+		<%-- 공연 정보 --%>
 		<div class="title_space">
 			<h3>예매</h3>
 		</div>
@@ -65,42 +65,106 @@
 					<table  border="1" style="text-align: center;">
 						<tr>
 							<td>
-								<!-- 예매 가능 날짜 -->
-								<select id="showDate" name="showDate">
-									<c:forEach items="${ticketingDateList }" var="date">
-										<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />">=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />=====</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td>
 								<c:choose>
 									<c:when test="${showVO.showRound == 2 }">
 										회차선택 1회차 ${showVO.showTime1 }
-										<input type="radio" id="1Round" name="ticketingRound" value="1" checked="checked">
+										<input type="radio" id="1Round" name="ticketingRound" value="1">
 										<br>
 										회차선택 2회차 ${showVO.showTime2 }
 										<input type="radio" id="2Round" name="ticketingRound" value="2">
 									</c:when>
 									<c:otherwise>
 										회차 ${showVO.showTime1 }
-										<input type="radio" id="1Round" name="ticketingRound" value="1" checked="checked">
+										<input type="radio" id="1Round" name="ticketingRound" value="1">
 									</c:otherwise>
 								</c:choose>
 							</td>
-							<td rowspan="2">
-								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn">
+							<td>
+								<%-- 날짜 + 회차를 합쳐, 잔여 좌석수를 추가 --%>
+								<select id="showDate" name="showDate">
+									<option disabled="disabled" selected="selected">날짜를 선택해 주세요.</option>
+									<%-- 날짜 리스트 반복 --%>
+									<c:forEach items="${ticketingDateList }" var="date">
+										<%-- 비교를 위해 형식변경 --%>
+										<fmt:formatDate value="${date }" pattern="yyyy-MM-dd" var="tempDate"/>
+										<%-- date 가 mediaRestTicket과 일치여부 확인 --%>
+										<c:set var="seatChecked" value="0" />
+										<c:set value="30" var="talkRestTicketChecked" />
+										<c:forEach items="${talkRestTicketList }" var="talkRestTicket">
+											<fmt:formatDate value="${talkRestTicket.showDate }" pattern="yyyy-MM-dd" var="tempTicketDate"/>
+											<c:if test="${seatChecked == 0 }">
+												<c:choose>
+													<c:when test="${tempDate == tempTicketDate && talkRestTicket.ticketingRound == 1}">
+														<c:set var="seatChecked" value="1" />
+														<c:set var="talkRestTicketChecked1" value="${talkRestTicket.ticketingAmount }" />
+													</c:when>
+													<c:when test="${tempDate == tempTicketDate && talkRestTicket.ticketingRound == 2}">
+														<c:set var="seatChecked" value="2" />
+														<c:set var="talkRestTicketChecked2" value="${talkRestTicket.ticketingAmount }" />
+													</c:when>
+												</c:choose>
+											</c:if>
+											<%-- 같은 날짜에서 다른 회차 둘다 예매내역이 있을 경우 --%>
+											<c:if test="${seatChecked == 1 }">
+												<c:if test="${talkRestTicket.ticketingAmount == 2}">
+													<c:set value="3" var="seatChecked" />
+												</c:if>
+											</c:if>
+										</c:forEach>
+										<c:choose>
+											<%-- 어떤 날의 1회차 내역이 있을경우 --%>
+											<c:when test="${seatChecked == 1 }">
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round1">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:${talkRestTicketChecked1 }:=====
+												</option>
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round2">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:30:=====
+												</option>
+											</c:when>
+											<%-- 어떤 날의 2회차 내역이 있을경우 --%>
+											<c:when test="${seatChecked == 2 }">
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round1">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:30:=====
+												</option>
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round2">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:${talkRestTicketChecked2 }:=====
+												</option>
+											</c:when>
+											<%-- 어떤 날의 1,2 회차 내역 모두 있을 경우 --%>
+											<c:when test="${seatChecked == 3 }">
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round1">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:${talkRestTicketChecked1 }:=====
+												</option>
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />" class="round2">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:${talkRestTicketChecked2 }:=====
+												</option>
+											</c:when>
+											<%-- 어떤 날의 예매정보가 없을 경우 --%>
+											<c:otherwise>
+												<option value="<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />">
+													=====<fmt:formatDate pattern="yyyy-MM-dd" value="${date }" />:30:=====
+												</option>	
+											</c:otherwise>
+										</c:choose>				
+									</c:forEach>
+								</select>
 							</td>
-						</tr>
-						<tr>
 							<td>
 								매수선택 1매
-								<input type="radio" id="1ticket" name="ticketingAmount" value="1" checked="checked">
+								<input type="radio" id="1ticket" name="ticketingAmount" value="1">
 								<br>
 								매수선택 2매
 								<input type="radio" id="2ticket" name="ticketingAmount" value="2">
 							</td>
-							<td>
+							
+						</tr>
+						<tr>
+							
+							<td colspan="2">
 								총금액 : <input type="text" id="ticketingPayamount" readonly="readonly">
+							</td>
+							<td>
+								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn">
 							</td>
 						</tr>
 					</table>
@@ -236,30 +300,119 @@
 	$(document).ready(function(){
 		$("#detailContent").show();
 		$("#detailViewGuide").hide();
-		
+		$(".round1").hide();
+		$(".round2").hide();
 		
 		$("#ticketing_btn").on("click", function(){
 			const dateInputString = $("#showDate").val();
 			const dateInput = new Date(dateInputString);
 			
-			if(!$("input[name='ticketingAmount']").is(':checked')){
-				alert("매수선택을 선택하지 않았습니다.");
-				return false;
-			}
 			if (!$("input[name='ticketingRound']").is(':checked')) {
 				alert("회차를 선택하지 않았습니다.");
 				return false;	
 			}
+			if (!$("#showDate option:selected").length > 0) {
+				alert("날짜를 선택하지 않았습니다.");
+				return false;
+			}
+			if(!$("input[name='ticketingAmount']").is(':checked')){
+				alert("매수선택을 선택하지 않았습니다.");
+				return false;
+			}
 			
-			const chkTicketing = confirm("결제페이지로 이동합니다.");
+			var showNo = $("input[name='showNo']").val();
+			var ticketingRound = $("input[name='ticketingRound']").val();
+			var ticketingAmount = $("input[name='ticketingAmount']").val();
+			var showObject = {showDate : new Date(dateInput), showNo : showNo, ticketingRound : ticketingRound, ticketingAmount : ticketingAmount};
+			let chkTicketing = false;
+			console.log(showObject);
+			// 잔여좌석 검사
+			$.ajax({
+				url: "/ticketing/talkCheck",
+				type: "post",
+				data: JSON.stringify(showObject),
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				success: function(data){
+					if (data.result === "SUCCESS") {
+						chkTicketing = confirm("결제페이지로 이동합니다.");
+						if (chkTicketing) {
+							//$("#showDate").val(dateInput);
+							$("input[name='showDate']").val(Date.parse(dateInput));
+							$("#ticketingForm").submit();	
+						}
+					}else if(data.result === "FAIL"){
+						alert("좌석이 매진되었습니다.");
+					}
+				},
+				error: function(){
+					alert("통신에 실패했습니다.");
+				}
+			});
+		});
+		
+		// 예매 회차 선택시 특정 회차의 날짜 보여줌
+		$("input[name='ticketingRound'").on('change', function(){
+			// 회차선택시 날짜, 매수 초기화
+			$("#showDate option:eq(0)").prop('selected', true);
 			
-			if (chkTicketing) {
-				$("input[name='showDate']").val(Date.parse(dateInput));
-				$("#ticketingForm").submit();	
+			$("input[name='ticketingAmount']").prop('checked', false);
+			
+			$("#ticketingPayamount").attr("value", '');
+			
+			if ($("#1Round").is(":checked")) {
+				$(".round1").show();
+				$(".round2").hide();
+			}
+			if ($("#2Round").is(":checked")) {
+				$(".round1").hide();
+				$(".round2").show();
 			}
 		});
 		
-		$("input[name='ticketingAmount']").change(function(){
+		// 날짜 선택시 회차 미선택 확인, 매수 초기화
+		// 날짜 선택시 해당 날짜,회차 별 예매가능 인원에 따라, 예매 매수를 제한함
+		// 남은 인원 1 일때 1매만 가능
+		// 남은 인원 0 일때 예매불가
+		$("#showDate").on('change', function(){
+			if (!$("input[name='ticketingRound']").is(':checked')) {
+				alert("회차를 선택하지 않았습니다.");
+				$("#showDate option:eq(0)").prop('selected', true);
+				return false;	
+			}
+			
+			$("input[name='ticketingAmount']").prop('checked', false);
+			
+			$("#ticketingPayamount").attr("value", '');
+			
+			let selectedDate = $("#showDate option:selected").text();
+			let restTicket = selectedDate.split(':');
+			if (restTicket[1] == 1) {// 한좌석 남았을 때 매수 2 비활성화
+				alert("한 좌석 남았습니다.");
+				$("#1ticket").attr("disabled", false);
+				$("#2ticket").attr("disabled", true);
+			}else if (restTicket[1] == 0) {// 남은 좌석 없을때 매수선택 비활성화
+				alert("남은 좌석이 없습니다.");
+				$("#1ticket").attr("disabled", true);
+				$("#2ticket").attr("disabled", true);
+			}else {// 남은 좌석 2 이상일때 매수선택 모두 활성화
+				$("#1ticket").attr("disabled", false);
+				$("#2ticket").attr("disabled", false);
+			}
+		});
+		
+		// 티켓 매수 선택시 매수에 따라 총 금액 변경, 회차 미선택 날짜 미선택 확인
+		$("input[name='ticketingAmount']").on('change', function(){
+			if (!$("input[name='ticketingRound']").is(':checked')) {
+				alert("회차를 선택하지 않았습니다.");
+				$("input[name='ticketingAmount']").prop('checked', false);
+				return false;	
+			}
+			if ($("#showDate option:selected").index() == 0) {
+				alert("날짜를 선택하지 않았습니다.");
+				$("input[name='ticketingAmount']").prop('checked', false);
+				return false;
+			}
 			// 모든 라디오 순회
 			$("input[name='ticketingAmount']").each(function(){
 				var val = $(this).val();
@@ -270,6 +423,10 @@
 				}
 			});
 		});
+		
+		
+		
+		
 		
 		$("#content").on("click", function(){
 			$("#detailContent").show();

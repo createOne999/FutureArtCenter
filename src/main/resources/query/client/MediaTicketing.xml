@@ -21,6 +21,21 @@
 		<result property="ticketingRound" column="ticketing_round" />
 	</resultMap>
 	
+	<!-- 잔여티켓 수 리스트 -->
+	<select id="mediaRestTicketList" resultMap="inputVO">
+		SELECT show_date, ticketing_round, 30 - NVL(sum(ticketing_amount), 0) as ticketing_amount
+		FROM ticketing0_tb
+		WHERE show_no = ${showNo}
+		GROUP BY show_date, ticketing_round
+	</select>
+	
+	<!-- 잔여티켓 수 -->
+	<select id="mediaRestTicket" resultType="int">
+		SELECT 30 - NVL(sum(ticketing_amount), 0)
+		FROM ticketing0_tb
+		WHERE show_no = #{showNo} AND show_date = #{showDate} AND ticketing_cancel = 0 AND ticketing_round = #{ticketingRound}
+	</select>
+	
 	<insert id="mediaTicketing"  >
 		INSERT INTO ticketing0_tb
 		(

@@ -6,4 +6,6 @@ public interface TalkTicketingService {
 
 	public void talkTicketing(TalkTicketingVO inputVO, String user_id) throws Exception;
 
+	public int talkRestTicket(TalkTicketingVO inputVO) throws Exception;
+
 }

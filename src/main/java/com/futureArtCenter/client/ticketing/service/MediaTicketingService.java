@@ -6,4 +6,6 @@ public interface MediaTicketingService {
 
 	public void mediaTicketing(MediaTicketingVO inputVO, String user_id) throws Exception;
 
+	public int mediaRestTicket(MediaTicketingVO inputVO) throws Exception;
+
 }

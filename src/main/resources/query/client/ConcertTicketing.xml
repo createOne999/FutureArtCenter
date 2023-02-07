@@ -19,18 +19,33 @@
 		<result property="ticketingCode2" column="ticketing_code2" />
 		<result property="ticketingRound" column="ticketing_round" />
 	</resultMap>
+	
+	<!-- 잔여티켓 수 리스트 -->
+	<select id="concertRestTicketList" resultMap="inputVO">
+		SELECT show_date, ticketing_round, 50 - NVL(sum(ticketing_amount), 0) as ticketing_amount
+		FROM ticketing2_tb
+		WHERE show_no = ${showNo}
+		GROUP BY show_date, ticketing_round
+	</select>
+	
+	<!-- 잔여티켓 수 -->
+	<select id="concertRestTicket" resultType="int">
+		SELECT 50 - NVL(sum(ticketing_amount), 0)
+		FROM ticketing2_tb
+		WHERE show_no = #{showNo} AND show_date = #{showDate} AND ticketing_cancel = 0 AND ticketing_round = #{ticketingRound}
+	</select>
 
 	<!-- 좌석정보 -->
 	<select id="restSit" resultType="Integer">
 		SELECT ticketing_sit1
 		FROM ticketing2_tb
-		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd')
+		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd') AND ticketing_cancel = 0
 		
 		UNION
 		
 		SELECT ticketing_sit2 as ticketing_sit1
 		FROM ticketing2_tb
-		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd')
+		WHERE show_no = #{inputVO.showNo} AND ticketing_round = #{inputVO.ticketingRound} AND show_date = TO_DATE( #{showDateString}, 'yyyy-mm-dd') AND ticketing_cancel = 0
 		
 		ORDER BY ticketing_sit1
 	</select>

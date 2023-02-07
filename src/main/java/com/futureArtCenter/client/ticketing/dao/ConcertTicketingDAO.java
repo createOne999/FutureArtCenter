@@ -9,5 +9,9 @@ public interface ConcertTicketingDAO {
 	public void concertTicketing(ConcertTicketingVO inputVO, String user_id) throws Exception;
 	
 	public List<Integer> restSit(ConcertTicketingVO inputVO, String showDateString) throws Exception;
+	
+	public int concertRestTicket(ConcertTicketingVO inputVO) throws Exception;
+	
+	public List<ConcertTicketingVO> concertRestTicketList(int showNo) throws Exception;
 
 }

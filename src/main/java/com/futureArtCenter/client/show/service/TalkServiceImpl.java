@@ -7,12 +7,17 @@ import org.springframework.stereotype.Controller;
 
 import com.futureArtCenter.client.show.dao.TalkDAO;
 import com.futureArtCenter.client.show.vo.TalkVO;
+import com.futureArtCenter.client.ticketing.dao.TalkTicketingDAO;
+import com.futureArtCenter.client.ticketing.vo.TalkTicketingVO;
 
 @Controller
 public class TalkServiceImpl implements TalkService {
 	@Autowired
 	private TalkDAO dao;
 
+	@Autowired
+	private TalkTicketingDAO talkTicketingDAO;
+	
 	@Override
 	public List<TalkVO> list() throws Exception {
 		return dao.list();
@@ -31,5 +36,10 @@ public class TalkServiceImpl implements TalkService {
 	@Override
 	public TalkVO detailPlan(int showNo) throws Exception {
 		return dao.detailPlan(showNo);
+	}
+
+	@Override
+	public List<TalkTicketingVO> talkRestTicketList(int showNo) throws Exception {
+		return talkTicketingDAO.talkRestTicketList(showNo);
 	}
 }

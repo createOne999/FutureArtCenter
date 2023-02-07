@@ -2,15 +2,24 @@ package com.futureArtCenter.client.ticketing.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.futureArtCenter.client.show.service.ConcertService;
 import com.futureArtCenter.client.show.service.MediaService;
@@ -24,7 +33,6 @@ import com.futureArtCenter.client.ticketing.service.TalkTicketingService;
 import com.futureArtCenter.client.ticketing.vo.ConcertTicketingVO;
 import com.futureArtCenter.client.ticketing.vo.MediaTicketingVO;
 import com.futureArtCenter.client.ticketing.vo.TalkTicketingVO;
-import com.futureArtCenter.client.user.service.UserService;
 import com.futureArtCenter.client.user.vo.UserVO;
 
 @Controller
@@ -49,17 +57,19 @@ public class TicketingController {
 	private ConcertService concertService;
 
 	// 미디어 결제 페이지 호출
-	@RequestMapping(value = "/mediapayment", method = RequestMethod.POST)
+	@PostMapping("/mediapayment")
 	public void mediapayment(Model model, MediaVO showVO, MediaTicketingVO inputVO) throws Exception {
 		System.out.println(inputVO);
 		System.out.println(showVO);
+		
+		
 
 		model.addAttribute("ticketingVO", inputVO);
 		model.addAttribute("showVO", mediaService.detail(showVO.getShowNo()));
 	}
 
 	// 강연 결제 페이지 호출
-	@RequestMapping(value = "/talkpayment", method = RequestMethod.POST)
+	@PostMapping("/talkpayment")
 	public void talkpayment(Model model, TalkVO showVO, TalkTicketingVO inputVO) throws Exception {
 		System.out.println(inputVO);
 		System.out.println(showVO);
@@ -69,7 +79,7 @@ public class TicketingController {
 	}
 
 	// 콘서트 결제 페이지 호출
-	@RequestMapping(value = "/concertpayment", method = RequestMethod.POST)
+	@PostMapping("/concertpayment")
 	public void concertpayment(Model model, ConcertVO showVO, ConcertTicketingVO inputVO) throws Exception {
 		System.out.println(inputVO);
 		System.out.println(showVO);
@@ -77,9 +87,29 @@ public class TicketingController {
 		model.addAttribute("ticketingVO", inputVO);
 		model.addAttribute("showVO", concertService.detail(showVO.getShowNo()));
 	}
+	
+	// 미디어 남은 좌석 체크
+	@PostMapping("/mediaCheck")
+	@ResponseBody
+	public HashMap<String, String> mediaCheck(@RequestBody MediaTicketingVO mediaTicketingVO) throws Exception{
+		System.out.println(mediaTicketingVO);
+		
+		HashMap<String, String> result = new HashMap<String, String>();
+		
+		int restTicket = mediaTicketingService.mediaRestTicket(mediaTicketingVO);
+		// 좌석수 부족 에러
+		if ((restTicket == 1 && mediaTicketingVO.getTicketingAmount()==2) || restTicket == 0 ) {
+			System.out.println(mediaTicketingVO);
+			System.out.println("좌석수 부족 에러");
+			result.put("result", "FAIL");
+		}else {
+			result.put("result", "SUCCESS");
+		}
+		return result;
+	}
 
 	// 미디어 결제 처리
-	@RequestMapping(value = "/mediapaymenting", method = RequestMethod.POST)
+	@PostMapping("/mediapaymenting")
 	public String mediapaymenting(Model model, MediaTicketingVO inputVO, HttpSession session) throws Exception {
 		// 세션에 저장된 userId를 바탕으로 userNo 값 가져오기
 		UserVO user = (UserVO) session.getAttribute("user");
@@ -94,9 +124,29 @@ public class TicketingController {
 
 		return "redirect:/info/ticketinglist";
 	}
+	
+	// 강연 남은 좌석 체크
+	@PostMapping("/talkCheck")
+	@ResponseBody
+	public HashMap<String, String> talkCheck(@RequestBody TalkTicketingVO talkTicketingVO) throws Exception{
+		System.out.println(talkTicketingVO);
+		
+		HashMap<String, String> result = new HashMap<String, String>();
+		
+		int restTicket = talkTicketingService.talkRestTicket(talkTicketingVO);
+		// 좌석수 부족 에러
+		if ((restTicket == 1 && talkTicketingVO.getTicketingAmount()==2) || restTicket == 0 ) {
+			System.out.println(talkTicketingVO);
+			System.out.println("좌석수 부족 에러");
+			result.put("result", "FAIL");
+		}else {
+			result.put("result", "SUCCESS");
+		}
+		return result;
+	}
 
 	// 강연 결제 처리
-	@RequestMapping(value = "/talkpaymenting", method = RequestMethod.POST)
+	@PostMapping("/talkpaymenting")
 	public String talkpaymenting(Model model, TalkTicketingVO inputVO, HttpSession session) throws Exception {
 		UserVO user = (UserVO) session.getAttribute("user");
 
@@ -104,34 +154,62 @@ public class TicketingController {
 
 		return "redirect:/info/ticketinglist";
 	}
+	
+	// 콘서트 남은 좌석 체크
+	@PostMapping("/concertCheck")
+	@ResponseBody
+	public HashMap<String, String> concertCheck(@RequestBody ConcertTicketingVO concertTicketingVO) throws Exception{
+		System.out.println(concertTicketingVO);
+		
+		HashMap<String, String> result = new HashMap<String, String>();
+		
+		int restTicket = concertTicketingService.concertRestTicket(concertTicketingVO);
+		// 좌석수 부족 에러
+		if ((restTicket == 1 && concertTicketingVO.getTicketingAmount()==2) || restTicket == 0 ) {
+			System.out.println(concertTicketingVO);
+			System.out.println("좌석수 부족 에러");
+			result.put("result", "FAIL");
+			return result;
+		}else {
+			// 잔여 좌석정보 가져와서 입력된 값과 비교
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			String showDateString = df.format(concertTicketingVO.getShowDate());
+			System.out.println(showDateString);
+			ArrayList<Integer> restSitList = (ArrayList<Integer>) concertTicketingService.restSit(concertTicketingVO, showDateString);
+			// SingletonList는 요소가 없거나 하나인 경우에 사용하면 좋다. Arrays.asList()보다 크기가 작기 때문이다.
+			restSitList.removeAll(Collections.singletonList(null));// null 값 제거
+			System.out.println(restSitList);
+			// 조작방지
+			try {
+				for (Integer restSit : restSitList) {
+					if (concertTicketingVO.getTicketingSit1() == restSit) {
+						System.out.println("좌석번호1이 잘못 되었습니다.");
+						result.put("result", "TAKE");
+						return result;
+					}else {
+						result.put("result", "SUCCESS");
+					}
+					if (concertTicketingVO.getTicketingSit2() == restSit) {
+						System.out.println("좌석번호2이 잘못 되었습니다");
+						result.put("result", "TAKE");
+						return result;
+					}else {
+						result.put("result", "SUCCESS");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(result);
+		return result;
+	}
 
 	// 콘서트 결제 처리
-	@RequestMapping(value = "/concertpaymenting", method = RequestMethod.POST)
+	@PostMapping("/concertpaymenting")
 	public String concertpaymenting(Model model, ConcertTicketingVO inputVO, HttpSession session) throws Exception {
 		UserVO user = (UserVO) session.getAttribute("user");
 
-		// 잔여 좌석정보 가져와서 입력된 값과 비교
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		String showDateString = df.format(inputVO.getShowDate());
-		System.out.println(showDateString);
-		ArrayList<Integer> restSitList = (ArrayList<Integer>) concertTicketingService.restSit(inputVO, showDateString);
-		// 조작방지
-		try {
-			for (Integer restSit : restSitList) {
-				if (inputVO.getTicketingSit1() == restSit) {
-					System.out.println("좌석번호1이 잘못 되었습니다.");
-					return "main";
-				}
-				if (inputVO.getTicketingSit2() == restSit) {
-					System.out.println("좌석번호2이 잘못 되었습니다");
-					return "main";
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
 		concertTicketingService.concertTicketing(inputVO, user.getUser_id());
 
 		return "redirect:/info/ticketinglist";

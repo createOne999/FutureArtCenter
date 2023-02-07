@@ -16,5 +16,7 @@ public interface ConcertService {
 	public ConcertVO detailPlan(int showNo) throws Exception;
 	
 	public List<Integer> restSit(ConcertTicketingVO showVO, String showDateString) throws Exception;
+	
+	public List<ConcertTicketingVO> concertRestTicketList(int showNo) throws Exception;
 
 }

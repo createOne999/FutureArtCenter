@@ -16,4 +16,9 @@ public class TalkTicketingServiceImpl implements TalkTicketingService {
 		dao.talkTicketing(inputVO, user_id);
 		
 	}
+
+	@Override
+	public int talkRestTicket(TalkTicketingVO inputVO) throws Exception {
+		return dao.talkRestTicket(inputVO);
+	}
 }

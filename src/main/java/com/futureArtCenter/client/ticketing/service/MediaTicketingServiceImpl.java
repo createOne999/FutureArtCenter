@@ -17,4 +17,10 @@ public class MediaTicketingServiceImpl implements MediaTicketingService {
 		dao.mediaTicketing(inputVO, user_id);
 		
 	}
+
+
+	@Override
+	public int mediaRestTicket(MediaTicketingVO inputVO) throws Exception {
+		return dao.mediaRestTicket(inputVO);
+	}
 }

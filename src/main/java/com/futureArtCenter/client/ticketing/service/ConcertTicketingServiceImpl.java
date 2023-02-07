@@ -23,4 +23,9 @@ public class ConcertTicketingServiceImpl implements ConcertTicketingService {
 	public List<Integer> restSit(ConcertTicketingVO inputVO, String showDateString) throws Exception {
 		return dao.restSit(inputVO, showDateString);
 	}
+
+	@Override
+	public int concertRestTicket(ConcertTicketingVO inputVO) throws Exception {
+		return dao.concertRestTicket(inputVO);
+	}
 }

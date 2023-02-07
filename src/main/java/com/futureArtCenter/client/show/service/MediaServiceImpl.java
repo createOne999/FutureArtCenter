@@ -7,12 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.futureArtCenter.client.show.dao.MediaDAO;
 import com.futureArtCenter.client.show.vo.MediaVO;
+import com.futureArtCenter.client.ticketing.dao.MediaTicketingDAO;
+import com.futureArtCenter.client.ticketing.vo.MediaTicketingVO;
 
 
 @Service
 public class MediaServiceImpl implements MediaService {
 	@Autowired
 	private MediaDAO dao;
+	
+	@Autowired
+	private MediaTicketingDAO mediaTicketingDAO;
 
 	@Override
 	public List<MediaVO> list() throws Exception {
@@ -32,6 +37,11 @@ public class MediaServiceImpl implements MediaService {
 	@Override
 	public MediaVO detailPlan(int showNo) throws Exception {
 		return dao.detailPlan(showNo);
+	}
+
+	@Override
+	public List<MediaTicketingVO> mediaRestTicketList(int showNo) throws Exception {
+		return mediaTicketingDAO.mediaRestTicketList(showNo);
 	}
 
 

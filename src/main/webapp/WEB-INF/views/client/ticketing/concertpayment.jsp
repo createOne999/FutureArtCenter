@@ -121,20 +121,53 @@
 </c:if>
 <script type="text/javascript">
 	$(document).ready(function(){
+		const dateInputString = $("#showDate").val();
+		const dateInput = new Date(dateInputString);
+		
 		$("#BtnPay").on("click", function(){
-			const isPay = confirm("결제하시겠습니까?");
 			
 			if (!$("input[name='ticketingPayment']").is(":checked")) {
 				alert("결제방법을 선택해 주세요");
 				return false;
 			}
 			
+			const isPay = confirm("결제하시겠습니까?");
+			
 			if (isPay) {
-				alert("결제되었습니다.");
-				$("#payment").submit();
+				var showNo = $("input[name='showNo']").val();
+				var ticketingRound = $("input[name='ticketingRound']:checked").val();
+				var ticketingAmount = $("input[name='ticketingAmount']").val();
+				var ticketingSit1 = $("input[name='ticketingSit1']").val();
+				var ticketingSit2 = $("input[name='ticketingSit2']").val();
+				var showObject = {showDate : new Date(dateInput), showNo : showNo, ticketingRound : ticketingRound, ticketingAmount : ticketingAmount, ticketingSit1 : ticketingSit1, ticketingSit2 : ticketingSit2};
+
+				// 잔여좌석 검사
+				$.ajax({
+					url: "/ticketing/concertCheck",
+					type: "post",
+					data: JSON.stringify(showObject),
+					dataType: "json",
+					contentType: "application/json; charset=utf-8",
+					success: function(data){
+						if (data.result === "SUCCESS") {
+							alert("결제되었습니다.");
+							$("#payment").submit();
+						}else if(data.result === "FAIL"){
+							alert("좌석이 매진되었습니다.");
+						}else if(data.result === "TAKE"){
+							alert("좌석을 빼앗겼습니다.");
+							history.back(); // 이전페이지로 이동
+						}
+					},
+					error: function(){
+						alert("통신에 실패했습니다.");
+					}
+					
+				});// ajax End
+				
 			}else{
 				alert("결제를 취소합니다.");
-			}
+			}// isPay end
 		});
 	});
 	

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +37,7 @@ public class ShowController {
 	private ConcertService concertService;
 
 	// 공연 목록 보기
-	@RequestMapping(value = "/showlist", method = RequestMethod.GET)
+	@GetMapping("/showlist")
 	public void showList(Model model) throws Exception {
 		model.addAttribute("mediaList", mediaService.list());
 		model.addAttribute("talkList", talkService.list());
@@ -44,7 +45,7 @@ public class ShowController {
 	}
 
 	// 공연 예정 목록보기
-	@RequestMapping(value = "/showplan", method = RequestMethod.GET)
+	@GetMapping("/showplan")
 	public void showPlan(Model model) throws Exception {
 		model.addAttribute("mediaList", mediaService.planList());
 		model.addAttribute("talkList", talkService.planList());
@@ -52,7 +53,7 @@ public class ShowController {
 	}
 
 	// 미디어 상세 페이지
-	@RequestMapping(value = "/detail/showdetailmedia", method = RequestMethod.GET)
+	@GetMapping("/detail/showdetailmedia")
 	public void showDetailMedia(int showNo, Model model) throws Exception {
 		MediaVO mediaVO = mediaService.detail(showNo);
 		Calendar showStartDate = Calendar.getInstance();
@@ -93,12 +94,15 @@ public class ShowController {
 				ticketingDate.add(date.getTime());
 			}
 		}
+				
 		model.addAttribute("ticketingDateList", ticketingDate);
+		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
+		model.addAttribute("mediaRestTicketList", mediaService.mediaRestTicketList(showNo));
 		model.addAttribute("showVO", mediaVO);
 	}
 	
 	// 미디어 상세 예정 페이지
-	@RequestMapping(value = "/detail/showdetailmediaplan", method = RequestMethod.GET)
+	@GetMapping("/detail/showdetailmediaplan")
 	public void showDetailMediaPlan(int showNo, Model model) throws Exception{
 		MediaVO mediaVO = mediaService.detailPlan(showNo);
 		
@@ -106,7 +110,7 @@ public class ShowController {
 	}
 
 	// 강연 상세 페이지
-	@RequestMapping(value = "/detail/showdetailtalk", method = RequestMethod.GET)
+	@GetMapping("/detail/showdetailtalk")
 	public void showDetailTalk(int showNo, Model model) throws Exception {
 		TalkVO talkVO = talkService.detail(showNo);
 		
@@ -148,11 +152,13 @@ public class ShowController {
 			}
 		}
 		model.addAttribute("ticketingDateList", ticketingDate);
+		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
+		model.addAttribute("talkRestTicketList", talkService.talkRestTicketList(showNo));
 		model.addAttribute("showVO", talkVO);
 	}
 	
 	// 강연 상세 예정 페이지
-	@RequestMapping(value = "/detail/showdetailtalkplan", method = RequestMethod.GET)
+	@GetMapping("/detail/showdetailtalkplan")
 	public void showDetailTalkPlan(int showNo, Model model) throws Exception{
 		TalkVO talkVO = talkService.detailPlan(showNo);
 		
@@ -160,7 +166,7 @@ public class ShowController {
 	}
 	
 	// 콘서트 상세 페이지
-	@RequestMapping(value = "/detail/showdetailconcert", method = RequestMethod.GET)
+	@GetMapping("/detail/showdetailconcert")
 	public void showDetailConcert(int showNo, Model model) throws Exception {
 		ConcertVO concertVO = concertService.detail(showNo);
 		
@@ -202,10 +208,12 @@ public class ShowController {
 			}
 		}
 		model.addAttribute("ticketingDateList", ticketingDate);
+		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
+		model.addAttribute("concertRestTicketList", concertService.concertRestTicketList(showNo));
 		model.addAttribute("showVO", concertVO);
 	}
 	
-	//좌석 선택 페이지
+	//좌석 선택 페이지 호출
 	@PostMapping("/detail/seatselect")
 	public void seatselect(Model model, int showNo, @DateTimeFormat(pattern = "yyyy-MM-dd") Date showDate, int ticketingRound) throws Exception{
 		ConcertTicketingVO showVO = new ConcertTicketingVO();

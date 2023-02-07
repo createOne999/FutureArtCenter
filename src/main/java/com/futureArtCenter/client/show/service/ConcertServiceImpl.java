@@ -1,7 +1,5 @@
 package com.futureArtCenter.client.show.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +41,10 @@ public class ConcertServiceImpl implements ConcertService {
 	@Override
 	public List<Integer> restSit(ConcertTicketingVO inputVO, String showDateString) throws Exception {
 		return concertTicketingDAO.restSit(inputVO, showDateString);
+	}
+
+	@Override
+	public List<ConcertTicketingVO> concertRestTicketList(int showNo) throws Exception {
+		return concertTicketingDAO.concertRestTicketList(showNo);
 	}
 }
