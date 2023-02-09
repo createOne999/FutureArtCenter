@@ -20,7 +20,7 @@
 					<c:forEach items="${mediaList }" var="media">
 						<span style="display:inline-block;  border: 1px solid;">
 							<a href="/show/detail/showdetailmedia?showNo=${media.showNo }">
-								${media.showPoster }
+								<img alt="${media.showPoster }" src="poster?show_no=${media.showNo }&showPoster=${media.showPoster}" height="200px">
 							</a>
 							<br>
 							공연명: ${media.showName }<br>
@@ -56,7 +56,7 @@
 					<c:forEach items="${talkList }" var="talk">
 						<span style="display:inline-block;  border: 1px solid">
 							<a href="/show/detail/showdetailtalk?showNo=${talk.showNo }">
-								${talk.showPoster }
+								<img alt="${talk.showPoster }" src="poster?show_no=${talk.showNo }&showPoster=${talk.showPoster}" height="200px">
 							</a>
 							<br>
 							공연명: ${talk.showName }<br>
@@ -91,7 +91,8 @@
 					<c:forEach items="${concertList }" var="concert">
 						<span style="display:inline-block; border: 1px solid">
 							<a href="/show/detail/showdetailconcert?showNo=${concert.showNo }">
-								${concert.showPoster }
+								<img alt="${concert.showPoster }" src="poster?show_no=${concert.showNo }&showPoster=${concert.showPoster}" height="200px">
+
 							</a>
 							<br>
 							공연명: ${concert.showName }<br>

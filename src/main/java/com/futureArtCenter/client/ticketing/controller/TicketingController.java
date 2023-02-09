@@ -180,25 +180,29 @@ public class TicketingController {
 			restSitList.removeAll(Collections.singletonList(null));// null 값 제거
 			System.out.println(restSitList);
 			// 조작방지
-			try {
-				for (Integer restSit : restSitList) {
-					if (concertTicketingVO.getTicketingSit1() == restSit) {
-						System.out.println("좌석번호1이 잘못 되었습니다.");
-						result.put("result", "TAKE");
-						return result;
-					}else {
-						result.put("result", "SUCCESS");
+			if (restSitList.isEmpty()) {
+				result.put("result", "SUCCESS");
+			}else {
+				try {
+					for (Integer restSit : restSitList) {
+						if (concertTicketingVO.getTicketingSit1() == restSit) {
+							System.out.println("좌석번호1이 잘못 되었습니다.");
+							result.put("result", "TAKE");
+							return result;
+						}else {
+							result.put("result", "SUCCESS");
+						}
+						if (concertTicketingVO.getTicketingSit2() == restSit) {
+							System.out.println("좌석번호2이 잘못 되었습니다");
+							result.put("result", "TAKE");
+							return result;
+						}else {
+							result.put("result", "SUCCESS");
+						}
 					}
-					if (concertTicketingVO.getTicketingSit2() == restSit) {
-						System.out.println("좌석번호2이 잘못 되었습니다");
-						result.put("result", "TAKE");
-						return result;
-					}else {
-						result.put("result", "SUCCESS");
-					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 		System.out.println(result);

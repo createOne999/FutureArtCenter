@@ -11,7 +11,9 @@
 		<div class="title_space">
 			<h3>예매</h3>
 		</div>
-		<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">${showVO.showPoster }</div>
+		<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
+			<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
+		</div>
 		<div class="select_space" style="display: inline-block; vertical-align: middle;">
 			<table border="1"  >
 				<tr>
@@ -187,7 +189,7 @@
 		<div id="detail">
 			<div id="detailContent">
 				${showVO.showContent1 }
-				${showVO.showContent2 }
+				<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" height="200px">
 			</div>
 			<div id="detailViewGuide">
 				<!-- 코로나 19관람 수칙 -->

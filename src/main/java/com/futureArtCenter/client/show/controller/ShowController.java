@@ -1,5 +1,8 @@
 package com.futureArtCenter.client.show.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,14 +10,21 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.futureArtCenter.client.show.service.ConcertService;
 import com.futureArtCenter.client.show.service.MediaService;
@@ -35,6 +45,58 @@ public class ShowController {
 
 	@Autowired
 	private ConcertService concertService;
+	
+	@Value("${upload.path}")
+	private String uploadPath;
+	
+	@ResponseBody
+	@GetMapping(value={"/poster", "/detail/poster"})
+	public ResponseEntity<byte[]> displayFile(Integer show_no, String showPoster) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		String fileName = showPoster;
+
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+			MediaType mType = getMediaType(formatName);
+			HttpHeaders headers = new HttpHeaders();
+
+			in = new FileInputStream(uploadPath + File.separator + fileName);
+
+			if (mType != null) {
+				headers.setContentType(mType);
+			}
+			
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+		return entity;
+	}
+
+	// 파일 확장자로 이미지 형식 확인
+	private MediaType getMediaType(String formatName) {
+		if (formatName != null) {
+			if (formatName.equals("JPG")) {
+				return MediaType.IMAGE_JPEG;
+			}
+
+			if (formatName.equals("GIF")) {
+				return MediaType.IMAGE_GIF;
+			}
+
+			if (formatName.equals("PNG")) {
+				return MediaType.IMAGE_PNG;
+			}
+		}
+
+		return null;
+	}
 
 	// 공연 목록 보기
 	@GetMapping("/showlist")
@@ -95,7 +157,7 @@ public class ShowController {
 				ticketingDate.add(date.getTime());
 			}
 		}
-
+		
 		model.addAttribute("ticketingDateList", ticketingDate);
 		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
 		model.addAttribute("mediaRestTicketList", mediaService.mediaRestTicketList(showNo));
@@ -106,7 +168,11 @@ public class ShowController {
 	@GetMapping("/detail/showdetailmediaplan")
 	public void showDetailMediaPlan(int showNo, Model model) throws Exception{
 		MediaVO mediaVO = mediaService.detailPlan(showNo);
+		Calendar ticketingStartDate = Calendar.getInstance();
+		ticketingStartDate.setTime(mediaVO.getShowStartdate());
+		ticketingStartDate.add(Calendar.DATE, -7);
 		
+		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		model.addAttribute("showVO", mediaVO);
 	}
 
@@ -153,7 +219,6 @@ public class ShowController {
 				ticketingDate.add(date.getTime());
 			}
 		}
-		System.out.println(ticketingDate);
 		model.addAttribute("ticketingDateList", ticketingDate);
 		// 날짜 회차별 남은 티켓 현황, 한번도 예매한 적 없는 날짜 + 회차일 경우 존재하지 않음
 		model.addAttribute("talkRestTicketList", talkService.talkRestTicketList(showNo));
@@ -164,6 +229,11 @@ public class ShowController {
 	@GetMapping("/detail/showdetailtalkplan")
 	public void showDetailTalkPlan(int showNo, Model model) throws Exception{
 		TalkVO talkVO = talkService.detailPlan(showNo);
+		Calendar ticketingStartDate = Calendar.getInstance();
+		ticketingStartDate.setTime(talkVO.getShowStartdate());
+		ticketingStartDate.add(Calendar.DATE, -7);
+		
+		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		
 		model.addAttribute("showVO", talkVO);
 	}
@@ -240,6 +310,11 @@ public class ShowController {
 	@RequestMapping(value = "/detail/showdetailconcertplan", method = RequestMethod.GET)
 	public void showDetailConcertPlan(int showNo, Model model) throws Exception{
 		ConcertVO concertVO = concertService.detailPlan(showNo);
+		Calendar ticketingStartDate = Calendar.getInstance();
+		ticketingStartDate.setTime(concertVO.getShowStartdate());
+		ticketingStartDate.add(Calendar.DATE, -7);
+		
+		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		
 		model.addAttribute("showVO", concertVO);
 	}
