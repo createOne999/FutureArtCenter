@@ -82,4 +82,22 @@
 		</tr>
 	</c:forEach><%-- 줄반복 종료 --%>
 </table>
+<fieldset style="width:200px;">
+	<legend>색 구분</legend>
+	<table>
+		<tr>
+			<td><input type="color" value="#FF0000" disabled="disabled"></td>
+			<td><label>선택한 좌석</label></td>
+		</tr>
+		<tr>
+			<td><input type="color" value="#FF7F00" disabled="disabled"></td>
+			<td><label>예매된 좌석</label></td>
+		</tr>
+		<tr>
+			<td><input type="color" value="#FFFFFF" disabled="disabled"></td>
+			<td><label>남은 좌석</label></td>
+		</tr>
+	</table>
+	
+</fieldset>
 <input type="button" value="선택완료" name="seatselect" id="seatselect">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.futureArtCenter.client.show.vo.MediaVO;
 import com.futureArtCenter.client.ticketing.vo.MediaTicketingVO;
+import com.futureArtCenter.common.vo.PageRequest;
 
 public interface MediaService {
 
@@ -12,10 +13,13 @@ public interface MediaService {
 
 	public List<MediaVO> planList() throws Exception;
 
+	public List<MediaVO> planList(PageRequest pageRequest) throws Exception;
+	
 	public MediaVO detail(int showNo) throws Exception;
 
 	public MediaVO detailPlan(int showNo) throws Exception;
 	
 	public List<MediaTicketingVO> mediaRestTicketList(int showNo) throws Exception;
-
+	
+	public int planCount() throws Exception;
 }

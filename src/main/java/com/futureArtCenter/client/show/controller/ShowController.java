@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ import com.futureArtCenter.client.show.vo.ConcertVO;
 import com.futureArtCenter.client.show.vo.MediaVO;
 import com.futureArtCenter.client.show.vo.TalkVO;
 import com.futureArtCenter.client.ticketing.vo.ConcertTicketingVO;
+import com.futureArtCenter.common.vo.PageRequest;
+import com.futureArtCenter.common.vo.Pagination;
 
 @Controller
 @RequestMapping("/show")
@@ -46,9 +49,11 @@ public class ShowController {
 	@Autowired
 	private ConcertService concertService;
 	
+	// 이미지 저장 경로
 	@Value("${upload.path}")
 	private String uploadPath;
 	
+	// 저장된 이미지 가져오기
 	@ResponseBody
 	@GetMapping(value={"/poster", "/detail/poster"})
 	public ResponseEntity<byte[]> displayFile(Integer show_no, String showPoster) throws Exception {
@@ -58,11 +63,12 @@ public class ShowController {
 		String fileName = showPoster;
 
 		try {
-			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);// 확장자명
 
-			MediaType mType = getMediaType(formatName);
+			MediaType mType = getMediaType(formatName);// 확장자로 이미지 형식 확인
 			HttpHeaders headers = new HttpHeaders();
 
+			// separator 는 구분자, 'C:/upload/파일명'
 			in = new FileInputStream(uploadPath + File.separator + fileName);
 
 			if (mType != null) {
@@ -94,7 +100,6 @@ public class ShowController {
 				return MediaType.IMAGE_PNG;
 			}
 		}
-
 		return null;
 	}
 
@@ -105,15 +110,62 @@ public class ShowController {
 		model.addAttribute("talkList", talkService.list());
 		model.addAttribute("concertList", concertService.list());
 	}
+	
 
 	// 공연 예정 목록보기
-	@GetMapping("/showplan")
-	public void showPlan(Model model) throws Exception {
-		model.addAttribute("mediaList", mediaService.planList());
-		model.addAttribute("talkList", talkService.planList());
-		model.addAttribute("concertList", concertService.planList());
-	}
+//	@GetMapping("/showplan")
+//	public void showPlan(Model model) throws Exception {
+//		model.addAttribute("mediaList", mediaService.planList());
+//		model.addAttribute("talkList", talkService.planList());
+//		model.addAttribute("concertList", concertService.planList());
+//	}
 
+	// Optional 은 매개변수가 null 이여도 받을 수 있는 클래스
+	@GetMapping("/showplan")
+	public void showPlan(Optional<Integer> mPage, Optional<Integer> tPage, Optional<Integer> cPage ,Model model) throws Exception {
+		PageRequest mediaPageRequest = new PageRequest();
+		PageRequest talkPageRequest = new PageRequest();
+		PageRequest concertPageRequest = new PageRequest();
+		
+		// 페이지 값이 null 일 경우 PageRequest()의 생성자에 의해 자동으로 1로 됨
+		// 이전 페이지 값 기억하기
+		if (!mPage.isEmpty()) {
+			mediaPageRequest.setPage(mPage.get());
+		}
+		if (!tPage.isEmpty()) {
+			talkPageRequest.setPage(tPage.get());
+		}
+		if (!cPage.isEmpty()) {
+			concertPageRequest.setPage(cPage.get());
+		}
+		// 상단 메인
+		model.addAttribute("mediaMainList", mediaService.planList());
+		model.addAttribute("talkMainList", talkService.planList());
+		model.addAttribute("concertMainList", concertService.planList());
+		// 하단 게시판
+		model.addAttribute("mediaList", mediaService.planList(mediaPageRequest));
+		model.addAttribute("talkList", talkService.planList(talkPageRequest));
+		model.addAttribute("concertList", concertService.planList(concertPageRequest));
+		
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination mediaPagination = new Pagination();
+		Pagination talkPagination = new Pagination();
+		Pagination concertPagination = new Pagination();
+		// pagination 설정
+		mediaPagination.setPageRequest(mediaPageRequest);
+		talkPagination.setPageRequest(talkPageRequest);
+		concertPagination.setPageRequest(concertPageRequest);
+		
+		mediaPagination.setTotalCount(mediaService.planCount());
+		talkPagination.setTotalCount(talkService.planCount());
+		concertPagination.setTotalCount(concertService.planCount());
+
+		// 뷰에 페이징 정보 전달
+		model.addAttribute("mediaPagination", mediaPagination);
+		model.addAttribute("talkPagination", talkPagination);
+		model.addAttribute("concertPagination", concertPagination);
+	}
+	
 	// 미디어 상세 페이지
 	@GetMapping("/detail/showdetailmedia")
 	public void showDetailMedia(int showNo, Model model) throws Exception {

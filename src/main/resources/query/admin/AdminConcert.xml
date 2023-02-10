@@ -38,8 +38,7 @@
 					concert_genre,
 					concert_bandname
 				) 
-				VALUES 
-				
+				VALUES 		
 				(
 					concert_seq.NEXTVAL,
 					#{show_name},

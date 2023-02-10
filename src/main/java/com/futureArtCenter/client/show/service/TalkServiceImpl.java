@@ -9,6 +9,7 @@ import com.futureArtCenter.client.show.dao.TalkDAO;
 import com.futureArtCenter.client.show.vo.TalkVO;
 import com.futureArtCenter.client.ticketing.dao.TalkTicketingDAO;
 import com.futureArtCenter.client.ticketing.vo.TalkTicketingVO;
+import com.futureArtCenter.common.vo.PageRequest;
 
 @Controller
 public class TalkServiceImpl implements TalkService {
@@ -25,7 +26,12 @@ public class TalkServiceImpl implements TalkService {
 
 	@Override
 	public List<TalkVO> planList() throws Exception {
-		return dao.planList();
+		return dao.planMainList();
+	}
+	
+	@Override
+	public List<TalkVO> planList(PageRequest pageRequest) throws Exception {
+		return dao.planList(pageRequest);
 	}
 
 	@Override
@@ -41,5 +47,10 @@ public class TalkServiceImpl implements TalkService {
 	@Override
 	public List<TalkTicketingVO> talkRestTicketList(int showNo) throws Exception {
 		return talkTicketingDAO.talkRestTicketList(showNo);
+	}
+
+	@Override
+	public int planCount() throws Exception {
+		return dao.planCount();
 	}
 }

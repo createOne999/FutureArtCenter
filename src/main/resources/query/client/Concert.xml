@@ -35,7 +35,7 @@
 	</select>
 	
 	<!-- 콘서트 예정 공연 목록 -->
-	<select id="planList" resultMap="ConcertVO">
+	<select id="planMainList" resultMap="ConcertVO">
 		SELECT show_no,
 				show_name,
 				show_startdate,
@@ -46,8 +46,40 @@
 				show_poster
 		FROM concert_tb
 		WHERE show_status = 0
-		ORDER BY show_startdate DESC
+		ORDER BY show_startdate ASC
 	</select>
+	
+	<select id="planList" resultMap="ConcertVO">
+		SELECT *
+		FROM (
+		SELECT show_no,
+				show_name,
+				show_startdate,
+				show_closedate,
+				show_round,
+				show_time1,
+				show_time2,
+				show_poster,
+				
+				rownum as rnum
+		FROM (
+			SELECT show_no,
+				show_name,
+				show_startdate,
+				show_closedate,
+				show_round,
+				show_time1,
+				show_time2,
+				show_poster,
+				show_status
+			FROM concert_tb
+			WHERE show_status = 0
+			ORDER BY show_startdate ASC
+			)
+		)
+		WHERE rnum BETWEEN #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
+	</select>
+	
 	<!-- 콘서트 상세 -->
 	<select id="detail" resultMap="ConcertVO">
 		SELECT show_no,
@@ -87,5 +119,17 @@
 				concert_bandname
 		FROM concert_tb
 		WHERE show_no = #{showNo} AND show_status = 0
+	</select>
+	
+<!-- 	<select id="listCount" resultType="int">
+		SELECT count(*)
+		FROM concert_tb
+		WHERE show_status = 1
+	</select> -->
+	
+	<select id="planCount" resultType="int">
+		SELECT count(*)
+		FROM concert_tb
+		WHERE show_status = 0
 	</select>
 </mapper>

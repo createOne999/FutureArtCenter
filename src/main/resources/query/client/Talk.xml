@@ -32,7 +32,7 @@
 	ORDER BY show_startdate DESC
 	</select>
 	<!-- 강연예정 목록 -->
-	<select id="planList" resultMap="TalkVO">
+ 	<select id="planMainList" resultMap="TalkVO">
 	SELECT show_no,
 			show_name,
 			show_startdate,
@@ -43,8 +43,41 @@
 			show_poster
 	FROM talk_tb
 	WHERE show_status = 0
-	ORDER BY show_startdate DESC
+	ORDER BY show_startdate ASC
+	</select> 
+	
+	<select id="planList" resultMap="TalkVO">
+	SELECT *
+	FROM (	
+	SELECT show_no,
+			show_name,
+			show_startdate,
+			show_closedate,
+			show_round,
+			show_time1,
+			show_time2, 
+			show_poster,
+			
+			rownum as rnum
+	FROM (
+		SELECT show_no,
+			show_name,
+			show_startdate,
+			show_closedate,
+			show_round,
+			show_time1,
+			show_time2, 
+			show_poster,
+			show_status
+			
+		FROM talk_tb
+		WHERE show_status = 0
+		ORDER BY show_startdate ASC
+		)
+	)
+	WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
 	</select>
+	
 	<!-- 강연 상세 -->
 	<select id="detail" resultMap="TalkVO">
 		SELECT show_no,
@@ -81,5 +114,17 @@
 				talk_subject
 		FROM talk_tb
 		WHERE show_no = #{showNo} AND show_status = 0
+	</select>
+	
+<!-- 	<select id="listCount" resultType="int">
+		SELECT count(*)
+		FROM talk_tb
+		WHERE show_status = 1
+	</select> -->
+	
+	<select id="planCount" resultType="int">
+		SELECT count(*)
+		FROM talk_tb
+		WHERE show_status = 0
 	</select>
 </mapper>

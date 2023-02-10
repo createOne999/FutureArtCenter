@@ -9,6 +9,7 @@ import com.futureArtCenter.client.show.dao.MediaDAO;
 import com.futureArtCenter.client.show.vo.MediaVO;
 import com.futureArtCenter.client.ticketing.dao.MediaTicketingDAO;
 import com.futureArtCenter.client.ticketing.vo.MediaTicketingVO;
+import com.futureArtCenter.common.vo.PageRequest;
 
 
 @Service
@@ -23,10 +24,15 @@ public class MediaServiceImpl implements MediaService {
 	public List<MediaVO> list() throws Exception {
 		return dao.list();
 	}
-
+	
 	@Override
 	public List<MediaVO> planList() throws Exception {
-		return dao.planList();
+		return dao.planMainList();
+	}
+
+	@Override
+	public List<MediaVO> planList(PageRequest pageRequest) throws Exception {
+		return dao.planList(pageRequest);
 	}
 
 	@Override
@@ -44,5 +50,8 @@ public class MediaServiceImpl implements MediaService {
 		return mediaTicketingDAO.mediaRestTicketList(showNo);
 	}
 
-
+	@Override
+	public int planCount() throws Exception {
+		return dao.planCount();
+	}
 }
