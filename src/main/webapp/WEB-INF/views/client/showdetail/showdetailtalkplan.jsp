@@ -10,6 +10,9 @@
 	<!-- 공연 정보 -->
 	<div class="title_space">
 		<h3>예매</h3>
+		<a href="/show/showplan?mPage=${mPage }&tPage=${tPage}&cPage=${cPage}" style="display: inline-block; margin-left: auto; ">
+			<input type="button" value="목록">
+		</a>
 	</div>
 	<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
 		<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">

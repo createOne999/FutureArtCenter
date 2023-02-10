@@ -37,7 +37,7 @@
 			console.log(arr);
 			// 체크한 값의 크기만큼 부모창으로 보내기
 			$("#ticketingSit1", opener.document).val(arr[0]);
-			if (arr.length == 2) {
+			if ($("input[name='ticketingAmount']:checked", opener.document).val() == 2) {
 				$("#ticketingSit2", opener.document).val(arr[1]);
 			}
 			
@@ -47,41 +47,70 @@
 	});
 </script>
 <table border="1">
+	<tr>
+		<td colspan="13" align="center" height="50px">무대</td>
+	</tr>
 	<%-- 줄반복 --%>
 	<c:forEach begin="1" end="5" var="i">
 		<tr>
 			<%-- 열반복 --%>
 			<c:forEach begin="1" end="10" var="j">
-				<%-- 좌석이 되었는지 확인 --%>
+				<%-- 왼쪽 복도 --%>
+				<c:if test="${i == 1 and j == 1 }">
+					<td rowspan="5">
+						복<br>
+						도
+					</td>
+				</c:if>
+				<%-- 좌석이 이미 선택 되었는지 확인 --%>
 				<c:set var="restSitCheck" value="0" />
 				<c:forEach items="${restSitList }" var="restSit">
-					<c:if test="${restSitCheck == 0 }">
-						<c:choose>
-							<c:when test="${restSit == (i-1)*10 + j }">
-								<c:set var="restSitCheck" value="1" />
-							</c:when>
-						</c:choose>
+					<c:if test="${restSitCheck == 0 }">	
+						<c:if test="${restSit == (i-1)*10 + j }">
+							<c:set var="restSitCheck" value="1" />
+						</c:if>
 					</c:if>
 				</c:forEach>
+				
 				<%-- 좌석이 이미 선택시 orange 배경처리 --%>
 				<c:choose>
 					<c:when test="${restSitCheck == 1 }">			
-						<td style="background-color: orange">
-							<label for="sit${(i-1)*10 + j }">${(i-1)*10+j }</label>
-							<input type="checkbox" name="seat" id="sit${(i-1)*10 +j }" class="seat" value="${(i-1)*10 + j }" disabled="disabled" style="visibility: hidden;">
+						<td style="background-color: orange; vertical-align: middle; text-align: center;">
+							<label for="sit${(i-1)*10 + j }" style="height: 30px; width: 30px; display: inline-block; ">${(i-1)*10+j }</label>
+							<input type="checkbox" name="seat" id="sit${(i-1)*10 +j }" class="seat" value="${(i-1)*10 + j }" disabled="disabled" style="display: none;">
 						</td>
 					</c:when>
 					<c:otherwise>
-						<td>
-							<label for="sit${(i-1)*10 + j }">${(i-1)*10+j }</label>
-							<input type="checkbox" name="seat" id="sit${(i-1)*10 +j }" class="seat" value="${(i-1)*10 + j }" style="visibility: hidden;" >
+						<td style="vertical-align: middle; text-align: center;">
+							<label for="sit${(i-1)*10 + j }" style="height: 30px; width: 30px; display: inline-block; ">${(i-1)*10+j }</label>
+							<input type="checkbox" name="seat" id="sit${(i-1)*10 +j }" class="seat" value="${(i-1)*10 + j }" style="display: none;" >
 						</td>
 					</c:otherwise>
 				</c:choose>
+				<%-- 가운데 복도 --%>
+				<c:if test="${i == 1 and j == 5 }">
+					<td rowspan="5">
+						복<br>
+						도
+					</td>
+				</c:if>
+				<%-- 오른쪽 복도 --%>
+				<c:if test="${i == 1 and j == 10 }">
+					<td rowspan="5">
+						복<br>
+						도
+					</td>
+				</c:if>
 			</c:forEach><%-- 열반복 종료 --%>
 		</tr>
 	</c:forEach><%-- 줄반복 종료 --%>
+	<tr>
+		<td colspan="5"></td>
+		<td colspan="3" align="center">입구</td>
+		<td colspan="5"></td>
+	</tr>
 </table>
+<h4>좌석을 예매할 매수만큼 선택해 주세요.</h4>
 <fieldset style="width:200px;">
 	<legend>색 구분</legend>
 	<table>

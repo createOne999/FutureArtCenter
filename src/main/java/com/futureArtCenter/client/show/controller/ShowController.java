@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -218,12 +219,17 @@ public class ShowController {
 	
 	// 미디어 상세 예정 페이지
 	@GetMapping("/detail/showdetailmediaplan")
-	public void showDetailMediaPlan(int showNo, Model model) throws Exception{
+	public void showDetailMediaPlan(@ModelAttribute("mPage") Optional<Integer> mPage, @ModelAttribute("tPage") Optional<Integer> tPage, @ModelAttribute("cPage") Optional<Integer> cPage, int showNo, Model model) throws Exception{
 		MediaVO mediaVO = mediaService.detailPlan(showNo);
 		Calendar ticketingStartDate = Calendar.getInstance();
 		ticketingStartDate.setTime(mediaVO.getShowStartdate());
 		ticketingStartDate.add(Calendar.DATE, -7);
 		
+		
+		// orElse()는 null일 경우 반환값을 설정
+		model.addAttribute("mPage", mPage.orElse(1));
+		model.addAttribute("tPage", tPage.orElse(1));
+		model.addAttribute("cPage", cPage.orElse(1));
 		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		model.addAttribute("showVO", mediaVO);
 	}
@@ -279,11 +285,15 @@ public class ShowController {
 	
 	// 강연 상세 예정 페이지
 	@GetMapping("/detail/showdetailtalkplan")
-	public void showDetailTalkPlan(int showNo, Model model) throws Exception{
+	public void showDetailTalkPlan(@ModelAttribute("mPage") Optional<Integer> mPage, @ModelAttribute("tPage") Optional<Integer> tPage, @ModelAttribute("cPage") Optional<Integer> cPage, int showNo, Model model) throws Exception{
 		TalkVO talkVO = talkService.detailPlan(showNo);
 		Calendar ticketingStartDate = Calendar.getInstance();
 		ticketingStartDate.setTime(talkVO.getShowStartdate());
 		ticketingStartDate.add(Calendar.DATE, -7);
+		
+		model.addAttribute("mPage", mPage.orElse(1));
+		model.addAttribute("tPage", tPage.orElse(1));
+		model.addAttribute("cPage", cPage.orElse(1));
 		
 		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		
@@ -360,11 +370,15 @@ public class ShowController {
 	
 	// 콘서트 상세 예정 페이지
 	@RequestMapping(value = "/detail/showdetailconcertplan", method = RequestMethod.GET)
-	public void showDetailConcertPlan(int showNo, Model model) throws Exception{
+	public void showDetailConcertPlan(@ModelAttribute("mPage") Optional<Integer> mPage, @ModelAttribute("tPage") Optional<Integer> tPage, @ModelAttribute("cPage") Optional<Integer> cPage, int showNo, Model model) throws Exception{
 		ConcertVO concertVO = concertService.detailPlan(showNo);
 		Calendar ticketingStartDate = Calendar.getInstance();
 		ticketingStartDate.setTime(concertVO.getShowStartdate());
 		ticketingStartDate.add(Calendar.DATE, -7);
+		
+		model.addAttribute("mPage", mPage.orElse(1));
+		model.addAttribute("tPage", tPage.orElse(1));
+		model.addAttribute("cPage", cPage.orElse(1));
 		
 		model.addAttribute("ticketingStartDate", ticketingStartDate.getTime());
 		
