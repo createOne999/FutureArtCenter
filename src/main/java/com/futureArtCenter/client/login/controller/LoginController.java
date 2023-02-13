@@ -50,7 +50,6 @@ public class LoginController {
 				rawPwd = user.getUser_pwd(); // 사용자가 제출한 비밀번호
 				encodePwd = userOutput.getUser_pwd(); // 데이터베이스에 저장한 인코딩된 비밀번호
 				
-				
 				if(true == passwordEncoder.matches(rawPwd, encodePwd)) { // 비밀번호 일치여부 판단
 					session.setAttribute("user", userOutput); // session에 사용자 정보 저장
 					return "redirect:/main"; // 메인페이지 이동

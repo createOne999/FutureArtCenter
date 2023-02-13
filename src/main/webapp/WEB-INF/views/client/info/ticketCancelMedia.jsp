@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>user delete</title>
-<!-- 마이페이지 > 회원 탈퇴 -->
+<title>ticketCancelMedia</title>
+<!-- 마이페이지 > 미디어 예매 취소 -->
 </head>
 <script type="text/javascript">
 function func(){
@@ -22,25 +22,13 @@ function func(){
         return false;
     }
 	
-		deleteForm.submit();
+	ticketCancelForm.submit();
 }
 </script>
-<script>
-	// 비밀번호 불일치 결과
-	var fail='${fail}';
-	if(fail==='불일치'){
-		alert("비밀번호가 일치하지 않습니다.");
-	} 
-</script>
-<script>
-	// 비밀번호 불일치 결과
-	var fail='${fail}';
-	if(fail==='불가'){
-		alert("관람 가능한 예매 내역이 존재합니다.");
-	} 
-</script>
+
+
 <body>
-<form id="deleteForm" method="POST" action="userOut">
+<form id="ticketCancelForm" method="POST" action="ticketCancelMedia">
 	<div align="left"><h3>&nbsp;&nbsp;&nbsp;마이페이지</h3></div>
 	<div>
 	<table border="5">
@@ -53,21 +41,22 @@ function func(){
 	</table>
 	<br><br>
 	<table>
-		<tr>
-			<td width="500">회원 탈퇴를 위하여</td>
-		</tr>
-		<tr>
-			<td>비밀번호를 올바르게 기입해주세요</td>
-		</tr>
+		<tr><td>
+			[ 미디어 공연 ] 예매번호 : ${mediaTicketNo } <p>
+			예매 취소를 위하여<br>
+			비밀번호를 올바르게 기입해주세요
+		</td></tr>
 	</table>
-	<br>
+	
 	<div>
-	<input type="password" id="pwdInput" name="pwdInput" 
-	placeholder="비밀번호 입력" maxlength="20">
+		<input type="hidden" name="ticketing_no" value="${mediaTicketNo }">
+		<input type="password" id="pwdInput" name="pwdInput" placeholder="비밀번호 입력" maxlength="20">
 	</div>
 	<div>
 	<br>
-	<input type="button" value="탈퇴" onclick="func()">
+		<input type="button" value="예매 취소하기" onclick="func()">
+		<a href="ticketinglist">
+		<input type="button" value="취소"></a>
 	</div>
 	</div>
 </form>

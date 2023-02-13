@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.client.info.dao.InfoDAO">
+	
+	<!-- 미디어 예매 내역 --> 
+	<select id="mediaInfoList" resultType="Map" parameterType="String">
+			SELECT ticketing_date,
+					show_name, 
+					show_date, 
+					ticketing_round, 
+					show_time1, 
+					show_time2, 
+					ticketing_amount, 
+					ticketing_payment, 
+					ticketing_payamount, 
+					ticketing_cancel, 
+					ticketing_no
+			FROM ticketing0_tb
+   				join media_tb
+    			on ticketing0_tb.show_no = media_tb.show_no
+			WHERE user_no = (SELECT user_no from user_tb WHERE user_id=#{user_id}) AND ticketing_cancel=0 
+	</select>
+	
+	<!-- 미디어 예매 취소 처리 -->
+	<update id="ticketCancelMedia">
+		UPDATE ticketing0_tb
+		SET ticketing_cancel=1,
+	    	ticketing_cancel_date = sysdate,
+	    	ticketing_cancel_amount = ticketing_payamount
+		WHERE ticketing_no = #{ticketing_no} AND ticketing_cancel=0
+	</update>
+	
+	<!-- 미디어 예매 취소 내역 --> 
+	<select id="mediaCancelList" resultType="Map" parameterType="String">
+			SELECT ticketing_date,
+					show_name, 
+					show_date, 
+					ticketing_round, 
+					show_time1, 
+					show_time2, 
+					ticketing_amount, 
+					ticketing_payment, 
+					ticketing_payamount, 
+					ticketing_cancel, 
+					ticketing_cancel_date,
+					ticketing_cancel_amount
+			FROM ticketing0_tb
+   				join media_tb
+    			on ticketing0_tb.show_no = media_tb.show_no
+			WHERE user_no = (SELECT user_no from user_tb WHERE user_id=#{user_id}) AND ticketing_cancel=1 
+	</select>
+	
+	<!-- 미디어 티켓 보기 -->
+	<select id="mediaTicketRead" resultType="Map" parameterType="String">
+		SELECT show_poster,
+				ticketing_code1,
+				ticketing_code2,
+				show_name, 
+				show_date, 
+				ticketing_round, 
+				show_time1, 
+				show_time2
+		FROM ticketing0_tb
+	 			join media_tb
+	  			on ticketing0_tb.show_no = media_tb.show_no
+		WHERE ticketing_no = #{ticketing_no} 
+	</select>
+	
+	<!-- 회원 탈퇴 가능 여부 확인 - 미디어 티켓  -->
+	<select id="mediaCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM ticketing0_tb
+		WHERE user_no = (SELECT user_no FROM user_tb WHERE user_id = #{user_id})
+			AND ticketing_cancel = '0'
+			AND	show_date >= sysdate 
+	</select>
+</mapper>
