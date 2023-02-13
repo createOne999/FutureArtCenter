@@ -5,6 +5,7 @@
 	<!-- *mapper.xml파일에서 쿼리를 작성할때, VO에서 stNo와 같은 형식을 st_no와 같이 취급되게함 -->
 	<settings>
 		<setting name="mapUnderscoreToCamelCase"  value="false"/>
+
 	</settings>
 	
 

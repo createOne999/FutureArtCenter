@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.admin.notice.dao.AdminNoticeDAO">
+
+<!-- 공지사항 등록 처리 -->
+<insert id="register">
+INSERT INTO notice_tb
+(
+notice_no,
+notice_title,
+notice_content,
+notice_poster,
+notice_date
+)
+VALUES
+(
+notice_seq.NEXTVAL,
+#{notice_title},
+#{notice_content},
+#{notice_poster},
+#{notice_date}
+)
+</insert>
+
+<!-- 공지사항 목록 조회 -->
+	<select id="list" resultType="com.futureArtCenter.admin.notice.VO.AdminNoticeVO">
+<![CDATA[
+	SELECT notice_no,
+			notice_title,
+			notice_content,
+			notice_poster,
+			notice_date
+		FROM notice_tb
+		WHERE notice_no > 0
+		ORDER BY notice_no DESC,
+				notice_date DESC
+		]]>
+	</select>
+	
+	<!-- 공지사항 상세 조회 -->
+	<select id="read" resultType="com.futureArtCenter.admin.notice.VO.AdminNoticeVO">
+	SELECT notice_no,
+			notice_title,
+			notice_content,
+			notice_poster,
+			notice_date
+		FROM notice_tb
+		WHERE notice_no = #{notice_no} 
+	</select>
+	
+	<!-- 공지사항 수정 처리 -->
+	<update id="modify">
+	UPDATE notice_tb
+	SET notice_title =#{notice_title},
+	notice_poster =#{notice_poster},
+	notice_content =#{notice_content},
+	notice_date =#{notice_date}
+	WHERE notice_no =#{notice_no}
+	</update>
+	
+	<!-- 공지사항 삭제 처리 -->
+	<delete id="delete">
+	DELETE FROM notice_tb
+	WHERE notice_no =#{notice_no}
+	</delete>
+	
+	<!-- 포스터 이미지 표시 -->
+	<select id="notice_poster" resultType="String">
+		SELECT notice_poster
+		FROM notice_tb
+		WHERE notice_no = #{notice_no}
+	</select>
+
+</mapper>

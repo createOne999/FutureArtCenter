@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -51,7 +52,7 @@
 						</ul>
 					</li>
 					
-					<li class="main"><a href="/admin/main">게시판 관리</a>
+					<li class="main"><a href="/admin/notice/list">게시판 관리</a>
 						<ul class="sub_nav">
 							<li><a href="#">서브메뉴</a></li>
 							<li><a href="#">서브메뉴</a></li>

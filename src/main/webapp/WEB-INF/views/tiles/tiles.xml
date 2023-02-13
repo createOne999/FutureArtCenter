@@ -9,10 +9,35 @@
 		<put-attribute name="aside2" value="/WEB-INF/views/client/main/aside2.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/client/main/footer.jsp" />
 	</definition>
+	
+	<!-- 공지사항 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
+	<definition name="notice/*" extends="mainLayout">
+	<put-attribute name="title" value="NoticeVO" />
+	<put-attribute name="content" value="/WEB-INF/views/client/notice/{1}.jsp" />
+	</definition>
+	
 	<definition name="main" extends="mainLayout">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="content" value="/WEB-INF/views/client/main/mainPage.jsp" />
 	</definition>
+	
+	<!-- FAQ 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
+	<definition name="faq/*" extends="mainLayout">
+	<put-attribute name="title" value="FAQVO" />
+	<put-attribute name="content" value="/WEB-INF/views/client/faq/{1}.jsp" />
+	</definition>
+	
+	<definition name="main" extends="mainLayout">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/views/client/main/mainPage.jsp" />
+	</definition>
+	
+	<!-- 소개 페이지 -->
+	<definition name="future/*" extends="mainLayout">
+	<put-attribute name="content" value="/WEB-INF/views/client/introduce/{1}.jsp" />
+	</definition>
+	
+	
 	<!-- 회원가입 페이지 -->
 	<definition name="user/*" extends="mainLayout">
 		<put-attribute name="title" value="회원가입" />
@@ -59,24 +84,20 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
 	</definition>
 	
-	<!-- <definition name="admin/main" extends="adminMainLayout">
-		<put-attribute name="title" value="adminMain" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
-	</definition> -->
 	
-	<!-- <definition name="admin/media/*" extends="adminMainLayout">
-		<put-attribute name="title" value="mediaReg" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/media/adminMediaReg.jsp" />
-	</definition> -->
+	<!--   관리자 공지사항 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
+	<definition name="/admin/notice/*" extends="adminMainLayout">
+      <put-attribute name="title" value="notice" />
+      <put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
+   </definition>
 	
+
 	
-	
-	
-	
-	<!-- 
-	  관리자 로그인
-	<definition name="admin/*" extends="adminLoginPage">
-		<put-attribute name="title" value="Login" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/login/adminLoginPage.jsp"></put-attribute>
-	</definition> -->
+	<!-- 관리자 FAQ 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
+	<definition name="/admin/faq/*" extends="adminMainLayout">
+		<put-attribute name="title" value="AdminFaqVO" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/faq/{1}.jsp" />
+	</definition>
+
+
 </tiles-definitions>
