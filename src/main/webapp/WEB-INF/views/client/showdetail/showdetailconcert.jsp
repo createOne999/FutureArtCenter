@@ -29,11 +29,15 @@
 				</tr>
 				<tr>
 					<td>공연시간</td>
-					<td>1회차: ${showVO.showTime1 }<br> 
-					<c:if test="${not empty showVO.showTime2 }">
-					2회차: ${showVO.showTime2 }
-					</c:if>
-					</td>
+					<c:choose>
+						<c:when test="${showVO.showRound == 1 }">
+							<td>회차: ${showVO.showTime1 }<br></td>
+						</c:when>
+						<c:when test="${showVO.showRound == 2 }">
+							<td>1회차: ${showVO.showTime1 }<br> 
+								2회차: ${showVO.showTime2 }</td>
+						</c:when>
+					</c:choose>
 				</tr>
 				<tr>
 					<td>공연관</td>

@@ -30,7 +30,10 @@
 				show_time2,
 				show_poster
 		FROM concert_tb
-		WHERE show_status = 1
+		WHERE show_status = 1 AND
+		<![CDATA[
+		 show_closedate > sysdate
+		]]>
 		ORDER BY show_startdate DESC
 	</select>
 	

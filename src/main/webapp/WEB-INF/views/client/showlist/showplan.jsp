@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<div id="main_content" width="100%" height="66%">
-	<div id="title_space" width="80%" height="5%">
+<div id="main_content" >
+	<div id="title_space" >
 		<h3>예정공연</h3>
 	</div>
-	<div id="select_space" width="80%" height="15%">
-		<span width="50%"><a href="/show/showlist">진행중인 공연리스트</a></span> <span
-			width="50%"><a href="/show/showplan">예정 공연리스트</a></span>
+	<div id="select_space" >
+		<span><a href="/show/showlist">진행중인 공연리스트</a></span> <span><a href="/show/showplan">예정 공연리스트</a></span>
 	</div>
 	<div id="main_body">
 		<div>
