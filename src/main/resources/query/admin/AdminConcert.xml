@@ -80,4 +80,21 @@
 		FROM concert_tb
 		WHERE show_no = #{show_no}
 	</select>
+	
+	<update id="status">
+		UPDATE concert_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<update id="statusEnd">
+		UPDATE concert_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM concert_tb
+		WHERE show_no = #{show_no}
+	</delete>
 </mapper>

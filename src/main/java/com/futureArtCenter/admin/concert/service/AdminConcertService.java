@@ -14,4 +14,12 @@ public interface AdminConcertService {
 	// 포스터 이미지
 	public String getShow_poster(Integer show_no) throws Exception;
 
+	// 공연 상태 변경
+	public int status(AdminConcertVO cvo) throws Exception;
+
+	// 공연 상태 변경
+	public int statusEnd(AdminConcertVO cvo) throws Exception;
+
+	// 삭제
+	public void delete(String show_no) throws Exception;
 }

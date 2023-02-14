@@ -24,6 +24,7 @@ public class AdminConcertServiceImpl implements AdminConcertService {
 		return adminConcertDAO.list();
 	}
 
+	// 등록
 	@Transactional
 	@Override
 	public void register(AdminConcertVO cvo) throws Exception {
@@ -46,5 +47,27 @@ public class AdminConcertServiceImpl implements AdminConcertService {
 		return adminConcertDAO.getShow_poster(show_no);
 	}
 
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int status(AdminConcertVO cvo) throws Exception {
+		log.info("showStatus");
+		int change = adminConcertDAO.status(cvo);
+		return change;
+	}
+
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int statusEnd(AdminConcertVO cvo) throws Exception {
+		log.info("showStatus");
+		int change = adminConcertDAO.status(cvo);
+		return change;
+	}
 	
+	@Transactional
+	@Override
+	public void delete(String show_no) throws Exception {
+		adminConcertDAO.delete(show_no);
+	}
 }

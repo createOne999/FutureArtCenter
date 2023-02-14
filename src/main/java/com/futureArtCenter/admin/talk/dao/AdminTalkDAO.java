@@ -12,4 +12,9 @@ public interface AdminTalkDAO {
 
 	public String getShow_poster(Integer show_no) throws Exception;
 
+	public int status(AdminTalkVO tvo) throws Exception;
+	
+	public int statusEnd(AdminTalkVO tvo) throws Exception;
+	
+	public void delete(String show_no) throws Exception;
 }

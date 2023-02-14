@@ -13,7 +13,7 @@ import lombok.extern.java.Log;
 
 @Log
 @Service
-public class AdminTalkServiceImpl implements AdminTalkService{
+public class AdminTalkServiceImpl implements AdminTalkService {
 	@Autowired
 	private AdminTalkDAO adminTalkDAO;
 
@@ -29,20 +29,44 @@ public class AdminTalkServiceImpl implements AdminTalkService{
 		log.info("serviceImpl..");
 
 		adminTalkDAO.register(tvo);
-		
-		//첨부파일 추가
+
+		// 첨부파일 추가
 		String files = tvo.getShow_poster();
-		
+
 		if (files == null) {
 			return;
 		}
-		
+
 	}
 
 	// 포스터 이미지
 	@Override
 	public String getShow_poster(Integer show_no) throws Exception {
 		return adminTalkDAO.getShow_poster(show_no);
+	}
+
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int status(AdminTalkVO tvo) throws Exception {
+		log.info("showStatus");
+		int change = adminTalkDAO.status(tvo);
+		return change;
+	}
+
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int statusEnd(AdminTalkVO tvo) throws Exception {
+		log.info("showStatus");
+		int change = adminTalkDAO.status(tvo);
+		return change;
+	}
+	
+	@Transactional
+	@Override
+	public void delete(String show_no) throws Exception {
+		adminTalkDAO.delete(show_no);
 	}
 
 }

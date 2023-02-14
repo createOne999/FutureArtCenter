@@ -3,7 +3,11 @@ package com.futureArtCenter.admin.media.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +21,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.futureArtCenter.admin.concert.vo.AdminConcertVO;
 import com.futureArtCenter.admin.media.service.AdminMediaService;
 import com.futureArtCenter.admin.media.vo.AdminMediaVO;
 
@@ -35,7 +41,7 @@ public class AdminMediaController {
 
 	@Value("${upload.path}")
 	private String uploadPath;
-	
+
 	@RequestMapping(value = "/adminMediaReg", method = RequestMethod.GET)
 	public String adminMediaReg(Model model) throws Exception {
 		log.info("adminMediaReg...");
@@ -108,7 +114,7 @@ public class AdminMediaController {
 			if (mType != null) {
 				headers.setContentType(mType);
 			}
-			
+
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,4 +144,33 @@ public class AdminMediaController {
 		return null;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+	public int status(AdminMediaVO mvo, int show_status1) throws Exception {
+		mvo.setShow_status(show_status1);
+		System.out.println(mvo);
+		int change = adminMediaService.status(mvo);
+
+		return change;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/statusEnd", method = RequestMethod.GET)
+	public int statusEnd(AdminMediaVO mvo, int show_status2) throws Exception {
+		mvo.setShow_status(show_status2);
+		System.out.println(mvo);
+		int change = adminMediaService.status(mvo);
+
+		return change;
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String remove(HttpServletRequest request) throws Exception {
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for (int i = 0; i < size; i++) {
+			adminMediaService.delete(ajaxMsg[i]);
+		}
+		return "redirect:/admin/main";
+	}
 }

@@ -11,5 +11,11 @@ public interface AdminMediaDAO {
 	public void register(AdminMediaVO mvo) throws Exception;
 
 	public String getShow_poster(Integer show_no) throws Exception;
+	
+	public int status(AdminMediaVO mvo) throws Exception;
+	
+	public int statusEnd(AdminMediaVO mvo) throws Exception;
+	
+	public void delete(String show_no) throws Exception;
 
 }

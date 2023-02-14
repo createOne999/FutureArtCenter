@@ -83,13 +83,28 @@
 		<put-attribute name="title" value="adminMain" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
 	</definition>
+
+	<definition name="admin/user/*" extends="adminMainLayout">
+		<put-attribute name="title" value="userList" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
+	</definition>
+
+	<definition name="admin/sales/adminSalesList" extends="adminMainLayout">
+		<put-attribute name="title" value="sales" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/sales/adminSalesList.jsp" />
+	</definition>
 	
+	<definition name="admin/sales/adminRefundList" extends="adminMainLayout">
+		<put-attribute name="title" value="refund" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/sales/adminRefundList.jsp" />
+	</definition>
 
 	<!--   관리자 공지사항 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
-	<definition name="/admin/notice/*" extends="adminMainLayout">
+	<definition name="admin/notice/list" extends="adminMainLayout">
       <put-attribute name="title" value="notice" />
-      <put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/admin/notice/adminNoticeList.jsp" />
    </definition>
+
 
 <!-- 	<definition name="admin/media/*" extends="adminMainLayout">
 		<put-attribute name="title" value="mediaReg" />
@@ -101,6 +116,8 @@
 		<put-attribute name="title" value="AdminFaqVO" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/faq/{1}.jsp" />
 	</definition>
+	
+	
 
 
 	

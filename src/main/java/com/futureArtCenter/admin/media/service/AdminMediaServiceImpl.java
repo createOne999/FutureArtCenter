@@ -30,14 +30,14 @@ public class AdminMediaServiceImpl implements AdminMediaService {
 		log.info("serviceImpl..");
 
 		adminMediaDAO.register(mvo);
-		
-		//첨부파일 추가
+
+		// 첨부파일 추가
 		String files = mvo.getShow_poster();
-		
+
 		if (files == null) {
 			return;
 		}
-		
+
 	}
 
 	// 포스터 이미지
@@ -46,4 +46,27 @@ public class AdminMediaServiceImpl implements AdminMediaService {
 		return adminMediaDAO.getShow_poster(show_no);
 	}
 
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int status(AdminMediaVO mvo) throws Exception {
+		log.info("showStatus");
+		int change = adminMediaDAO.status(mvo);
+		return change;
+	}
+
+	// 공연 상태 변경
+	@Transactional
+	@Override
+	public int statusEnd(AdminMediaVO mvo) throws Exception {
+		log.info("showStatus");
+		int change = adminMediaDAO.status(mvo);
+		return change;
+	}
+	
+	@Transactional
+	@Override
+	public void delete(String show_no) throws Exception {
+		adminMediaDAO.delete(show_no);
+	}
 }

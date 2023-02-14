@@ -13,7 +13,7 @@ import lombok.extern.java.Log;
 @Log
 @Repository
 public class AdminConcertDAOImpl implements AdminConcertDAO {
-	
+
 	@Autowired
 	private SqlSession session;
 	private String Namespace = "com.futureArtCenter.admin.concert.dao.AdminConcertDAO";
@@ -35,4 +35,21 @@ public class AdminConcertDAOImpl implements AdminConcertDAO {
 		return session.selectOne("showPoster", show_no);
 	}
 
+	@Override
+	public int status(AdminConcertVO cvo) throws Exception {
+		log.info("status!");
+		return session.update(Namespace, cvo);
+	}
+	
+	@Override
+	public int statusEnd(AdminConcertVO cvo) throws Exception {
+		log.info("status!");
+		return session.update(Namespace, cvo);
+	}
+	
+	@Override
+	public void delete(String show_no) throws Exception {
+		log.info("daoImpl...delete");
+		session.delete(Namespace, show_no);
+	}
 }

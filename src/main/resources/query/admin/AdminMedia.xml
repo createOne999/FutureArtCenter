@@ -70,4 +70,27 @@
 		]]>
 	</select>
 	
+	<!-- 포스터 이미지 표시 -->
+	<select id="getShow_poster" resultType="String">
+		SELECT show_poster
+		FROM media_tb
+		WHERE show_no = #{show_no}
+	</select>
+	
+	<update id="status">
+		UPDATE media_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<update id="statusEnd">
+		UPDATE media_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM media_tb
+		WHERE show_no = #{show_no}
+	</delete>
 </mapper>

@@ -24,10 +24,6 @@
 				display: flex;
 			}
 			
-			.nav {
-				flex-grow: 1;
-			}
-			
 		</style>
 		
 	</head>

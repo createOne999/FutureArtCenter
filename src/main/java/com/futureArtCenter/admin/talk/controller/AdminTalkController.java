@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -138,4 +140,33 @@ public class AdminTalkController {
 		return null;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+	public int status(AdminTalkVO tvo, int show_status1) throws Exception {
+		tvo.setShow_status(show_status1);
+		System.out.println(tvo);
+		int change = adminTalkService.status(tvo);
+
+		return change;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/statusEnd", method = RequestMethod.GET)
+	public int statusEnd(AdminTalkVO tvo, int show_status2) throws Exception {
+		tvo.setShow_status(show_status2);
+		System.out.println(tvo);
+		int change = adminTalkService.status(tvo);
+
+		return change;
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String remove(HttpServletRequest request) throws Exception {
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for (int i = 0; i < size; i++) {
+			adminTalkService.delete(ajaxMsg[i]);
+		}
+		return "redirect:/admin/main";
+	}
 }

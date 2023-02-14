@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futureArtCenter.admin.sales.dao.AdminSalesDAO">
+	
+	<select id="salesMediaList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel
+		FROM ticketing0_tb
+			join user_tb
+			on ticketing0_tb.user_no = user_tb.user_no
+	</select>
+	
+	<select id="salesTalkList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel
+		FROM ticketing1_tb
+			join user_tb
+			on ticketing1_tb.user_no = user_tb.user_no
+	</select>
+	
+	<select id="salesConcertList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel
+		FROM ticketing2_tb
+			join user_tb
+			on ticketing2_tb.user_no = user_tb.user_no
+	</select>
+	<!-- 예매 내역 end -->
+	
+	<!-- 취소 내역 -->
+	<select id="refundMediaList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel_date,
+				ticketing_cancel_amount
+		FROM ticketing0_tb
+			join user_tb
+			on ticketing0_tb.user_no = user_tb.user_no
+		WHERE ticketing_cancel = 1
+	</select>
+	
+	<select id="refundTalkList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel_date,
+				ticketing_cancel_amount
+		FROM ticketing1_tb
+			join user_tb
+			on ticketing1_tb.user_no = user_tb.user_no
+		WHERE ticketing_cancel = 1
+	</select>
+	
+	<select id="refundConcertList" resultType="Map">
+		SELECT user_tb.user_no,
+				user_id,
+				show_no,
+				ticketing_no,
+				ticketing_code1,
+				ticketing_code2,
+				ticketing_amount,
+				ticketing_date,
+				ticketing_payment,
+				ticketing_payamount,
+				ticketing_cancel_date,
+				ticketing_cancel_amount
+		FROM ticketing2_tb
+			join user_tb
+			on ticketing2_tb.user_no = user_tb.user_no
+		WHERE ticketing_cancel = 1
+	</select>
+	
+</mapper>

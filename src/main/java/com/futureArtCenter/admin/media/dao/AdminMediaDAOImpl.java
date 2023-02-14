@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.futureArtCenter.admin.concert.vo.AdminConcertVO;
 import com.futureArtCenter.admin.media.vo.AdminMediaVO;
 
 import lombok.extern.java.Log;
@@ -35,5 +36,21 @@ public class AdminMediaDAOImpl implements AdminMediaDAO {
 		return session.selectOne("showPoster", show_no);
 	}
 
+	@Override
+	public int status(AdminMediaVO mvo) throws Exception {
+		log.info("status!");
+		return session.update(Namespace, mvo);
+	}
 
+	@Override
+	public int statusEnd(AdminMediaVO mvo) throws Exception {
+		log.info("status!");
+		return session.update(Namespace, mvo);
+	}
+	
+	@Override
+	public void delete(String show_no) throws Exception {
+		log.info("daoImpl...delete");
+		session.delete(Namespace, show_no);
+	}
 }

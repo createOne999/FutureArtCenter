@@ -82,8 +82,6 @@
 						<td>
 							<form:select path="show_status" >
 								<option value="0">예정</option>
-								<option value="1">진행중</option>
-								<option value="2">종료</option>
 							</form:select>
 						</td>
 					</tr>

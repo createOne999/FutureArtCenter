@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +37,7 @@ public class AdminConcertController {
 
 	@Value("${upload.path}")
 	private String uploadPath;
-	
+
 	@RequestMapping(value = "/adminConcertReg", method = RequestMethod.GET)
 	public String adminConcertReg(Model model) throws Exception {
 		log.info("adminConcertReg...");
@@ -108,7 +110,7 @@ public class AdminConcertController {
 			if (mType != null) {
 				headers.setContentType(mType);
 			}
-			
+
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,4 +140,33 @@ public class AdminConcertController {
 		return null;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+	public int status(AdminConcertVO cvo, int show_status1) throws Exception {
+		cvo.setShow_status(show_status1);
+		System.out.println(cvo);
+		int change = adminConcertService.status(cvo);
+
+		return change;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/statusEnd", method = RequestMethod.GET)
+	public int statusEnd(AdminConcertVO cvo, int show_status2) throws Exception {
+		cvo.setShow_status(show_status2);
+		System.out.println(cvo);
+		int change = adminConcertService.status(cvo);
+
+		return change;
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String remove(HttpServletRequest request) throws Exception {
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for (int i = 0; i < size; i++) {
+			adminConcertService.delete(ajaxMsg[i]);
+		}
+		return "redirect:/admin/main";
+	}
 }

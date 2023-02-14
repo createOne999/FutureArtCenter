@@ -11,5 +11,10 @@ public interface AdminConcertDAO {
 	public void register(AdminConcertVO cvo) throws Exception;
 
 	public String getShow_poster(Integer show_no) throws Exception;
-
+	
+	public int status(AdminConcertVO cvo) throws Exception;
+	
+	public int statusEnd(AdminConcertVO cvo) throws Exception;
+	
+	public void delete(String show_no) throws Exception;
 }

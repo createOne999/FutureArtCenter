@@ -8,6 +8,8 @@
 		<result property="show_round" column="show_round"/>
 		<result property="show_content1" column="show_content1"/>
 		<result property="show_content2" column="show_content2"/>
+		<result property="show_time1" column="show_time1"/>
+		<result property="show_time2" column="show_time2"/>
 		<result property="show_poster" column="show_poster"/>
 		<result property="show_startdate" column="show_startdate"/>
 		<result property="show_closedate" column="show_closedate"/>
@@ -77,4 +79,21 @@
 		FROM talk_tb
 		WHERE show_no = #{show_no}
 	</select>
+	
+	<update id="status">
+		UPDATE talk_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<update id="statusEnd">
+		UPDATE talk_tb
+		SET show_status = #{show_status}
+		WHERE show_no = #{show_no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM talk_tb
+		WHERE show_no = #{show_no}
+	</delete>
 </mapper>

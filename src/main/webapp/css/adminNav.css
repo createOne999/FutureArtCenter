@@ -1,100 +1,70 @@
 @charset "UTF-8";
 
-*{
+* {
 	padding: 0;
-    margin: 0 auto;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
 }
 
-html,body{
-	width:100%;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    font-family:sans-serif;
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif;
 }
 
-/* header_side_nav */
-.main_aside{
+.main_aside {
 	height: 100%;
 	background-color: #FFFFFF;
 	border-right: 1px solid #ccb6a3;
 }
 
-nav{
-	width: 100%;
+.nav_body {
+	margin: 0;
+	padding: 50px 0;
 }
 
-.nav_main{
-	width: 180px;
-	text-align: center;
-}
-
-.nav_main > li {
-	color: #FFFFFF;
-}
-
-.nav_main > li > a{
-	display: block;
-	padding: 10px 0;
-	transition: all 0.5s ease;
-	background-color: #FFFFFF;
+.collapsible {
 	color: #000000;
+	cursor: pointer;
+	padding: 18px;
+	width: 250px;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	background-color: #FFFFFF;
 }
 
-.sub_nav{
+.active, .collapsible:hover {
+	background-color: #FFFFFF;
+}
+
+.sub_menu {
+	max-height: 0;
 	overflow: hidden;
-	background-color: #FFFFFF;
+	transition: max-height 0.3s ease-out;
+	width: 200px;
+	margin: 0;
+}
+
+.sub_menu p {
+	
+	margin: 0;
+}
+
+.collapsible:after {
+	/* content 특수문자를 줄수있다 \02C3 \02C5 이건 화살표 
+               \002B \2212 이건 +-*/
+	content: '\002B';
 	color: #000000;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
 }
 
-.sub_nav > li {
-	padding: 5px 0;
-	transition: all 0.5s ease;
+.active:after {
+	content: "\2212";
 }
-
-.sub_nav > li:hover a {
-	background-color: #844330;
-	color: #FFFFFF;
-}
-
-
-.sub_nav > li:hover{
-	background-color: #555;
-}
-/* 
-.article_first{
-	height: 10%;
-	text-align: center;
-	line-height: 70px;
-}
-.article_second{
-	height: 10%;
-	text-align: center;
-	line-height: 70px;
-	display: none;
-}
-
-.article_third{
-	height: 10%;
-	text-align: center;
-	line-height: 70px;
-	display: none;
-}
-
-.article_fourth{
-	height: 10%;
-	text-align: center;
-	line-height: 70px;
-	display: none;
-}
-
-.article_five{
-	height: 10%;
-	text-align: center;
-	line-height: 70px;
-	display: none;
-}
- */
