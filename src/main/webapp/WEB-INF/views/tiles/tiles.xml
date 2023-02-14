@@ -119,7 +119,11 @@
 	
 	
 
-
+	<!-- 월별 회원 현황 페이지 -->
+	<definition name="admin/user/*"  extends="adminMainLayout">
+		<put-attribute name="title" value="adminUserMonth" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
+	</definition>
 	
 	<!-- 
 	  관리자 로그인

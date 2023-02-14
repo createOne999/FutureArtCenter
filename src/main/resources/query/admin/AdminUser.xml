@@ -41,4 +41,35 @@
 		ORDER BY user_regdate DESC
 	</select>
 	
+	<!-- with 함수를 사용하여 최초로 가입한 날 ~ 마지막으로 가입 or 탈퇴한 날짜 까지의 월별 가입 유저수를 구함 -->
+	<select id="userMonthList" resultType="Map">
+		
+		WITH TEMP_DATES AS (
+    		SELECT TRUNC(MIN(user_regdate), 'MM') AS MIN_DATE, TRUNC(MAX(user_regdate), 'MM') AS MAX_DATE
+    		FROM user_tb
+    		UNION ALL
+    		SELECT TRUNC(MIN(user_outdate), 'MM') AS MIN_DATE, TRUNC(MAX(user_outdate), 'MM') AS MAX_DATE
+    		FROM user_tb
+    		WHERE user_out = 1
+		),
+		DATES AS (
+   			 SELECT TRUNC(MIN(MIN_DATE)) AS MIN_DATE, TRUNC(MAX(MAX_DATE), 'MM') AS MAX_DATE
+   			 FROM TEMP_DATES
+		),<![CDATA[
+		DATE_RANGE AS (
+		    SELECT MIN_DATE + LEVEL - 1 AS THE_DATE
+		    FROM DATES
+		    CONNECT BY LEVEL <= TO_DATE(TO_CHAR(MAX_DATE, 'yyyy')||'12', 'yyyy-MM') - TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + 1
+		)]]>
+		SELECT 
+		  TO_CHAR(THE_DATE, 'YY-MM') AS MONTH, 
+		  SUM(CASE WHEN user_regdate IS NOT NULL AND TRUNC(user_regdate, 'MM') =THE_DATE THEN 1 ELSE 0 END) AS REGISTERED_USERS,
+		  SUM(CASE WHEN user_outdate IS NOT NULL AND user_out = 1 AND TRUNC(user_outdate, 'MM') = THE_DATE THEN 1 ELSE 0 END) AS REGOUTED_USERS
+		FROM DATE_RANGE
+		LEFT JOIN user_tb 
+		  ON (TRUNC(user_regdate, 'MM') = THE_DATE OR TRUNC(user_outdate, 'MM') = THE_DATE)
+		GROUP BY TO_CHAR(THE_DATE, 'YY-MM')
+		ORDER BY TO_CHAR(THE_DATE, 'YY-MM')
+		  
+	</select>
 </mapper>

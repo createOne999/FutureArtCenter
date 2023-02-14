@@ -1,6 +1,7 @@
 package com.futureArtCenter.admin.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 	
 	@Override
 	public List<UserVO> outList() throws Exception {
+		return session.selectList(Namespace + "UserList!");
+	}
+
+	@Override
+	public List<Map<String, Object>> userMonthList() throws Exception {
 		return session.selectList(Namespace + "UserList!");
 	}
 	

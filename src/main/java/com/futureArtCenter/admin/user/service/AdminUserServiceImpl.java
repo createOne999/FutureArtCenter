@@ -1,7 +1,7 @@
 package com.futureArtCenter.admin.user.service;
 
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +28,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 	public List<UserVO> outList() throws Exception {
 		return adminUserDAO.outList();
 	}
-
 	
+	// 월별 유저수 통계
+	@Override
+	public List<Map<String, Object>> userMonthList() throws Exception {
+		return adminUserDAO.userMonthList();
+	}
 }

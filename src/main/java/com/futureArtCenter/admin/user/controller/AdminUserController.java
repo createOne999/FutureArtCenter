@@ -1,14 +1,13 @@
 package com.futureArtCenter.admin.user.controller;
 
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.futureArtCenter.admin.user.service.AdminUserService;
 import com.futureArtCenter.client.user.vo.UserVO;
@@ -34,7 +33,11 @@ public class AdminUserController {
 		return "admin/user/adminUserList";
 
 	}
-
 	
-
+	@GetMapping(value = "/monthList")
+	public String adminUserMonthList(Model model ) throws Exception{
+		System.out.println(adminUserService.userMonthList());
+		model.addAttribute("UserMonthList", adminUserService.userMonthList());
+		return "admin/user/adminUserMonthList";
+	}
 }

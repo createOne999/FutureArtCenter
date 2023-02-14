@@ -47,7 +47,7 @@
 				<button type="button" class="collapsible" onclick="collapse(this);">회원 현황</button>
 			    <div class="sub_menu">
 			        <p><a href="/admin/user/list">가입 회원 정보</a></p>
-			        <p><a href="/admin/user/chart">회원 통계</a></p>
+			        <p><a href="/admin/user/monthList">회원 통계</a></p>
 				</div>
 				<button type="button" class="collapsible" onclick="collapse(this);">게시판 관리</button>
 			    <div class="sub_menu">
