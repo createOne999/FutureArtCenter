@@ -23,7 +23,9 @@
 	<div>
 		<table border="1">
 			<tr>
-				<td rowspan="5">${talkTicket.SHOW_POSTER }</td>
+				<td rowspan="5">
+				<img src="poster?showPoster=${talkTicket.SHOW_POSTER }" height="200px">
+				</td>
 				<td>티켓번호</td>
 				<td>${talkTicket.TICKETING_CODE1 }</td>
 			</tr>
@@ -56,7 +58,9 @@
 	<c:if test="${talkTicket.TICKETING_CODE2 != NULL }">		
 		<table border="1">
 			<tr>
-				<td rowspan="5">${talkTicket.SHOW_POSTER }</td>
+				<td rowspan="5">
+				<img src="poster?showPoster=${talkTicket.SHOW_POSTER }" height="200px">
+				</td>
 				<td>티켓번호</td>
 				<td>${talkTicket.TICKETING_CODE2 }</td>
 			</tr>

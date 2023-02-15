@@ -1,18 +1,29 @@
 package com.futureArtCenter.client.info.Controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.futureArtCenter.client.info.service.InfoService;
@@ -31,6 +42,10 @@ public class InfoController {
 	// 스프링 시큐리티의 비밀번호 암호처리기
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	// 이미지 저장 경로
+	@Value("${upload.path}")
+	private String uploadPath;
 	
 	
 	/*********
@@ -173,6 +188,57 @@ public class InfoController {
 	/*********
 	 * 티켓 보기
 	 *********/
+		
+	// 저장된 이미지 가져오기
+	@ResponseBody
+	@GetMapping(value={"/poster", "/detail/poster"})
+	public ResponseEntity<byte[]> displayFile(Integer show_no, String showPoster) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		String fileName = showPoster;
+
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);// 확장자명
+
+			MediaType mType = getMediaType(formatName);// 확장자로 이미지 형식 확인
+			HttpHeaders headers = new HttpHeaders();
+
+			// separator 는 구분자, 'C:/upload/파일명'
+			in = new FileInputStream(uploadPath + File.separator + fileName);
+
+			if (mType != null) {
+				headers.setContentType(mType);
+			}
+			
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+		return entity;
+	}
+
+	// 파일 확장자로 이미지 형식 확인
+	private MediaType getMediaType(String formatName) {
+		if (formatName != null) {
+			if (formatName.equals("JPG")) {
+				return MediaType.IMAGE_JPEG;
+			}
+
+			if (formatName.equals("GIF")) {
+				return MediaType.IMAGE_GIF;
+			}
+
+			if (formatName.equals("PNG")) {
+				return MediaType.IMAGE_PNG;
+			}
+		}
+		return null;
+	}	
+		
 	
 	// 콘서트 티켓 보기
 	@RequestMapping(value="/ticketReadConcert", method=RequestMethod.GET)

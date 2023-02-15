@@ -9,7 +9,7 @@
 <!-- 마이페이지 예매 내역 > 미디어 티켓 보기 -->
 </head>
 <body>
-<form id="mediaTicketForm" method="get" action="mediaTicketRead">
+<form id="mediaTicketForm" method="get" action="mediaTicketRead" >
 	<div align="left"><h3>&nbsp;&nbsp;&nbsp;마이페이지</h3></div>
 	<table border="5">
 		<tr align="center">
@@ -23,7 +23,9 @@
 	<div>
 		<table border="1">
 			<tr>
-				<td rowspan="5">${mediaTicket.SHOW_POSTER }</td>
+				<td rowspan="5">
+				<img src="poster?showPoster=${mediaTicket.SHOW_POSTER }" height="200px">
+				</td>
 				<td>티켓번호</td>
 				<td>${mediaTicket.TICKETING_CODE1 }</td>
 			</tr>
@@ -56,7 +58,9 @@
 	<c:if test="${mediaTicket.TICKETING_CODE2 != NULL }">		
 		<table border="1">
 			<tr>
-				<td rowspan="5">${mediaTicket.SHOW_POSTER }</td>
+				<td rowspan="5">
+				<img src="poster?showPoster=${mediaTicket.SHOW_POSTER }" height="200px">
+				</td>
 				<td>티켓번호</td>
 				<td>${mediaTicket.TICKETING_CODE2 }</td>
 			</tr>

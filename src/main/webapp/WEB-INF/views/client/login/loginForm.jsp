@@ -29,8 +29,7 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
 <script>
-
-
+	
 	// 로그인 버튼
 	 $(".login_button").click(function(){
 		 
@@ -50,6 +49,7 @@
        
     })
     
+    // 로그인 실패할 경우
     <c:if test = "${result == 0 }">
     alert("회원정보가 일치하지 않습니다.");
     </c:if>
