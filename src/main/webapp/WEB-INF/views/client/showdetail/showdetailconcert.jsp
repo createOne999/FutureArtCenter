@@ -11,14 +11,14 @@
 		<div class="title_space">
 			<h3>예매</h3>
 			<a href="/show/showlist" style="display: inline-block; margin-left: auto; ">
-				<input type="button" value="목록">
+				<input type="button" value="목록" class="btn btn-outline-secondary">
 			</a>
 		</div>
 		<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
 			<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
 		</div>
 		<div class="select_space" style="display: inline-block; vertical-align: middle;">
-			<table border="1">
+			<table border="1" class="table">
 				<tr>
 					<td>공연명</td>
 					<td>${showVO.showName }</td>
@@ -64,7 +64,7 @@
 		<!-- 예매단 -->
 		<c:if test="${user.user_id == null or user.user_id == ''}">
 			<div>
-				<fieldset>
+				<fieldset class="border bg-secondary-subtle col-md-6">
 					<div align="center">
 						<h4>로그인 후에 예매 할 수 있습니다.</h4>
 					</div>
@@ -72,9 +72,9 @@
 			</div>
 		</c:if>
 		<c:if test="${user.user_id != null and user.user_id != '' }">
-			<div>
+			<div class="w-75 p-3">
 				<fieldset>
-					<table border="1" style="text-align: center;">
+					<table border="1" style="text-align: center;" class="table table-bordered">
 						<tr>
 							<td>
 								<c:choose>
@@ -93,7 +93,7 @@
 							</td>
 							<td>
 								<%-- 날짜 + 회차를 합쳐, 잔여 좌석수를 추가 --%>
-								<select id="showDate" name="showDate">
+								<select id="showDate" name="showDate" class="form-select">
 									<option disabled="disabled" selected="selected">날짜를 선택해 주세요.</option>
 									<%-- 날짜 리스트 반복 --%>
 									<c:forEach items="${ticketingDateList }" var="date">
@@ -166,15 +166,29 @@
 							매수선택 2매 <input type="radio" id="2ticket" name="ticketingAmount" value="2">
 							</td>
 							<td>
-								좌석1 : <input type="text" id="ticketingSit1" name="ticketingSit1" readonly="readonly" ><br>
-								좌석2 : <input type="text" id="ticketingSit2" name="ticketingSit2" readonly="readonly" disabled="disabled"><br>
-								<input type="button" value="좌석선택" id="seatbtn" name="seatbtn"><br> 
+								<div class="input-group w-50">
+									<span class="input-group-text">좌석1</span>
+									<input type="text" id="ticketingSit1" name="ticketingSit1" readonly="readonly" class="form-control" aria-label="With textarea" >
+								</div>
+								<div class="input-group w-50">
+									<span class="input-group-text">좌석2</span>
+									<input type="text" id="ticketingSit2" name="ticketingSit2" readonly="readonly" disabled="disabled" class="form-control" aria-label="With textarea">
+								</div>
+								<input type="button" value="좌석선택" id="seatbtn" name="seatbtn" class="btn btn-outline-success justify-content-md-end">
+								
+
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
-								총금액 : <input type="text" id="ticketingPayamount" readonly="readonly">
-								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn">
+							<td colspan="3">
+								<div class="input-group w-50">
+									<span class="input-group-text">총금액</span>
+									<input type="text" id="ticketingPayamount" readonly="readonly" class="form-control" aria-label="With textarea">
+								</div>
+								
+							</td>
+							<td>
+								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn" class="btn btn-primary">
 							</td>
 						</tr>
 					</table>
@@ -183,12 +197,12 @@
 			</div>
 		</c:if>
 		<!-- 작품소개, 관람안내 -->
-		<div>
+		<div class="mb-2">
 			<span> 
-				<input type="button" value="작품소개" id="content">
+				<input type="button" value="작품소개" id="introContent" class="btn btn-outline-secondary">
 			</span> 
 			<span> 
-				<input type="button" value="관람안내" id="viewGuide">
+				<input type="button" value="관람안내" id="viewGuide" class="btn btn-outline-secondary">
 			</span>
 		</div>
 		<!-- 상세내용 -->
@@ -534,7 +548,7 @@
 		
 		
 		
-		$("#content").on("click", function(){
+		$("#introContent").on("click", function(){
 			$("#detailContent").show();
 			$("#detailViewGuide").hide();
 		});

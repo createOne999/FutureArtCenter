@@ -12,14 +12,14 @@
 	<div class="title_space">
 		<h3>예매</h3>
 		<a href="/show/showplan?mPage=${mPage }&tPage=${tPage}&cPage=${cPage}" style="display: inline-block; margin-left: auto; ">
-				<input type="button" value="목록">
+				<input type="button" value="목록" class="btn btn-outline-secondary">
 		</a>
 	</div>
 	<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
 		<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
 	</div>
 	<div class="select_space" style="display: inline-block; vertical-align: middle;">
-		<table border="1">
+		<table border="1" class="table">
 			<tr>
 				<td>공연명</td>
 				<td>${showVO.showName }</td>
@@ -64,15 +64,17 @@
 	</div>
 	<!-- 예매단 -->
 	<div>
-		<fmt:formatDate value="${ticketingStartDate}" pattern="yyyy-MM-dd"/> 일부터 예매 가능합니다.		
+		<fieldset class="border bg-secondary-subtle col-md-6">
+			<fmt:formatDate value="${ticketingStartDate}" pattern="yyyy-MM-dd"/> 일부터 예매 가능합니다.		
+		</fieldset>
 	</div>
 	<!-- 작품소개, 관람안내 -->
-	<div>
-		<span>
-			<input type="button" value="작품소개" id="content" name="content">
+	<div class="mt-2">
+		<span >
+			<input type="button" value="작품소개" id="introContent" name="introContent" class="btn btn-outline-secondary">
 		</span>
 		<span>
-			<input type="button" value="관람안내" id="viewGuide" name="viewGuide">
+			<input type="button" value="관람안내" id="viewGuide" name="viewGuide" class="btn btn-outline-secondary">
 		</span>
 	</div>
 	<!-- 상세내용 -->
@@ -223,7 +225,7 @@
 		$("#detailContent").show();
 		$("#detailViewGuide").hide();	
 
-		$("#content").on("click", function(){
+		$("#introContent").on("click", function(){
 			$("#detailContent").show();
 			$("#detailViewGuide").hide();
 		});

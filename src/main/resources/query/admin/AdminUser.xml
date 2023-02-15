@@ -57,7 +57,7 @@
    			 FROM TEMP_DATES
 		),<![CDATA[
 		DATE_RANGE AS (
-		    SELECT MIN_DATE + LEVEL - 1 AS THE_DATE
+		    SELECT TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') - 1 + LEVEL AS THE_DATE
 		    FROM DATES
 		    CONNECT BY LEVEL <= TO_DATE(TO_CHAR(MAX_DATE, 'yyyy')||'12', 'yyyy-MM') - TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + 1
 		)]]>

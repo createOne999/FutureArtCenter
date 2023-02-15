@@ -7,7 +7,14 @@
 		<h3>예정공연</h3>
 	</div>
 	<div id="select_space" >
-		<span><a href="/show/showlist">진행중인 공연리스트</a></span> <span><a href="/show/showplan">예정 공연리스트</a></span>
+		<ul class="nav nav-pills justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link" href="/show/showlist">진행중인 공연리스트</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="/show/showplan">예정 공연리스트</a>
+			</li>
+		</ul>
 	</div>
 	<div id="main_body">
 		<div>
@@ -20,12 +27,12 @@
 				<c:otherwise>
 					<%-- 3개만 출력 --%>
 					<c:forEach items="${mediaMainList }" var="media" begin="0" end="2" step="1">
-						<span style="display:inline-block;  border: 1px solid; height: 360px; vertical-align: top;">
+						<span style="display:inline-block;  border: 1px solid; height: 450px; vertical-align: top;">
 							<a href="/show/detail/showdetailmediaplan?showNo=${media.showNo }&mPage=${mediaPagination.pageRequest.page }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
 								<img alt="${media.showPoster }" src="poster?show_no=${media.showNo }&showPoster=${media.showPoster}" height="200px">
 							</a>
 							<hr style="margin: 0">
-							<table>
+							<table class="table">
 								<tr>
 									<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${media.showName }</td>
 								</tr>
@@ -70,12 +77,12 @@
 				<c:otherwise>
 					<%-- 3개만 출력 --%>
 					<c:forEach items="${talkMainList }" var="talk" begin="0" end="2" step="1">
-						<span style="display:inline-block;  border: 1px solid; height: 360px; vertical-align: top;">
+						<span style="display:inline-block;  border: 1px solid; height: 450px; vertical-align: top;">
 							<a href="/show/detail/showdetailtalkplan?showNo=${talk.showNo }&mPage=${mediaPagination.pageRequest.page }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
 								<img alt="${talk.showPoster }" src="poster?show_no=${talk.showNo }&showPoster=${talk.showPoster}" height="200px">
 							</a>	
 							<hr style="margin: 0">					
-							<table>
+							<table class="table">
 								<tr>
 									<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${talk.showName }</td>
 								</tr>
@@ -119,12 +126,12 @@
 				<c:otherwise>
 					<%-- 3개만 출력 --%>
 					<c:forEach items="${concertMainList }" var="concert" begin="0" end="2" step="1">
-						<span style="display:inline-block; border: 1px solid; height: 360px; vertical-align: top;">
+						<span style="display:inline-block; border: 1px solid; height: 450px; vertical-align: top;">
 							<a href="/show/detail/showdetailconcertplan?showNo=${concert.showNo }&mPage=${mediaPagination.pageRequest.page }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
 								<img alt="${concert.showPoster }" src="poster?show_no=${concert.showNo }&showPoster=${concert.showPoster}" height="200px">
 							</a>
 							<hr style="margin: 0">
-							<table>
+							<table class="table">
 								<tr>
 									<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${concert.showName }</td>
 								</tr>
@@ -160,7 +167,7 @@
 		</div>
 		<hr>
 		<h4>미디어</h4>
-		<table border="1">
+		<table class="table table-bordered">
 			<tr>
 				<th>공연명</th>
 				<th>공연시작일</th>
@@ -207,7 +214,7 @@
 		</div>
 		<hr>
 		<h4>강연</h4>
-		<table border="1">
+		<table class="table table-bordered">
 			<tr>
 				<th>공연명</th>
 				<th>공연시작일</th>
@@ -255,7 +262,7 @@
 		</div>
 		<hr>
 		<h4>콘서트</h4>
-		<table border="1">
+		<table class="table table-bordered">
 			<tr>
 				<th>공연명</th>
 				<th>공연시작일</th>

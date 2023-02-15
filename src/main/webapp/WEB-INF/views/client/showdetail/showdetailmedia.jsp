@@ -10,68 +10,70 @@
 		<%-- 공연 정보 --%>
 		<div class="title_space">
 			<h3>예매</h3>
-			<a href="/show/showlist" style="display: inline-block; margin-left: auto; ">
-				<input type="button" value="목록">
+			<a href="/show/showlist" style="display: inline-block; margin-left: auto;">
+				<input type="button" value="목록" class="btn btn-outline-secondary">
 			</a>
 		</div>
-		<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
-			<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
-		</div>
-		<div class="select_space" style="display: inline-block; vertical-align: middle;">
-			<table border="1"  >
-				<tr>
-					<td>공연명</td>
-					<td>${showVO.showName }</td>
-				</tr>
-				<tr>
-					<td>공연기간</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showStartdate }" /> - <fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showClosedate }" /></td>
-				</tr>
-				<tr>
-					<td>공연시간</td>
-					<c:choose>
-						<c:when test="${showVO.showRound == 1 }">
-							<td>회차: ${showVO.showTime1 }<br></td>
-						</c:when>
-						<c:when test="${showVO.showRound == 2 }">
-							<td>1회차: ${showVO.showTime1 }<br> 
-								2회차: ${showVO.showTime2 }</td>
-						</c:when>
-					</c:choose>
-				</tr>
-				<tr>
-					<td>공연관</td>
-					<td>1관</td>
-				</tr>
-				<tr>
-					<td>공연금액</td>
-					<td>${showVO.showPrice } / 1매</td>
-				</tr>
-				<tr>
-					<td>작품명</td>
-					<td>${showVO.mediaName }</td>
-				</tr>
-				<tr>
-					<td>제작/감독</td>
-					<td>${showVO.mediaDirector }</td>
-				</tr>
-			</table>
+		<div>
+			<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
+				<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
+			</div>
+			<div class="select_space" style="display: inline-block; vertical-align: middle;">
+				<table border="1" class="table" >
+					<tr>
+						<td>공연명</td>
+						<td>${showVO.showName }</td>
+					</tr>
+					<tr>
+						<td>공연기간</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showStartdate }" /> - <fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showClosedate }" /></td>
+					</tr>
+					<tr>
+						<td>공연시간</td>
+						<c:choose>
+							<c:when test="${showVO.showRound == 1 }">
+								<td>회차: ${showVO.showTime1 }<br></td>
+							</c:when>
+							<c:when test="${showVO.showRound == 2 }">
+								<td>1회차: ${showVO.showTime1 }<br> 
+									2회차: ${showVO.showTime2 }</td>
+							</c:when>
+						</c:choose>
+					</tr>
+					<tr>
+						<td>공연관</td>
+						<td>1관</td>
+					</tr>
+					<tr>
+						<td>공연금액</td>
+						<td>${showVO.showPrice } / 1매</td>
+					</tr>
+					<tr>
+						<td>작품명</td>
+						<td>${showVO.mediaName }</td>
+					</tr>
+					<tr>
+						<td>제작/감독</td>
+						<td>${showVO.mediaDirector }</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		<%-- 예매단 --%>
 		<c:if test="${user.user_id == null or user.user_id == ''}">
 			<div>
-				<fieldset>
+				<fieldset class="border bg-secondary-subtle col-md-6">
 					<div align="center">
-						<h4>로그인 후에 예매 할 수 있습니다.</h4>
+						<h5>로그인 후에 예매 할 수 있습니다.</h5>
 					</div>
 				</fieldset>
 			</div>
 		</c:if>
 		<c:if test="${user.user_id != null and user.user_id != '' }">
-			<div>
+			<div class="w-50 p-3">
 			
 				<fieldset>
-					<table  border="1" style="text-align: center;">
+					<table  border="1" style="text-align: center;" class="table table-bordered">
 						<tr>
 							<td>
 								<c:choose>
@@ -91,7 +93,7 @@
 							<td>
 								<%-- 예매 가능 날짜 --%>
 								<%-- 날짜 + 회차를 합쳐, 잔여 좌석수를 추가 --%>
-								<select id="showDate" name="showDate">
+								<select id="showDate" name="showDate" class="form-select">
 									<option disabled="disabled" selected="selected">날짜를 선택해 주세요.</option>
 									<%-- 날짜 리스트 반복 --%>
 									<c:forEach items="${ticketingDateList }" var="date">
@@ -170,10 +172,13 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								총금액 : <input type="text" id="ticketingPayamount" readonly="readonly">
+								<div class="input-group w-50">
+									<span class="input-group-text">총금액</span>
+									<input type="text" id="ticketingPayamount" readonly="readonly" class="form-control" aria-label="With textarea">
+								</div>
 							</td>
 							<td>
-								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn">
+								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn" class="btn btn-primary">
 							</td>
 						</tr>
 					</table>
@@ -183,18 +188,18 @@
 		</c:if>
 	 
 		<!-- 작품소개, 관람안내 -->
-		<div>
+		<div class="mt-2">
 			<span>
-				<input type="button" value="작품소개" id="content">
+				<input type="button" value="작품소개" id="introContent" class="btn btn-outline-secondary">
 			</span>
 			<span>
-				<input type="button" value="관람안내" id="viewGuide">
+				<input type="button" value="관람안내" id="viewGuide" class="btn btn-outline-secondary">
 			</span>
 		</div>
 		<!-- 상세내용 -->
 		<div id="detail">
 			<div id="detailContent">
-				${showVO.showContent1 }
+				<p>${showVO.showContent1 }</p>
 				<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" height="200px">
 			</div>
 			<div id="detailViewGuide">
@@ -441,7 +446,7 @@
 		
 		
 		
-		$("#content").on("click", function(){
+		$("#introContent").on("click", function(){
 			$("#detailContent").show();
 			$("#detailViewGuide").hide();
 		});

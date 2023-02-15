@@ -7,13 +7,20 @@
 <div id="main_content" >
 	<div id="title_space"><h3>공연예매</h3></div>
 	<div id="select_space">
-		<span><a href="/show/showlist">진행중인 공연리스트</a></span> <span><a href="/show/showplan">예정 공연리스트</a></span>
+		<ul class="nav nav-pills justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="/show/showlist">진행중인 공연리스트</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/show/showplan">예정 공연리스트</a>
+			</li>
+		</ul>
 	</div>
 	
 	<div id="main_body">
 		<hr>
 		<h4>미디어 목록</h4>
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 			<c:choose>
 				<c:when test="${empty mediaList }">
 				등록된 미디어 공연이 없습니다.
@@ -46,12 +53,12 @@
 							<c:if test="${status.count == 1 }">
 								<div class="carousel-item active">
 							</c:if>
-							<span style="display:inline-block;  border: 1px solid; height: 360px; vertical-align: top;">
+							<span style="display:inline-block;  border: 1px solid; height: 450px; vertical-align: top;">
 								<a href="/show/detail/showdetailmedia?showNo=${media.showNo }">
 									<img alt="${media.showPoster }" src="poster?show_no=${media.showNo }&showPoster=${media.showPoster}" height="200px">
 								</a>
 								<hr style="margin: 0">
-								<table>
+								<table class="table">
 									<tr>
 										<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${media.showName }</td>
 									</tr>
@@ -100,7 +107,7 @@
 			  </button>
 		</div>
 		
-		<div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="true">
+		<div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
 			<hr>
 			<h4>강연목록</h4>
 			<c:choose>
@@ -134,12 +141,12 @@
 							<c:if test="${status.count == 1 }">
 								<div class="carousel-item active">
 							</c:if>
-						<span style="display:inline-block;  border: 1px solid; height: 360px; vertical-align: top;">
+						<span style="display:inline-block;  border: 1px solid; height: 450px; vertical-align: top;">
 							<a href="/show/detail/showdetailtalk?showNo=${talk.showNo }">
 								<img alt="${talk.showPoster }" src="poster?show_no=${talk.showNo }&showPoster=${talk.showPoster}" height="200px">
 							</a>
 							<hr style="margin: 0">
-							<table>
+							<table class="table">
 								<tr>
 									<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${talk.showName }</td>
 								</tr>
@@ -187,7 +194,7 @@
 			    <span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		<div id="carouselExampleIndicators3" class="carousel slide" data-bs-ride="true">
+		<div id="carouselExampleIndicators3" class="carousel slide" data-bs-ride="carousel">
 			<hr>
 			<h4>콘서트 목록</h4>
 			
@@ -222,13 +229,13 @@
 							<c:if test="${status.count == 1 }">
 								<div class="carousel-item active">
 							</c:if>
-						<span style="display:inline-block; border: 1px solid; height: 360px; vertical-align: top; ">
+						<span style="display:inline-block; border: 1px solid; height: 450px; vertical-align: top; ">
 							<a href="/show/detail/showdetailconcert?showNo=${concert.showNo }">
 								<img alt="${concert.showPoster }" src="poster?show_no=${concert.showNo }&showPoster=${concert.showPoster}" height="200px">
 
 							</a>
 							<hr style="margin: 0">
-							<table>
+							<table class="table">
 								<tr>
 									<td align="center" style="font-weight: bold;">공연명</td><td>:</td><td>${concert.showName }</td>
 								</tr>

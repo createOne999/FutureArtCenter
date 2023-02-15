@@ -11,14 +11,14 @@
 		<div class="title_space">
 			<h3>예매</h3>
 			<a href="/show/showlist" style="display: inline-block; margin-left: auto; ">
-				<input type="button" value="목록">
+				<input type="button" value="목록" class="btn btn-outline-secondary">
 			</a>
 		</div>
 		<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">
 			<img alt="${showVO.showPoster }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showPoster}" height="200px">
 		</div>
 		<div class="select_space" style="display: inline-block; vertical-align: middle;">
-			<table border="1">
+			<table border="1" class="table">
 				<tr>
 					<td>공연명</td>
 					<td>${showVO.showName }</td>
@@ -60,7 +60,7 @@
 		<!-- 예매단 -->
 		<c:if test="${user.user_id == null or user.user_id == ''}">
 			<div>
-				<fieldset>
+				<fieldset class="border bg-secondary-subtle col-md-6">
 					<div align="center">
 						<h4>로그인 후에 예매 할 수 있습니다.</h4>
 					</div>
@@ -68,9 +68,9 @@
 			</div>
 		</c:if>
 		<c:if test="${user.user_id != null and user.user_id != '' }">
-			<div>
+			<div class="w-50 p-3">
 				<fieldset>
-					<table  border="1" style="text-align: center;">
+					<table  border="1" style="text-align: center;" class="table table-bordered">
 						<tr>
 							<td>
 								<c:choose>
@@ -89,8 +89,8 @@
 							</td>
 							<td>
 								<%-- 날짜 + 회차를 합쳐, 잔여 좌석수를 추가 --%>
-								<select id="showDate" name="showDate">
-									<option disabled="disabled" selected="selected">날짜를 선택해 주세요.</option>
+								<select id="showDate" name="showDate" class="form-select">
+									<option disabled="disabled" selected="selected" >날짜를 선택해 주세요.</option>
 									<%-- 날짜 리스트 반복 --%>
 									<c:forEach items="${ticketingDateList }" var="date">
 										<%-- 비교를 위해 형식변경 --%>
@@ -169,10 +169,13 @@
 						<tr>
 							
 							<td colspan="2">
-								총금액 : <input type="text" id="ticketingPayamount" readonly="readonly">
+								<div class="input-group">
+									<span class="input-group-text">총금액</span>
+									<input type="text" id="ticketingPayamount" readonly="readonly" class="form-control w-25" aria-label="With textarea">
+								</div>
 							</td>
 							<td>
-								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn">
+								<input type="button" value="예매하기" id="ticketing_btn" name="ticketing_btn" class="btn btn-primary">
 							</td>
 						</tr>
 					</table>
@@ -181,12 +184,12 @@
 			</div>
 		</c:if>
 		<!-- 작품소개, 관람안내 -->
-		<div>
+		<div class="mt-2">
 			<span>
-				<input type="button" value="작품소개" id="content">
+				<input type="button" value="작품소개" id="introContent" class="btn btn-outline-secondary">
 			</span>
 			<span>
-				<input type="button" value="관람안내" id="viewGuide">
+				<input type="button" value="관람안내" id="viewGuide" class="btn btn-outline-secondary">
 			</span>
 		</div>
 		<!-- 상세내용 -->
@@ -436,7 +439,7 @@
 		
 		
 		
-		$("#content").on("click", function(){
+		$("#introContent").on("click", function(){
 			$("#detailContent").show();
 			$("#detailViewGuide").hide();
 		});
