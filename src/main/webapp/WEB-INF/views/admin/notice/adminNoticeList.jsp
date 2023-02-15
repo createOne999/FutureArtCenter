@@ -42,53 +42,26 @@
                 <td>${AdminNoticeVO.notice_no}</td>
                 <td class="txt_ct"><a href="${path}/admin/notice/adminNoticeRead?notice_no=${AdminNoticeVO.notice_no}">${AdminNoticeVO.notice_title}</a></td>
                 <td><fmt:formatDate value="${AdminNoticeVO.notice_date}" pattern="yyyy-MM-dd"></fmt:formatDate> </td>
+                
+               
+                
             </tr>
         </c:forEach>
     </table>
     <a href="/admin/notice/register">새글 등록</a>
+             <!-- 게시글 상세보기할 때 페이징 요청 정보를 매개변수로 전달한다. -->
+<td align="center"><a href="/admin/notice/adminNoticeRead${pagination.makeQuery(pagination.pageRequest.page)}&notice_no=${AdminNoticeVO.notice_no}"></a></td>
+        
 </div>
 </body>
 </html>
   
-  
+  <!-- 페이징 네비게이션 -->
+<div>
+<c:if test="${pagination.prev}"><a href="${pagination.startPage - 1}">&laquo;</a></c:if>
 
-<%-- <body>
-<h3 class="mb-3">공지사항</h3>
-</body>
-<button type="button" class="btn btn-primary register-btn"
-		onclick="location.href='/admin/notice/register'">등록</button>
-		<a href="adminNoticeReg">새글 등록</a>
-<table border="1">
-	<tr>
-		<th align="center" width="80">번호</th>
-		<th align="center" width="320">제목</th>
-		<th align="center" width="180">등록일</th>
-	</tr>
-	<c:choose>
-		<c:when test="${empty list}">
-			<tr>
-				<td colspan="3"></td>
-			</tr>
-		</c:when>
-		<c:otherwise>
-			<c:forEach items="${list}" var="AdminNoticeVO">
-				<tr>
-				<td align="center">${AdminNoticeVO.notice_no}</td>
-				<td align="left"><a href="${path}/admin/notice/adminNoticeRead?notice_no=${AdminNoticeVO.notice_no}"><c:out value="${AdminNoticeVO.notice_title}" /></a></td>
-				<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${AdminNoticeVO.notice_date}" /></td>
-				
-				</tr>
-			</c:forEach>
-		</c:otherwise>
-	</c:choose>
-</table>
+<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="idx"><a href="/admin/notice/list${pagination.makeQuery(idx)}">${idx}</a></c:forEach>
 
+<c:if test="${pagination.next && pagination.endPage > 0}"><a href="${pagination.endPage +1}">&raquo;</a></c:if>
 
-
-<script>
-	var result = "${msg}";
-
-	if (result === "SUCCESS") {
-
-	}
-</script> --%>
+</div>

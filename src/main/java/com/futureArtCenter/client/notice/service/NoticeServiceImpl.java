@@ -31,7 +31,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticedao.read(notice_no);
 	}
 	
-	/* 게시글 전체 건수를 반환한다.
+	// 게시글 전체 건수를 반환한다.
 	@Override
 	public int count() throws Exception{
 		return noticedao.count();
@@ -39,10 +39,10 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 게시글 목록을 반환한다.
 	@Override
-	public List<NoticeVO> list(PageRequest pageRequest) throws Exception{
-		return noticedao.list(pageRequest);
+	public List<NoticeVO> page(PageRequest pageRequest) throws Exception{
+		return noticedao.page(pageRequest);
 	}
 	
-	*/
+	
 
 }

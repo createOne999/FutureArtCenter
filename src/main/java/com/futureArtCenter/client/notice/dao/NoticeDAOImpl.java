@@ -33,4 +33,5 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return results.isEmpty() ? null : results.get(0);
 	}
 
-}*/
+}
+*/

@@ -56,7 +56,12 @@
 <div style="margin-top: 100;">
 <c:forEach items="${list}" var="FAQVO">
 
-<button class="accordion"><th>${FAQVO.faq_title}</th></button>
+<button class="accordion">
+<th><c:if test="${FAQVO.faq_category==0}">[예매] &nbsp&nbsp</c:if>
+<c:if test="${FAQVO.faq_category==1}">[환불 / 취소] &nbsp&nbsp</c:if>
+<c:if test="${FAQVO.faq_category==2}">[기타] &nbsp&nbsp</c:if>
+${FAQVO.faq_title}</th>
+</button>
 <div class="panel">
 	<p style="text-align: left;">${FAQVO.faq_content}</p>
 </div>

@@ -3,6 +3,7 @@ package com.futureArtCenter.admin.notice.dao;
 import java.util.List;
 
 import com.futureArtCenter.admin.notice.VO.AdminNoticeVO;
+import com.futureArtCenter.client.common.vo.PageRequest;
 
 public interface AdminNoticeDAO {
 	
@@ -23,5 +24,11 @@ public interface AdminNoticeDAO {
 	
 	// 포스터 등록
 	public String getnotice_poster(Integer notice_no) throws Exception;
+	
+	// 게시글 전체 건수를 반환한다.
+			public int count() throws Exception;
+			
+			// 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 게시글 목록을 반환한다.
+			public List<AdminNoticeVO> page(PageRequest pageRequest) throws Exception;
 
 }

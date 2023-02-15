@@ -85,13 +85,13 @@ public class NoticeController {
 		return null;
 	}
 
-	// 공지사항 목록 페이지
+	/* 공지사항 목록 페이지
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
 	public void list(Model model) throws Exception {
 		log.info("list");
 
 		model.addAttribute("list", service.list());
-	}
+	}*/
 
 	// 공지사항 상세 페이지
 	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
@@ -101,18 +101,16 @@ public class NoticeController {
 		model.addAttribute("NoticeVO", service.read(notice_no));
 	}
 
-	/*
-	 * 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달한다.
-	 * 
-	 * @RequestMapping(value = "/noticeList", method = RequestMethod.GET) public
-	 * void list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model)
-	 * throws Exception{ // 뷰에 페이징 처리를 한 게시글 목록을 전달한다. model.addAttribute("list",
-	 * service.list(pageRequest));
-	 * 
-	 * // 페이징 네비게이션 정보를 뷰에 전달한다. Pagination pagination = new Pagination();
-	 * pagination.setPageRequest(pageRequest);
-	 * pagination.setTotalCount(service.count()); model.addAttribute("pagination",
-	 * pagination); }
-	 */
+	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달한다.
+	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
+	  public void list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception{ 
+	// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
+		model.addAttribute("list", service.page(pageRequest));
+	  
+	  // 페이징 네비게이션 정보를 뷰에 전달한다. 
+		Pagination pagination = new Pagination();
+	  pagination.setPageRequest(pageRequest);
+	  pagination.setTotalCount(service.count());
+	  model.addAttribute("pagination", pagination); }
 
 }

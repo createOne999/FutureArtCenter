@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.futureArtCenter.admin.notice.VO.AdminNoticeVO;
 import com.futureArtCenter.admin.notice.service.AdminNoticeService;
+import com.futureArtCenter.client.common.vo.PageRequest;
+import com.futureArtCenter.client.common.vo.Pagination;
 
 import lombok.extern.java.Log;
 
@@ -163,14 +166,14 @@ public class AdminNoticeController {
 			return null;
 		}
 	
-	// 공지사항 목록 페이지
+	/* 공지사항 목록 페이지
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		log.info("list");
 		model.addAttribute("list", adminNoticeService.list());
 		
 		return "/admin/notice/adminNoticeList";
-	}
+	}*/
 	
 	// 공지사항 상세 페이지
 	@RequestMapping(value = "/adminNoticeRead", method = RequestMethod.GET)
@@ -217,5 +220,22 @@ public class AdminNoticeController {
 		
 		return "redirect:/admin/notice/list";
 	}
+	
+	// 페이징 요청 정보를 매개 변수로 받고 다시 뷰에 전달한다.
+		@RequestMapping(value = "/list", method = RequestMethod.GET)
+		  public String list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception{ 
+		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
+			model.addAttribute("list", adminNoticeService.page(pageRequest));
+		  
+		  // 페이징 네비게이션 정보를 뷰에 전달한다. 
+			Pagination pagination = new Pagination();
+		  pagination.setPageRequest(pageRequest);
+		  pagination.setTotalCount(adminNoticeService.count());
+		  model.addAttribute("pagination", pagination);
+		
+		  return "/admin/notice/adminNoticeList";
+		  
+		}
+		
 	
 }

@@ -29,7 +29,7 @@
 		WHERE notice_no = #{notice_no} 
 	</select>
 	
-	<!-- 게시글 전체 건수를 조회한다. 
+	<!-- 게시글 전체 건수를 조회한다. -->
 	<select id="count" resultType="int">
 	<![CDATA[
 	SELECT count(notice_no)
@@ -38,10 +38,10 @@
 	]]>
 	</select>
 	
-	-->
 	
-	<!-- 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 게시글 목록을 조회한다. 
-	<select id="list" resultType="com.futureArtCenter.client.notice.vo.NoticeVO">
+	
+	<!-- 페이징 요청 정보를 매개 변수로 받아 페이징 처리를 한 게시글 목록을 조회한다. -->
+	<select id="page" resultType="com.futureArtCenter.client.notice.vo.NoticeVO">
 	<![CDATA[
 	SELECT notice_no,
 	notice_title,
@@ -54,13 +54,19 @@
 			notice_poster,
 			notice_date,
 			rownum as rnum
-			from notice_tb)
-			where rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+			from(select notice_no,
+			notice_title,
+			notice_content,
+			notice_poster,
+			notice_date
+			from notice_tb
 			ORDER BY notice_no DESC,
 			notice_date DESC
+			))
+			where rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
 	]]>
 	</select>
 	
-	-->
+	
 
 </mapper>
