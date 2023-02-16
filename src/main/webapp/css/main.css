@@ -1,0 +1,286 @@
+@charset "UTF-8";
+
+.quick {
+    position:fixed;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:100000;
+}
+
+.quick li {
+    width:10px;
+    height:10px;
+    margin-bottom:10px;
+    border-radius:15px;
+    border:2px solid #fff;
+    cursor:pointer;
+}
+
+.quick .on {
+    background:#fff;
+}
+
+.fullsection.full1{
+    height: 100vh;
+    background : url(/image/artcenter.jpg) no-repeat center;
+    background-size: cover;
+    
+}
+
+.fullsection {
+    width:100%;height:100%;
+    position:relative;
+}
+
+.section_body {
+    width: 40%;
+    height: 40%;
+    float: right;
+    position: relative;
+    top: 250px;
+    right: 80px;
+}
+
+.section_title {
+    width: 90%;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.content_main2{
+	width: 40%;
+	height: 30px;
+	position: relative;
+	text-align: center;
+	
+}
+
+.section_title h2 {
+    font-size: 70px;
+    padding: 10px 0 30px 0;
+    letter-spacing: 20px;
+}
+
+.title_main2 {
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.content {
+	font-weight: lighter;
+    font-size: 15px;
+    color: #FFFFFF;
+    border: 5px solid #ccb6a3;
+    padding: 40px;
+    margin-top: 15px;
+}
+
+/* pagetwo /css/slide.css*/
+.fullsection.full2{
+    height: 100vh;
+    background-color: white;
+    background-size: cover;
+}
+
+/* pagethree */
+.fullsection.full3{
+    height: 100vh;
+    background-color: #f0f3ee;
+    background-size: cover;
+}
+
+.content_bottom {
+	width: 75%;
+	height: 50%;
+	position: relative;
+	top: 250px;
+}
+
+.notice {
+	width: 40%;
+	height: 70%;
+	float: left;
+}
+
+.notice_title {
+	text-align: center;
+	color: #000000;
+	font-size: 20px;
+	height: 20%;
+}
+
+#notice_article {
+	margin-top: 15px;
+	width: 100%;
+	height: 80%;
+	
+}
+
+#n_line {
+	width: 100%;
+	height: 25px;
+	margin-top: 10px;
+	border-bottom: 1px solid #d8dbd6;
+}
+
+.n_article {
+	float: left;
+}
+
+.date {
+	float: right;
+}
+
+.right_box {
+	width: 45%;
+	height: 70%;
+	background-color: #FFFFFF;
+	float: right;
+}
+
+/* section==== */
+
+
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* slide /css/music_web.css*/
+
+
+.content_main{
+	width: 18%;
+	height: 30px;
+	position: relative;
+	top: 20px;
+	text-align: center;	
+}
+
+.title_img1 img{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.title_img2 img{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+.title_main1 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;
+	font-family: 'Nanum Gothic', sans-serif;
+	text-align: center;
+}
+
+.slide {
+    background-color: #FFFFFF;
+    height: 600px;
+    position: relative;
+    top: 50px;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.slideshow {
+    position: absolute;
+    width: 350px;
+    
+    transition: 1s;
+    margin-left: 50px;
+}
+
+.slideshow a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: inline-block;
+    background-color: #FFFFFF;
+}
+
+.slideshow img {
+    margin-top: 50px;
+    height: 330px;
+}
+
+.slideshow img:hover {
+    height: 350px;
+    width: 270px;
+    transition: 0.2s all;
+}
+
+
+.slideshow_nav a {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #000000;
+    font-size: 70px;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.slideshow_nav a.prev {
+    margin-left: -600px;
+}
+
+.slideshow_nav a.prev:hover {
+    opacity: 1;
+    transition: 0.5s all;
+}
+
+.slideshow_nav a.next {
+    margin-left: 550px;
+}
+
+.slideshow_nav a.next:hover {
+    opacity: 1;
+    transition: 0.5s all;
+}
+
+
+/* 중앙을 기점으로 좌우 이동 */
+
+/* slide========= */
+
+.text1 {
+	display: none;
+}
+
+
+.text1:hover {
+	width: 100%;
+    height: 380px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: table;
+    opacity: 1;
+    transition: all 0.3s
+}
+
+.hidden:hover{
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0 15px;
+}
+
+.name1:hover{
+	font-size: 40px;
+    line-height: 60px;
+    color: #fff;
+}

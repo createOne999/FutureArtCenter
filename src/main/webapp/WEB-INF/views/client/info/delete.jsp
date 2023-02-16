@@ -36,7 +36,7 @@ function func(){
 	// 비밀번호 불일치 결과
 	var fail='${fail}';
 	if(fail==='불가'){
-		alert("관람 가능한 예매 내역이 존재합니다.");
+		alert("회원님의 관람 가능한 예매 내역이 존재하여 탈퇴할 수 없습니다.");
 	} 
 </script>
 <body>
