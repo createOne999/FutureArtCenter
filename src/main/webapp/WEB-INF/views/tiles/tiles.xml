@@ -100,9 +100,9 @@
 	</definition>
 
 	<!--   관리자 공지사항 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
-	<definition name="admin/notice/list" extends="adminMainLayout">
+	<definition name="/admin/notice/*" extends="adminMainLayout">
       <put-attribute name="title" value="notice" />
-      <put-attribute name="content" value="/WEB-INF/views/admin/notice/adminNoticeList.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
    </definition>
 
 
