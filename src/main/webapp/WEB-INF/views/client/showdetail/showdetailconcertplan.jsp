@@ -32,7 +32,7 @@
 				<td>공연시간</td>
 				<c:choose>
 						<c:when test="${showVO.showRound == 1 }">
-							<td>회차: ${showVO.showTime1 }<br></td>
+							<td>1회차: ${showVO.showTime1 }<br></td>
 						</c:when>
 						<c:when test="${showVO.showRound == 2 }">
 							<td>1회차: ${showVO.showTime1 }<br> 
@@ -80,8 +80,8 @@
 	<!-- 상세내용 -->
 	<div id="detail">
 		<div id="detailContent">
-			${showVO.showContent1 }
-			<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" height="200px">
+			<p>${showVO.showContent1 }</p>
+			<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" style="max-width: 600px">
 		</div>
 
 		<div id="detailViewGuide">

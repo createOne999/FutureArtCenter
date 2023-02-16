@@ -22,49 +22,49 @@
 			</div>
 			<div class="post_space" style="display: inline-block; border: 1px solid; vertical-align: middle;">${showPoster }</div>
 			<div class="select_space" style="display: inline-block; vertical-align: middle;">
-				<table border="1"  >
+				<table border="1"  class="table">
 					<tr>
-						<td>공연명</td>
+						<th>공연명</th>
 						<td>${showVO.showName }</td>
 					</tr>
 					<tr>
-						<td>공연기간</td>
+						<th>공연기간</th>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showStartdate }" /> - <fmt:formatDate pattern="yyyy-MM-dd" value="${showVO.showClosedate }" /></td>
 					</tr>
 					<tr>
-						<td>공연시간</td>
+						<th>공연시간</th>
 						<td>
 							1회차: ${showVO.showTime1 }<br>
-							<c:if test="${not empty showVO.showTime2 }">
+							<c:if test="${showVO.showTime2 != ','}">
 							2회차: ${showVO.showTime2 }
 							</c:if>
 						</td>
 					</tr>
 					<tr>
-						<td>공연관</td>
+						<th>공연관</th>
 						<td>1관</td>
 					</tr>
 					<tr>
-						<td>공연금액</td>
+						<th>공연금액</th>
 						<td>${showVO.showPrice } / 1매</td>
 					</tr>
 					<tr>
-						<td>작품명</td>
+						<th>작품명</th>
 						<td>${showVO.mediaName }</td>
 					</tr>
 					<tr>
-						<td>제작/감독</td>
+						<th>제작/감독</th>
 						<td>${showVO.mediaDirector }</td>
 					</tr>
 				</table>
 			</div>
-			<div>
+			<div class="col-md-6">
 				<fieldset>
-					<table  border="1" style="text-align: center;">
+					<table  border="1" style="text-align: center;" class="table table-bordered">
 						<tr>
 							<td>
 								<!-- 예매 가능 날짜 -->
-								<input type="text" readonly="readonly" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${ticketingVO.showDate }" />" id="showDate" name="showDate" />	
+								<input type="text" readonly="readonly" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${ticketingVO.showDate }" />" id="showDate" name="showDate" class="form-control"/>	
 							</td>
 							<td>
 								<c:choose>
@@ -81,11 +81,16 @@
 						</tr>
 						<tr>
 							<td>
-								매수
-								<input type="text" id="ticketingAmount" name="ticketingAmount" value="${ticketingVO.ticketingAmount }" readonly="readonly">
+								<div class="input-group w-50">
+									<span class="input-group-text">매수</span>
+									<input type="text" id="ticketingAmount" name="ticketingAmount" value="${ticketingVO.ticketingAmount }" readonly="readonly" class="form-control" aria-label="With textarea">
+								</div>
 							</td>
 							<td>
-								총금액 : <input type="text" id="ticketingPayamount" readonly="readonly">
+								<div class="input-group w-50">
+									<span class="input-group-text">총금액</span>
+									<input type="text" id="ticketingPayamount" readonly="readonly" class="form-control" aria-label="With textarea">
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -94,10 +99,10 @@
 			<div>
 				<fieldset>
 					<label for="card">카드</label>
-					<input type="radio" id="card" name="ticketingPayment" value="0" checked="checked">
-					<label for="wallet">계좌번호</label>
+					<input type="radio" id="card" name="ticketingPayment" value="0">
+					<label for="wallet">계좌이체</label>
 					<input type="radio" id="wallet" name="ticketingPayment" value="1">
-					<input type="button" id="BtnPay" value="결제하기">
+					<input type="button" id="BtnPay" value="결제하기" class="btn btn-primary">
 				</fieldset>
 			</div>
 		</form>

@@ -31,7 +31,7 @@
 					<td>공연시간</td>
 					<c:choose>
 						<c:when test="${showVO.showRound == 1 }">
-							<td>회차: ${showVO.showTime1 }<br></td>
+							<td>1회차: ${showVO.showTime1 }<br></td>
 						</c:when>
 						<c:when test="${showVO.showRound == 2 }">
 							<td>1회차: ${showVO.showTime1 }<br> 
@@ -90,7 +90,7 @@
 							<td>
 								<%-- 날짜 + 회차를 합쳐, 잔여 좌석수를 추가 --%>
 								<select id="showDate" name="showDate" class="form-select">
-									<option disabled="disabled" selected="selected" >날짜를 선택해 주세요.</option>
+									<option disabled="disabled" selected="selected" >=====날짜:남은좌석수=====</option>
 									<%-- 날짜 리스트 반복 --%>
 									<c:forEach items="${ticketingDateList }" var="date">
 										<%-- 비교를 위해 형식변경 --%>
@@ -195,8 +195,8 @@
 		<!-- 상세내용 -->
 		<div id="detail">
 			<div id="detailContent">
-				${showVO.showContent1 }
-				<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" height="200px">
+				<p>${showVO.showContent1 }</p>
+				<img alt="${showVO.showContent2 }" src="poster?show_no=${showVO.showNo }&showPoster=${showVO.showContent2 }" style="max-width: 600px">
 			</div>
 			<div id="detailViewGuide">
 				<!-- 코로나 19관람 수칙 -->

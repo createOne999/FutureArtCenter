@@ -22,7 +22,7 @@
 	<select id="talkRestTicketList" resultMap="inputVO">
 		SELECT show_date, ticketing_round, 30 - NVL(sum(ticketing_amount), 0) as ticketing_amount
 		FROM ticketing1_tb
-		WHERE show_no = ${showNo}
+		WHERE show_no = ${showNo} AND ticketing_cancel = 0
 		GROUP BY show_date, ticketing_round
 	</select>
 	

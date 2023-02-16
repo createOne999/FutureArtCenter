@@ -199,19 +199,58 @@
 			</c:choose>
 		</table>
 		<!-- 미디어 페이징 네비게이션 -->
-		<div>
-			<c:if test="${mediaPagination.prev }">
-				<a href="/show/showplan?mPage=${mediaPagination.startPage -1}&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">&laquo;</a>
-			</c:if>
-			
-			<c:forEach begin="${mediaPagination.startPage }" end="${mediaPagination.endPage }" var="idx">
-				<a href="/show/showplan?mPage=${idx }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">${idx }</a>
-			</c:forEach>
-			
-			<c:if test="${mediaPagination.next && mediaPagination.endPage > 0 }">
-				<a href="/show/showplan?mPage=${mediaPagination.endPage + 1 }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">&raquo;</a>
-			</c:if>
-		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<%-- 이전페이지가 존재할 경우 --%>
+				<c:if test="${mediaPagination.prev }">
+					<li class="page-item">	
+						<a class="page-link" aria-label="Previous"  href="/show/showplan?mPage=${mediaPagination.startPage -1}&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 이전페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!mediaPagination.prev }">
+					<li class="page-item disabled">	
+						<a class="page-link" aria-label="Previous"  href="/show/showplan?mPage=${mediaPagination.startPage -1}&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				
+				<c:forEach begin="${mediaPagination.startPage }" end="${mediaPagination.endPage }" var="idx">
+					<%-- 페이지 번호가 현재일 경우 --%>
+					<c:if test="${idx == mediaPagination.pageRequest.page }">
+						<li class="page-item active" aria-current="page">
+							<span class="page-link">${idx }</span>
+						</li>
+					</c:if>
+					<%-- 페이지 번호가 현재가 아닐경우 --%>
+					<c:if test="${idx != mediaPagination.pageRequest.page }">
+						<li class="page-item">
+							<a class="page-link" href="/show/showplan?mPage=${idx }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">${idx }</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				
+				<%-- 다음페이지가 존재할 경우 --%>
+				<c:if test="${mediaPagination.next && mediaPagination.endPage > 0 }">			
+					<li class="page-item">	
+						<a class="page-link" aria-label="Next" href="/show/showplan?mPage=${mediaPagination.endPage + 1 }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 다음페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!(mediaPagination.next && mediaPagination.endPage > 0) }">
+					<li class="page-item disabled">	
+						<a class="page-link" aria-label="Next" href="/show/showplan?mPage=${mediaPagination.endPage + 1 }&tPage=${talkPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
 		<hr>
 		<h4>강연</h4>
 		<table class="table table-bordered">
@@ -247,19 +286,58 @@
 
 		</table>
 		<!-- 강연 페이징 네비게이션 -->
-		<div>
-			<c:if test="${talkPagination.prev }">
-				<a href="/show/showplan?tPage=${talkPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">&laquo;</a>
-			</c:if>
-			
-			<c:forEach begin="${talkPagination.startPage }" end="${talkPagination.endPage }" var="idx">
-				<a href="/show/showplan?tPage=${idx }&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">${idx }</a>
-			</c:forEach>
-			
-			<c:if test="${talkPagination.next && talkPagination.endPage > 0 }">
-				<a href="/show/showplan?tPage=${talkPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">&raquo;</a>
-			</c:if>
-		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">	
+				<%-- 이전페이지가 존재할 경우 --%>
+				<c:if test="${talkPagination.prev }">
+					<li class="page-item">
+						<a class="page-link" aria-label="Previous" href="/show/showplan?tPage=${talkPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-label="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 이전페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!talkPagination.prev }">
+					<li class="page-item disabled">
+						<a class="page-link" aria-label="Previous" href="/show/showplan?tPage=${talkPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-label="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				
+				<c:forEach begin="${talkPagination.startPage }" end="${talkPagination.endPage }" var="idx">
+					<%-- 페이지 번호가 현재일 경우 --%>
+					<c:if test="${idx == talkPagination.pageRequest.page }">
+						<li class="page-item active" aria-current="page">
+							<span class="page-link">${idx }</span>
+						</li>
+					</c:if>
+					<%-- 페이지 번호가 현재가 아닐 경우 --%>
+					<c:if test="${idx != talkPagination.pageRequest.page }">
+						<li class="page-item">
+							<a class="page-link" href="/show/showplan?tPage=${idx }&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">${idx }</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				
+				<%-- 다음페이지가 존재할 경우 --%>
+				<c:if test="${talkPagination.next && talkPagination.endPage > 0 }">
+					<li class="page-item">
+						<a class="page-link" aria-label="Next" href="/show/showplan?tPage=${talkPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="ture">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 다음페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!(talkPagination.next && talkPagination.endPage > 0) }">
+					<li class="page-item disabled">
+						<a class="page-link" aria-label="Next" href="/show/showplan?tPage=${talkPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&cPage=${concertPagination.pageRequest.page}">
+							<span aria-hidden="ture">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
 		<hr>
 		<h4>콘서트</h4>
 		<table class="table table-bordered">
@@ -295,19 +373,60 @@
 			
 		</table>
 		<!-- 콘서트 페이징 네비게이션 -->
-		<div>
-			<c:if test="${concertPagination.prev }">
-				<a href="/show/showplan?cPage=${concertPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">&laquo;</a>
-			</c:if>
-			
-			<c:forEach begin="${concertPagination.startPage }" end="${concertPagination.endPage }" var="idx">
-				<a href="/show/showplan?cPage=${idx }&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">${idx }</a>
-			</c:forEach>
-			
-			<c:if test="${concertPagination.next && concertPagination.endPage > 0 }">
-				<a href="/show/showplan?cPage=${concertPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">&raquo;</a>
-			</c:if>
-		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<%-- 이전페이지가 존재할 경우 --%>
+				<c:if test="${concertPagination.prev }">
+					<li class="page-item">
+						<a class="page-link" aria-label="Previous" href="/show/showplan?cPage=${concertPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 이전페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!concertPagination.prev }">
+					<li class="page-item disabled">
+						<a class="page-link" aria-label="Previous" href="/show/showplan?cPage=${concertPagination.startPage -1}&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				
+				<c:forEach begin="${concertPagination.startPage }" end="${concertPagination.endPage }" var="idx">
+					<%-- 페이지 번호가 현재일 경우 --%>	
+					<c:if test="${idx == concertPagination.pageRequest.page }">
+						<li class="page-item active" aria-current="page">
+							<span class="page-link">${idx }</span>
+						</li>
+					</c:if>
+					<%-- 페이지 번호가 현재가 아닐 경우 --%>
+					<c:if test="${!(idx == concertPagination.pageRequest.page) }">
+						<li class="page-item" aria-current="page">
+							<a class="page-link" href="/show/showplan?cPage=${idx }&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">
+								${idx }
+							</a>
+						</li>
+					</c:if>
+				</c:forEach>
+				
+				<%-- 다음페이지가 존재할 경우 --%>
+				<c:if test="${concertPagination.next && concertPagination.endPage > 0 }">
+					<li class="page-item">	
+						<a class="page-link" aria-label="Next" href="/show/showplan?cPage=${concertPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">
+						<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<%-- 다음페이지가 존재하지 않을 경우 --%>
+				<c:if test="${!(concertPagination.next && concertPagination.endPage > 0) }">
+					<li class="page-item disabled">	
+						<a class="page-link" aria-label="Next" href="/show/showplan?cPage=${concertPagination.endPage + 1 }&mPage=${mediaPagination.pageRequest.page}&tPage=${talkPagination.pageRequest.page}">
+						<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
 	</div><!-- end main_body -->
 </div><!-- end main_content -->
 <style>

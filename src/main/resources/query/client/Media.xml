@@ -77,9 +77,9 @@
 				show_poster,
 				show_status
 			FROM media_tb
-			WHERE show_status = 0 AND
+			WHERE show_status = 0 
 			<![CDATA[
-			 show_closedate > sysdate
+			 AND show_closedate > sysdate
 			]]>
 			ORDER BY show_startdate ASC
 			) 
@@ -134,9 +134,9 @@
 	<select id="planCount" resultType="int">
 		SELECT count(*)
 		FROM media_tb
-		WHERE show_status = 0 AND
+		WHERE show_status = 0 
 		<![CDATA[
-		 show_closedate > sysdate
+		 AND show_closedate > sysdate
 		]]>
 	</select>
 </mapper>

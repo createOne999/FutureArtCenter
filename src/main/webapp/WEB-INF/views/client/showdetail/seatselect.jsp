@@ -46,7 +46,7 @@
 		
 	});
 </script>
-<table border="1">
+<table border="1" class="table table-bordered">
 	<tr>
 		<td colspan="13" align="center" height="50px">무대</td>
 	</tr>
@@ -110,23 +110,23 @@
 		<td colspan="5"></td>
 	</tr>
 </table>
-<h4>좌석을 예매할 매수만큼 선택해 주세요.</h4>
-<fieldset style="width:200px;">
+<h5>좌석을 예매할 매수만큼 선택해 주세요.</h5>
+<fieldset style="width:200px;" class="border bg-secondary-subtle col-md-6">
 	<legend>색 구분</legend>
 	<table>
 		<tr>
-			<td><input type="color" value="#FF0000" disabled="disabled"></td>
+			<td><input type="color" value="#FF0000" disabled="disabled" class="form-control form-control-color"></td>
 			<td><label>선택한 좌석</label></td>
 		</tr>
 		<tr>
-			<td><input type="color" value="#FF7F00" disabled="disabled"></td>
+			<td><input type="color" value="#FF7F00" disabled="disabled" class="form-control form-control-color"></td>
 			<td><label>예매된 좌석</label></td>
 		</tr>
 		<tr>
-			<td><input type="color" value="#FFFFFF" disabled="disabled"></td>
+			<td><input type="color" value="#FFFFFF" disabled="disabled" class="form-control form-control-color"></td>
 			<td><label>남은 좌석</label></td>
 		</tr>
 	</table>
 	
 </fieldset>
-<input type="button" value="선택완료" name="seatselect" id="seatselect">
+<input type="button" value="선택완료" name="seatselect" id="seatselect" class="btn btn-outline-secondary">
