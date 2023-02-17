@@ -36,7 +36,6 @@ public class AdminFaqController {
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public String register(AdminFaqVO adminFaqVO, RedirectAttributes rttr) throws Exception {
 			
-			
 			adminFaqService.register(adminFaqVO);
 			log.info("register");
 		
@@ -74,7 +73,7 @@ public class AdminFaqController {
 		}
 		
 		// 공지사항 수정 처리
-		@RequestMapping(value = "/modify", method = RequestMethod.POST)
+		@RequestMapping(value = "/adminFaqMod", method = RequestMethod.POST)
 		public String modify(AdminFaqVO adminFaqVO, RedirectAttributes rttr) throws Exception {
 			adminFaqService.modify(adminFaqVO);
 			

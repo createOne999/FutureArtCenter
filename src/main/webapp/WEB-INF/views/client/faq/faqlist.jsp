@@ -57,8 +57,8 @@
 <c:forEach items="${list}" var="FAQVO">
 
 <button class="accordion">
-<th><c:if test="${FAQVO.faq_category==0}">[예매] &nbsp&nbsp</c:if>
-<c:if test="${FAQVO.faq_category==1}">[환불 / 취소] &nbsp&nbsp</c:if>
+<th><c:if test="${FAQVO.faq_category==0}">[예매 / 취소] &nbsp&nbsp</c:if>
+<c:if test="${FAQVO.faq_category==1}">[결제] &nbsp&nbsp</c:if>
 <c:if test="${FAQVO.faq_category==2}">[기타] &nbsp&nbsp</c:if>
 ${FAQVO.faq_title}</th>
 </button>
@@ -67,7 +67,7 @@ ${FAQVO.faq_title}</th>
 </div>
 
 
-</div>
+
 
 </c:forEach>
 </div>

@@ -19,7 +19,7 @@ notice_seq.NEXTVAL,
 #{notice_title},
 #{notice_content},
 #{notice_poster},
-#{notice_date}
+SYSDATE
 )
 </insert>
 
@@ -55,7 +55,7 @@ notice_seq.NEXTVAL,
 	SET notice_title =#{notice_title},
 	notice_poster =#{notice_poster},
 	notice_content =#{notice_content},
-	notice_date =#{notice_date}
+	notice_date = SYSDATE
 	WHERE notice_no =#{notice_no}
 	</update>
 	

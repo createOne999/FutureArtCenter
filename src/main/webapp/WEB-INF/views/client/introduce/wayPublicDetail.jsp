@@ -13,9 +13,14 @@
 <button type="button" class="btn btn-primary list-btn" onclick="location.href='/future/wayPublicDetail'">오시는 길</button>
 </div>
 <body>
+</br>
 <h3 class="mb-3">오시는 길</h3>
 <br />대중교통 이용방법(버스번호와 노선, 지하철 정류장과 출구)
 <br />주차안내 : 주차비용 안내
-<br />지도 삽입(카카오지도)
+<br />
+<img src="../image/소개페이지 지도_0001.png" class="sit1" width="500" height="400">
+<img src="../image/소개페이지 지도_0002.png" class="sit1" width="500" height="400">
+<img src="../image/소개페이지 지도_0003.png" class="sit1" width="500" height="400">
+<img src="../image/소개페이지 지도_0004.png" class="sit1" width="500" height="400">
 </body>
 </html>

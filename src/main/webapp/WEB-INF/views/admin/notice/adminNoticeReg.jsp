@@ -46,13 +46,13 @@
 	<div style="text-align: center;">
 		<h3>글쓰기</h3>
 		<hr>
-		<form action="register" method="post" enctype="multipart/form-data">
+		<form action="register" method="post" enctype="multipart/form-data" id="notice_RegForm">
 			<table style="width: 700px; margin: auto">
 
 				<tr>
 					<td width="70"
 						style="background-color: dodgerblue; color: cornsilk">제목</td>
-					<td><input type="text" name="notice_title" /></td>
+					<td><input type="text" name="notice_title" id="notice_title" /></td>
 				</tr>
 				<tr>
 					<td class="col1">포스터</td>
@@ -62,15 +62,11 @@
 				</tr>
 				<tr>
 					<td style="background-color: dodgerblue; color: cornsilk">내용</td>
-					<td><textarea name="notice_content" cols="40" rows="10"></textarea></td>
+					<td><textarea name="notice_content" cols="40" rows="10" id="notice_content"></textarea></td>
 				</tr>
+				
 				<tr>
-					<td width="70"
-						style="background-color: dodgerblue; color: cornsilk">날짜</td>
-					<td><input type="date" name="notice_date" /></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="등록" />
+					<td colspan="2" align="center"><input type="submit" class="notice_submit" value="등록" />
 						<button>
 							<a href="/admin/notice/list">취소</a>
 						</button></td>
@@ -82,6 +78,26 @@
 </html>
 
 <script>
+
+//faq 등록 버튼
+$(".notice_submit").click(function(){
+	 
+	if (!$("#notice_title").val()){
+		alert("제목을 입력해 주세요");
+		return false;
+	}
+	
+	if (!$("#notice_content").val()){
+		alert("내용을 입력해 주세요");
+		return false;
+	}
+	
+	// faq 메서드 서버 요청
+	$("#notice_RegForm").attr("action", "/admin/notice/register");
+    $("#notice_RegForm").submit();
+   
+})
+
 	//글쓰기
 	function fn_addtoBoard() {
 

@@ -5,6 +5,29 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+ table {
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+        }
+        table th {
+            border: 1px solid #444444;
+            text-align: center;
+            height: 30px;
+            background-color: #5C350E;
+            color: cornsilk;
+        }
+        table td {
+            border: 1px solid #444444;
+            text-align: center;
+        }       
+    </style>
+</head>
+
 <body>
 <h3 class="mb-3">공지사항</h3>
 </body>
@@ -50,7 +73,7 @@
 <c:if test="${pagination.next && pagination.endPage > 0}"><a href="${pagination.endPage +1}">&raquo;</a></c:if>
 
 </div>
-
+</html>
 
 <script>
 	var result = "${msg}";

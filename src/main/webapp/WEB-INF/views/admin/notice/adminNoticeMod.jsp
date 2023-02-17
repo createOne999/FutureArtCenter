@@ -43,11 +43,11 @@
 			<h2>게시글 수정</h2>
 		</div>
 		<form th:action="adminNoticeMod" th:object="${adminNoticeMod}"
-			method="post" enctype="multipart/form-data">
+			method="post" enctype="multipart/form-data" id="notice_ModForm">
 
 			<div>
 				<td width="70" style="background-color: dodgerblue; color: cornsilk">제목</td>
-				<td><input type="text" name="notice_title" /></td>
+				<td><input type="text" name="notice_title" id="notice_title" /></td>
 			</div>
 			<div>
 				<tr>
@@ -59,18 +59,16 @@
 			</div>
 			<div>
 				<td style="background-color: dodgerblue; color: cornsilk">내용</td>
-				<td><textarea name="notice_content" cols="40" rows="10"></textarea></td>
+				<td><textarea name="notice_content" cols="40" rows="10" id="notice_content" ></textarea></td>
 			</div>
-			<div>
-				<td width="70" style="background-color: dodgerblue; color: cornsilk">날짜</td>
-				<td><input type="date" name="notice_date" /></td>
-			</div>
+			
 
 
 			<hr class="my-4">
+			
+			
 
-			<button id="btn-modify"
-				onclick="location.href='/admin/notice/adminNoticeMod?notice_no=${AdminNoticeVO.notice_no}'">수정</button>
+			<button type="button" id="btn-modify" class="notice_sub">수정</button>
 
 
 			<button class="btn btn-secondary" type="button">
@@ -82,3 +80,26 @@
 
 	</div>
 </body>
+
+<script>
+
+//faq 등록 버튼
+$(".notice_sub").click(function(){
+	 
+	if (!$("#notice_title").val()){
+		alert("제목을 입력해 주세요");
+		return false;
+	}
+	
+	if (!$("#notice_content").val()){
+		alert("내용을 입력해 주세요");
+		return false;
+	}
+	
+	// faq 메서드 서버 요청
+	$("#notice_ModForm").attr("action", "/admin/faq/adminNoticeMod");
+    $("#notice_ModForm").submit();
+   
+})
+
+</script>

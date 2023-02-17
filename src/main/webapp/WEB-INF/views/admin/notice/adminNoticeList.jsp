@@ -9,28 +9,30 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>공지사항</title>
-    <!--  <style>
-        table {
+    <style>
+   table {
             width: 100%;
+            
             border: 1px solid #444444;
             border-collapse: collapse;
         }
         table th {
             border: 1px solid #444444;
             text-align: center;
-            height: 40px;
-            background-color: dodgerblue;
+            height: 30px;
+            background-color: #5C350E;
             color: cornsilk;
         }
         table td {
             border: 1px solid #444444;
             text-align: center;
-        }
-    </style> -->
+        }       
+    </style>
 </head>
+
 <body>
 <div style="text-align: center;">
-    <h1>게시판 목록</h1>
+    <h3>게시판 목록</h3>
     <table border="1">
         <tr>
 		<th align="center" width="80">번호</th>
