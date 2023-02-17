@@ -2,6 +2,64 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+#mypage {
+	font-size: 15px;
+	margin-left: 50px;
+	border-collapse: collapse;
+	  
+}
+
+#title {
+	padding-right: 200px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#checked {
+	background-color: #f0e68c;
+	padding: 10px 70px 10px 70px;
+	font-weight: bold;
+	border: solid 1px #d2b48c;
+}
+
+#td {
+	background-color: #f0e68c;
+	padding: 10px 70px 10px 70px;
+	border: solid 1px #d2b48c;
+}
+
+#modify_button {
+	background-color: #d2b48c;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	font-size: 15px;
+	border: none;
+	width: 150px;
+	padding: 3px; 
+	border-radius: 5px;  
+       }
+       
+#userInfo_tb {
+
+
+
+}
+
+.td_class {
+	width: 150px;
+	height: 50px;
+	font-size: 15px;
+}
+
+.td_value {
+	width: 150px;
+	height: 50px;
+	font-size: 15px;
+	font-weight: bold;
+	
+}
+</style> 
 
 <!DOCTYPE html>
 <html>
@@ -18,49 +76,50 @@
 	} 
 </script>
 <body>
+<br>
 <form id="readForm" method="get" action="userInfoRead">
-	<div align="left"><h3>&nbsp;&nbsp;&nbsp;마이페이지</h3></div>
-	<div>
-	<table border="5">
+<div align="left">
+	<table id="mypage">
 		<tr align="center">
-			<td width="150"><a href="ticketinglist">예매 내역</a></td>
-			<td width="150"><a href="ticketingcancellist">예매 취소 내역</a></td>
-			<td width="150"><a href="read">회원 정보</a></td>
-			<td width="150"><a href="delete">회원 탈퇴</a></td>
+			<td id="title">마이페이지</td>
+			<td id="td"><a href="ticketinglist">예매 내역</a></td>
+			<td id="td"><a href="ticketingcancellist">예매 취소 내역</a></td>
+			<td id="checked"><a href="read">회원 정보</a></td>
+			<td id="td"><a href="delete">회원 탈퇴</a></td>
 		</tr>
 	</table>
+</div>
 	<br><br>
-	<table border="1">
+	<table id="userInfo_tb">
 		<tr>
-			<td width="200">아이디</td>
-			<td width="200">${user.user_id }</td>
+			<td class="td_class">아이디</td>
+			<td class="td_value">${user.user_id }</td>
 		</tr>
 		<tr>
-			<td>이름</td>
-			<td>${user.user_name }</td>
+			<td class="td_class">이름</td>
+			<td class="td_value">${user.user_name }</td>
 		</tr>
 		<tr>
-			<td>생년월일</td>
-			<td>
+			<td class="td_class">생년월일</td>
+			<td class="td_value">
 			<fmt:formatDate value="${user.user_birth}" pattern="YYYY-MM-dd" type="date" />
 			
 			</td>
 		</tr>
 		<tr>
-			<td>핸드폰번호</td>
-			<td>${user.user_phone }</td>
+			<td class="td_class">핸드폰번호</td>
+			<td class="td_value">${user.user_phone }</td>
 		</tr>
 		<tr>
-			<td>SMS 수신 여부</td>
-			<td>
+			<td class="td_class">SMS 수신 여부</td>
+			<td class="td_value">
 				<c:if test="${user.agree_SMS eq '0'}">수신</c:if>
 				<c:if test="${user.agree_SMS ne '0'}">미수신</c:if>
 			</td>
 		</tr>
 	</table>
 	<br>
-	<a href="modify"><input type="button" value="수정"></a>
-	</div>
+	<a href="modify"><input type="button" id="modify_button" value="수정"></a>
 </form>
 </body>
 </html>

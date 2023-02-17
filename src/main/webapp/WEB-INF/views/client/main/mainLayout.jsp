@@ -30,7 +30,7 @@
  #fullscreen {
 	width: 100%;
 	height: auto;
-	min-height: 500px;
+	min-height: 800px;
 } 
  #header {
 	width: 100%;
@@ -49,7 +49,6 @@ footer {
 	bottom: 0;
 	left: 0;
 	position : relative;
-  	transform : translateY(100%);
 } 
 
 </style>

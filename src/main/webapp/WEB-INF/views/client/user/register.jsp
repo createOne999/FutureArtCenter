@@ -3,6 +3,59 @@
 <%@	taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@	taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@	taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+
+<style>
+
+td {
+    font-size: 15px;
+    padding: 10px;
+  
+  }
+
+table input {
+	font-size: 15px;
+	padding: 4px;
+	border: none;
+	border-bottom: solid 2px #ccc;
+
+}
+
+#radio {
+	width: 40px;
+}
+
+#userIdConfirm {
+	background-color: #b0e0e6;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#message {
+	font-size: 13px;
+	color: #8b4513;
+}
+
+#idmessage, #pwdmessage {
+	color: #4682b4;
+}
+
+
+#join_button {
+	background-color: #ccb6a3;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	color: #696969;
+	font-size: 15px;
+	font-weight: bold;
+	border: none;
+	width: 150px;
+	padding: 3px; 
+	border-radius: 5px;  
+       }
+      
+</style>
+
 <script type="text/javascript">
 
 var idConfirm = 1; //아이디 중복 확인여부 (1 미확인상태)
@@ -110,19 +163,24 @@ function checkAll() {
  }
 
 </script>
+
 <body>
+<br><br><br><br>
+<div>
     <form:form modelAttribute="user" id="form" method="post" action="register">
     <h1>회 원 가 입</h1>
+    <br><br><br>
       <table>
         <tr>
           <td><label for="user_id">아 이 디</label></td>
-          <td><input type="text" id="user_id" name="user_id" placeholder="영문 소문자,숫자 4-20자" maxlength="20" required>
+          <td width="500px"><input type="text" id="user_id" name="user_id" placeholder="영문 소문자,숫자 4-20자" maxlength="20" required>
           <input type="button" id="userIdConfirm" name="userIdConfirm" value="중복확인" onClick="check()">
           <span id="idmessage"></span>
         </tr>
         <tr>
           <td><label for="user_pwd">비밀번호</label></td>
-          <td><input type="password" id="user_pwd" name="user_pwd" placeholder="영문대소문자,숫자,!@#$%^&* 8-20자" maxlength="20" required></td>
+          <td><input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호 8-20자" maxlength="20" required>
+          <span id="message">영문대소문자,숫자,!@#$%^&* 사용가능</span> </td>
         </tr>
         <tr>
           <td><label for="user_pwdCheck">비밀번호 확인</label></td>
@@ -144,11 +202,12 @@ function checkAll() {
         </tr>
         <tr>
           <td><label for="agree_SMS">마케팅 목적 SMS 수신 여부 (선택) </label>
-          <td><input type="radio" name="agree_SMS" value=0 checked>수신
-              <input type="radio" name="agree_SMS" value=1 >미수신
+          <td><input type="radio" id="radio" name="agree_SMS" value=0 checked>수 신&nbsp;&nbsp;
+              <input type="radio" id="radio" name="agree_SMS" value=1 >미수신
           </td>
         </tr>
       </table>
-      <input type="button" value="회원가입" onclick="checkAll()"/>
+      <input type="button" id="join_button" value="회 원 가 입" onclick="checkAll()"/>
     </form:form>
-    </body>
+</div>
+</body>

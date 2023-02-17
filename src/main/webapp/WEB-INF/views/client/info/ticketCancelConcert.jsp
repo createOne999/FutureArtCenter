@@ -5,6 +5,52 @@
 <head>
 <meta charset="UTF-8">
 <title>ticketCancelConcert</title>
+
+<style>
+#mypage {
+	font-size: 15px;
+	margin-left: 50px;
+	border-collapse: collapse;
+	  
+}
+
+#title {
+	padding-right: 200px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#checked {
+	background-color: #f0e68c;
+	padding: 10px 70px 10px 70px;
+	font-weight: bold;
+	border: solid 1px #d2b48c;
+}
+
+#td {
+	background-color: #f0e68c;
+	padding: 10px 70px 10px 70px;
+	border: solid 1px #d2b48c;
+}
+
+input {
+	font-size: 14px;
+	padding: 5px;
+	border: solid 1px #ccc;
+}
+
+#button {
+	background-color: #d2b48c;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	font-size: 15px;
+	border: none;
+	width: 200px;
+	padding: 3px; 
+	border-radius: 5px;   
+       }
+</style> 
+
 <!-- 마이페이지 > 콘서트 예매 취소 -->
 </head>
 <script type="text/javascript">
@@ -29,36 +75,28 @@ function func(){
 
 <body>
 <form id="ticketCancelForm" method="POST" action="ticketCancelConcert">
-	<div align="left"><h3>&nbsp;&nbsp;&nbsp;마이페이지</h3></div>
-	<div>
-	<table border="5">
+<br>
+<div align="left">
+	<table id="mypage">
 		<tr align="center">
-			<td width="150"><a href="ticketinglist">예매 내역</a></td>
-			<td width="150"><a href="ticketingcancellist">예매 취소 내역</a></td>
-			<td width="150"><a href="read">회원 정보</a></td>
-			<td width="150"><a href="delete">회원 탈퇴</a></td>
+			<td id="title">마이페이지</td>
+			<td id="td"><a href="ticketinglist">예매 내역</a></td>
+			<td id="td"><a href="ticketingcancellist">예매 취소 내역</a></td>
+			<td id="td"><a href="read">회원 정보</a></td>
+			<td id="td"><a href="delete">회원 탈퇴</a></td>
 		</tr>
 	</table>
-	<br><br>
-	<table>
-		<tr><td>
-			[ 콘서트 공연 ] 예매번호 : ${concertTicketNo }<p>
-			예매 취소를 위하여<br>
-			비밀번호를 올바르게 기입해주세요
-		</td></tr>
-	</table>
-	
-	<div>
+</div>
+<br><br><br><br>
+			[ 콘서트 공연 ] 예매번호 : ${concertTicketNo }<br><br>
+			예매 취소를 위하여 비밀번호를 올바르게 기입해주세요
+<br><br><br>
 		<input type="hidden" name="ticketing_no" value="${concertTicketNo }">
 		<input type="password" id="pwdInput" name="pwdInput" placeholder="비밀번호 입력" maxlength="20">
-	</div>
-	<div>
-	<br>
-		<input type="button" value="예매 취소하기" onclick="func()">
+<br>		
+		<input type="button" id="button" value="예매 취소하기" onclick="func()">
 		<a href="ticketinglist">
-		<input type="button" value="취소"></a>
-	</div>
-	</div>
+		<input type="button" id="button" value="돌아가기"></a>
 </form>
 </body>
 </html>

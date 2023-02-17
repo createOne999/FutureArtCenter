@@ -23,7 +23,7 @@
 </style>    
 
 <div align="center">
-	<table>
+	<table id="footer_tb">
 	<tr>
 		<td class="footer_logo"><img src="/image/logo.png"></td>
 		<td class="footer_title"><h1>미래의 전당</h1></td>

@@ -5,6 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>password find inputPage</title>
+
+<style>
+.form_title {
+	background-color: #ccb6a3;
+	font-size: 17px;
+	font-weight: bold;
+	padding: 10px;
+	        }
+ .form_message {
+	font-size: 15px;
+	padding: 15px;
+	        }
+
+#find_button {
+	background-color: #ccb6a3;
+	margin-bottom: 10px;
+	color: black;
+	font-size: 15px;
+	border: none;
+	width: 100px;
+    padding: 3px;   
+    border-radius: 5px;  
+        }
+
+</style>
+
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
 <script type="text/javascript">
@@ -56,10 +82,13 @@ function pwdFind(){
 </script>
 <body>
 	<form id="pwdFindform" method="post" action="userPwdFind">
-	<h3>비밀번호 찾기</h3>
-	<span>회원님의 정보를 입력하세요</span>
+	<div class="form_title">
+		비밀번호 찾기
+	</div>
+	<div class="form_message">
+		회원님의 정보를 입력하세요
+	</div>
 	<div align="center">
-	<br>
 	<table>
 	<tr>
 		<td>아이디</td>	
