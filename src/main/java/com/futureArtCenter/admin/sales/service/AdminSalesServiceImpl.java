@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.futureArtCenter.admin.sales.dao.AdminSalesDAO;
-import com.futureArtCenter.client.user.vo.UserVO;
 
 import lombok.extern.java.Log;
 
@@ -47,6 +46,18 @@ public class AdminSalesServiceImpl implements AdminSalesService {
 	@Override
 	public List<Map<String, Object>> refundTalkList() throws Exception {
 		return adminSalesDAO.refundTalkList();
+	}
+	
+	//월별 매출
+	@Override
+	public List<Map<String, Object>> salesMonthList() throws Exception {
+		return adminSalesDAO.salesMonthList();
+	}
+	
+	//주간 예약 현황
+	@Override
+	public List<Map<String, Object>> salesWeekList() throws Exception {
+		return adminSalesDAO.salesWeekList();
 	}
 	
 }

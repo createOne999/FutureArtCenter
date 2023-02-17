@@ -32,17 +32,12 @@
 			    <div class="sub_menu">
 			        <p><a href="/admin/main">공연정보</a></p>
 				</div>
-				<button type="button" class="collapsible" onclick="collapse(this);">예매 좌석조회</button>
-			    <div class="sub_menu">
-			        <p><a href="#">1관 예매 좌석조회</a></p>
-			        <p><a href="#">2관 예매 좌석조회</a></p>
-				</div>
 				<button type="button" class="collapsible" onclick="collapse(this);">매출 현황</button>
 			    <div class="sub_menu">
 			        <p><a href="/admin/sales/adminSalesList">예매 현황 리스트</a></p>
 			        <p><a href="/admin/sales/adminRefundList">환불 정보</a></p>
-			        <p><a href="#">월별 매출 현황</a></p>
-			        <p><a href="#">주간 예약 현황</a></p>
+			        <p><a href="/admin/sales/adminSalesMonth">월별 매출 현황</a></p>
+			        <p><a href="/admin/sales/adminSalesWeek">월별 예약 현황</a></p>
 				</div>
 				<button type="button" class="collapsible" onclick="collapse(this);">회원 현황</button>
 			    <div class="sub_menu">

@@ -1,19 +1,13 @@
 package com.futureArtCenter.admin.sales.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.futureArtCenter.admin.sales.service.AdminSalesService;
-import com.futureArtCenter.client.user.vo.UserVO;
 
 import lombok.extern.java.Log;
 
@@ -39,5 +33,19 @@ public class AdminSalesController {
 		model.addAttribute("refundConcertList", adminSalesService.refundConcertList());
 		model.addAttribute("refundMediaList", adminSalesService.refundMediaList());
 		model.addAttribute("refundTalkList", adminSalesService.refundTalkList());
+	}
+	
+	@GetMapping(value = "/adminSalesMonth")
+	public String salesMonthList(Model model) throws Exception {
+		System.out.println(adminSalesService.salesMonthList());
+		model.addAttribute("AdminSalesMonth", adminSalesService.salesMonthList());
+		return "admin/sales/adminSalesMonth";
+	}
+	
+	@GetMapping(value = "/adminSalesWeek")
+	public String salesWeekList(Model model) throws Exception{
+		System.out.println(adminSalesService.salesWeekList());
+		model.addAttribute("AdminSalesWeek", adminSalesService.salesWeekList());
+		return "admin/sales/adminSalesWeek";
 	}
 }

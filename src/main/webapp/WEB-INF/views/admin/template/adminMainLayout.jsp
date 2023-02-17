@@ -8,7 +8,7 @@
 		<title>Tiles Layout Main</title>
 		<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 		<style type="text/css">
-			*{
+			body{
 				overflow: hidden;
 			}
 			
@@ -22,8 +22,15 @@
 			
 			.adminBody {
 				display: flex;
+				min-height: 100%;
+			    position: relative;
+			    padding-bottom: 100px;
 			}
 			
+			footer{
+				position: relative;
+				transform: translateY(100%);
+			}
 		</style>
 		
 	</head>

@@ -43,7 +43,6 @@
 	
 	<!-- with 함수를 사용하여 최초로 가입한 날 ~ 마지막으로 가입 or 탈퇴한 날짜 까지의 월별 가입 유저수를 구함 -->
 	<select id="userMonthList" resultType="Map">
-		
 		WITH TEMP_DATES AS (
     		SELECT TRUNC(MIN(user_regdate), 'MM') AS MIN_DATE, TRUNC(MAX(user_regdate), 'MM') AS MAX_DATE
     		FROM user_tb
@@ -52,6 +51,7 @@
     		FROM user_tb
     		WHERE user_out = 1
 		),
+		
 		DATES AS (
    			 SELECT TRUNC(MIN(MIN_DATE)) AS MIN_DATE, TRUNC(MAX(MAX_DATE), 'MM') AS MAX_DATE
    			 FROM TEMP_DATES

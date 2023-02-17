@@ -79,11 +79,12 @@
 		<put-attribute name="adminNav" value="/WEB-INF/views/admin/template/adminNav.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/admin/template/footer.jsp" />
 	</definition>
-	<definition name="admin/*" extends="adminMainLayout">
+	
+	<definition name="admin/main" extends="adminMainLayout">
 		<put-attribute name="title" value="adminMain" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/main/adminMain.jsp" />
 	</definition>
-
+	
 	<definition name="admin/user/*" extends="adminMainLayout">
 		<put-attribute name="title" value="userList" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
@@ -98,6 +99,16 @@
 		<put-attribute name="title" value="refund" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/sales/adminRefundList.jsp" />
 	</definition>
+	
+	<definition name="admin/sales/adminSalesMonth" extends="adminMainLayout">
+		<put-attribute name="title" value="month" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/sales/adminSalesMonth.jsp" />
+	</definition>
+
+	<definition name="admin/sales/adminSalesWeek" extends="adminMainLayout">
+		<put-attribute name="title" value="week" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/sales/adminSalesWeek.jsp" />
+	</definition>
 
 	<!--   관리자 공지사항 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
 	<definition name="/admin/notice/*" extends="adminMainLayout">
@@ -105,18 +116,11 @@
       <put-attribute name="content" value="/WEB-INF/views/admin/notice/{1}.jsp" />
    </definition>
 
-
-<!-- 	<definition name="admin/media/*" extends="adminMainLayout">
-		<put-attribute name="title" value="mediaReg" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/media/adminMediaReg.jsp" />
-	</definition> -->
-
 	<!-- 관리자 FAQ 페이지에 대한 레이아웃 템플릿 구성 요소를 정의한다. -->
 	<definition name="/admin/faq/*" extends="adminMainLayout">
 		<put-attribute name="title" value="AdminFaqVO" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/faq/{1}.jsp" />
 	</definition>
-	
 	
 
 	<!-- 월별 회원 현황 페이지 -->
@@ -124,12 +128,5 @@
 		<put-attribute name="title" value="adminUserMonth" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/user/{1}.jsp" />
 	</definition>
-	
-	<!-- 
-	  관리자 로그인
-	<definition name="admin/*" extends="adminLoginPage">
-		<put-attribute name="title" value="Login" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/login/adminLoginPage.jsp"></put-attribute>
-	</definition> -->
 
 </tiles-definitions>

@@ -112,4 +112,87 @@
 		WHERE ticketing_cancel = 1
 	</select>
 	
+	<select id="salesMonthList" resultType="Map">
+		 WITH TEMP_DATES AS (
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing0_tb
+    		UNION ALL 
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing1_tb
+    		UNION ALL 
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing2_tb
+		),
+		SALES AS(
+			SELECT ticketing_payamount,ticketing_date
+			FROM ticketing0_tb
+			WHERE ticketing_cancel = 0
+			UNION ALL
+			SELECT ticketing_payamount,ticketing_date
+			FROM ticketing1_tb
+			WHERE ticketing_cancel = 0
+			UNION ALL
+			SELECT ticketing_payamount,ticketing_date
+			FROM ticketing2_tb
+		 	WHERE ticketing_cancel = 0
+		),
+		DATES AS (
+   			 SELECT TRUNC(MIN(MIN_DATE)) AS MIN_DATE, TRUNC(MAX(MAX_DATE), 'MM') AS MAX_DATE
+   			 FROM TEMP_DATES
+		),<![CDATA[
+		DATE_RANGE AS (
+		    SELECT TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + LEVEL - 1 AS THE_DATE
+		    FROM DATES
+		    CONNECT BY LEVEL <= TO_DATE(TO_CHAR(MAX_DATE, 'yyyy')||'12', 'yyyy-MM') - TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + 1
+		)]]>
+		SELECT 
+		  TO_CHAR(THE_DATE, 'YY-MM') AS MONTH, 
+		  SUM (NVL(ticketing_payamount, 0)) AS TICKET
+		FROM DATE_RANGE
+		LEFT JOIN SALES
+		  ON (TRUNC(ticketing_date, 'MM') = THE_DATE)
+		GROUP BY TO_CHAR(THE_DATE, 'YY-MM')
+		ORDER BY TO_CHAR(THE_DATE, 'YY-MM')
+	</select>
+	
+	<select id="salesWeekList" resultType="Map">
+		WITH TEMP_DATES AS (
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing0_tb
+    		UNION ALL 
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing1_tb
+    		UNION ALL 
+    		SELECT TRUNC(MIN(ticketing_date), 'MM') AS MIN_DATE, TRUNC(MAX(ticketing_date), 'MM') AS MAX_DATE
+    		FROM ticketing2_tb
+		),
+		SALES AS(
+			SELECT ticketing_amount,ticketing_date,ticketing_cancel_amount, ticketing_cancel_date
+			FROM ticketing0_tb
+			UNION ALL
+			SELECT ticketing_amount,ticketing_date,ticketing_cancel_amount, ticketing_cancel_date
+			FROM ticketing1_tb
+			UNION ALL
+			SELECT ticketing_amount,ticketing_date,ticketing_cancel_amount, ticketing_cancel_date
+			FROM ticketing2_tb
+		),
+		DATES AS (
+   			 SELECT TRUNC(MIN(MIN_DATE)) AS MIN_DATE, TRUNC(MAX(MAX_DATE), 'MM') AS MAX_DATE
+   			 FROM TEMP_DATES
+		),<![CDATA[
+		DATE_RANGE AS (
+		    SELECT TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + LEVEL - 1 AS THE_DATE
+		    FROM DATES
+		    CONNECT BY LEVEL <= TO_DATE(TO_CHAR(MAX_DATE, 'yyyy')||'12', 'yyyy-MM') - TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + 1
+		)]]>
+		SELECT 
+		  TO_CHAR(THE_DATE, 'YY-MM') AS MONTH, 
+		  SUM(CASE WHEN ticketing_date IS NOT NULL AND  TRUNC(ticketing_date, 'MM') = THE_DATE THEN ticketing_amount ELSE 0 END) AS TICKETING,
+		  SUM(CASE WHEN ticketing_cancel_date IS NOT NULL AND TRUNC(ticketing_cancel_date, 'MM') = THE_DATE THEN ticketing_amount ELSE 0 END) AS REFUND
+		FROM DATE_RANGE
+		LEFT JOIN SALES
+		  ON (TRUNC(ticketing_date, 'MM') = THE_DATE OR TRUNC(ticketing_cancel_date, 'MM') = THE_DATE)
+		GROUP BY TO_CHAR(THE_DATE, 'YY-MM')
+		ORDER BY TO_CHAR(THE_DATE, 'YY-MM')
+	</select>
 </mapper>

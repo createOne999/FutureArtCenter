@@ -30,7 +30,6 @@
 				
 				<c:forEach items="${refundConcertList}" var="ticketing2">
 					<tr>
-						<td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
 						<td>${ticketing2.USER_NO}</td>
 						<td>${ticketing2.USER_ID}</td>
 						<td>${ticketing2.SHOW_NO}</td>

@@ -8,8 +8,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title> <!-- 
-		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
+		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="/css/adminMain.css">
 		<script type="text/javascript">
 			function regPopUp(){
 				window.open("/admin/reg/adminReg", "공연등록", "width=600, height=500, top=50, left=200");
@@ -227,56 +227,7 @@
 			}
 			
 		</script>
-		<style type="text/css">
-			.content{
-				margin-top: 50px;
-			}
-			.well{
-				display: flex;
-			}
-			
-			.title {
-				margin: 0;
-			}
-			
-			.form-inline{
-				margin: 0;
-				width: 500px;
-				display: flex;
-				justify-content: space-between;
-			}
-			
-			.sub-header{
-				font-size: 20px;
-			}
 		
-			.select_menu{
-				display: flex;
-			}
-			#search1 {
-				margin-right: 25px;
-				margin-left: 10px;
-			}
-			
-			#search2 {
-				margin-right: 15px;
-			}
-			
-			
-			
-			.list{
-				margin-top: 10px;
-				float: left;
-			}
-			
-			select{
-				padding: 3px;
-			}
-			
-			button{
-				padding: 1px 3px 1px 3px;
-			}
-		</style>
 	</head>
 	
 	<body>
@@ -296,7 +247,7 @@
 			
 			<form:form id="form" method="post" action="status">
 			<div class="list">
-				<table border="1">
+				<table>
 					<tr id="col4">
 						<th><input id="allCheck" type="checkbox" name="allCheck" /></th>
 						<th class="tac">공연 번호</th>
