@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,28 +31,40 @@
 		alert("회원 정보가 수정되었습니다.");
 	} 
 </script>
+<style>
+.faq_title {
+    text-align: center;
+    color: #000000;
+    font-size: 20px;
+    height: 20%;
+}
+.faq {
+    width: 40%;
+    height: 70%;
+    float: right;
+}
+.n_article a:hover{
+	color: #ccb6a3;
+    font-weight: bold;
+}
+</style>
 <body onload="fullset(),call_js()">
 	<!-- page ONE -->
     <section id="fullpage">
-        <div class='quick'>
+         <div class='quick'>
             <ul></ul>
         </div>
         <!-- page TWO -->
         <div class="fullsection full2" pageNum="2">
           	<div class="slide">
-            	<div class="content_main">
-            		<div class="title_img1"><img src="/image/quote1.png" /></div>
-            		<p class="title_main1">진행중인 공연/예정 공연</p>
-            		<div class="title_img2"><img src="/image/quote2.png" /></div>
-            	</div>
                 <div class="slideshow">
-                    <a href="#"><img src="/image/poster1.jpg" alt="slide1" /></a>
-                    <a href="#"><img src="/image/poster2.jpg" alt="slide2" /></a>
-                    <a href="#"><img src="/image/poster3.jpg" alt="slide3" /></a>
-                    <a href="#"><img src="/image/poster4.jpg" alt="slide4" /></a>
-                    <a href="#"><img src="/image/poster5.jpg" alt="slide5" /></a>
-                    <a href="#"><img src="/image/poster6.jpg" alt="slide6" /></a>
-                    <a href="#"><img src="/image/poster7.jpg" alt="slide7" /></a>
+                    <a href="/show/showlist"><img src="/image/poster1.jpg" alt="slide1" /></a>
+                    <a href="/show/showlist"><img src="/image/poster2.jpg" alt="slide2" /></a>
+                    <a href="/show/showlist"><img src="/image/poster3.jpg" alt="slide3" /></a>
+                    <a href="/show/showlist"><img src="/image/poster4.jpg" alt="slide4" /></a>
+                    <a href="/show/showlist"><img src="/image/poster5.jpg" alt="slide5" /></a>
+                    <a href="/show/showlist"><img src="/image/poster6.jpg" alt="slide6" /></a>
+                    <a href="/show/showlist"><img src="/image/poster7.jpg" alt="slide7" /></a>
                 </div>
                 <div class="slideshow_nav">
                     <a href="#" class="prev"><i class="fa-solid fa-arrow-left"></i></a>
@@ -85,25 +98,44 @@
         				NOTICE
         			</p>
         			<div id="notice_article">
-        				<div id="n_line">
-        					<p class="n_article">갤러리 전시는 무료관람 인가요?</p>
-        					<p class="date">2022-01-15</p>
-        				</div>
-        				<div id="n_line">
-	        				<p class="n_article">공연 정보를 알고 싶습니다.</p>
-	        				<p class="date">2022-01-15</p>
-        				</div>
-        				<div id="n_line">
-	        				<p class="n_article">예매 취소는 어떻게 하나요?</p>
-	        				<p class="date">2022-01-15</p>
-        				</div>
-        				<div id="n_line">
-	        				<p class="n_article">디기디기 당당당 입니다.</p>
-	        				<p class="date">2022-01-15</p>
-        				</div>
+        				<%-- 공지사항 출력 --%>
+        				<c:forEach items="${noticeList}" var="NoticeVO" varStatus="status">
+        					<%-- 최대 4개 까지 출력 --%>
+        					<c:if test="${status.count <= 4 }">
+	        					<div id="n_line">
+	        						<p class="n_article"><a href="${path}/notice/noticeDetail?notice_no=${NoticeVO.notice_no}">${NoticeVO.notice_title}</a></p>
+	        						<p class="date"><fmt:formatDate pattern="yyyy-MM-dd"
+								value="${NoticeVO.notice_date}" /></p>
+	        					</div>
+        					</c:if>
+        				</c:forEach>
         			</div>
         		</div>
-        	  </div>	
+        		<div class="faq">
+        			<p class="faq_title">
+        				FAQ
+        			</p>
+        			<div id="faq_article">
+        				<%-- 공지사항 출력 --%>
+        				<c:forEach items="${faqList}" var="FAQVO" varStatus="status">
+        					<%-- 최대 4개 까지 출력 --%>
+        					<c:if test="${status.count <= 4 }">
+	        					<div id="n_line">
+	        						<p class="n_article">
+	        							<a href="/faq/faqlist">
+	        							<c:if test="${FAQVO.faq_category==0}">[예매] &nbsp&nbsp</c:if>
+										<c:if test="${FAQVO.faq_category==1}">[환불 / 취소] &nbsp&nbsp</c:if>
+										<c:if test="${FAQVO.faq_category==2}">[기타] &nbsp&nbsp</c:if>
+										${FAQVO.faq_title}
+										</a>
+									</p>		
+	        					</div>
+        					</c:if>
+        				</c:forEach>
+        			</div>
+        		</div>
+       		</div><!-- end content-bottom -->
+		</div>
     </section>
     <!-- ==section== -->
 </body>

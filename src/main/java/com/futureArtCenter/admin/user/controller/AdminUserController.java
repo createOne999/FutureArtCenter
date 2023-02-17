@@ -1,6 +1,7 @@
 package com.futureArtCenter.admin.user.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +37,9 @@ public class AdminUserController {
 	
 	@GetMapping(value = "/monthList")
 	public String adminUserMonthList(Model model ) throws Exception{
-		System.out.println(adminUserService.userMonthList());
-		model.addAttribute("UserMonthList", adminUserService.userMonthList());
+		List<Map<String, Object>> userMonthList = adminUserService.userMonthList();
+		log.info("UserMonthList : " + userMonthList);
+		model.addAttribute("UserMonthList", userMonthList);
 		return "admin/user/adminUserMonthList";
 	}
 }

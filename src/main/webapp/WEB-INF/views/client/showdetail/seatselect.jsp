@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tiles Layout Main</title>
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -46,6 +55,115 @@
 		
 	});
 </script>
+<style>
+ html,body {
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    font-family:sans-serif;
+} 
+
+ *{
+    padding: 0;
+    margin: 0 ;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    color: #000000;
+}
+/* 부트스트랩 방지 */
+#header .header_login *{
+    text-decoration: none;
+}
+#header .header_nav *{
+    text-decoration: none;
+    color: #000000;
+}
+#header .menu_main li a:hover{
+	color: #ccb6a3;
+}
+footer {
+	padding-top:20px;
+	width: 100%;
+	height: 100px;
+	background-color: #696969;
+	bottom: 0;
+	left: 0;
+	position : absolute;
+}  
+ html,body {
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    font-family:sans-serif;
+    min-height: 500px;
+} 
+/* 기본 css가 부트스트랩에 영향 방지 */
+.slide{
+	height: auto;
+	top: 0;
+	padding-top: 0;
+	overflow: auto;
+}
+.nav-pills .nav-link.active{
+	background-color: #ccb6a3;
+}
+.nav{
+	--bs-nav-link-color: #000000;
+}
+.header_title h1{
+	margin-bottom: 0;
+	font-weight: bold;
+}
+.btn-outline-secondary {
+    --bs-btn-color: #ccb6a3;
+    --bs-btn-border-color: #ccb6a3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ccb6a3;
+    --bs-btn-hover-border-color: #ccb6a3;
+    --bs-btn-focus-shadow-rgb: 108,117,125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ccb6a3;
+    --bs-btn-active-border-color: #ccb6a3;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #ccb6a3;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #ccb6a3;
+    --bs-gradient: none;
+}
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ccb6a3;
+    --bs-btn-border-color: #ccb6a3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ccb6a3;
+    --bs-btn-hover-border-color: #ccb6a3;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ccb6a3;
+    --bs-btn-active-border-color: #ccb6a3;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ccb6a3;
+    --bs-btn-disabled-border-color: #ccb6a3;
+}
+.table{
+	border-color: #ccb6a3;
+}
+body {
+	text-align:center;
+    vertical-align:middle;
+}
+fieldset {
+	display: inline-block;
+    vertical-align:middle;
+}
+
+</style>
+</head>
+<body>
 <table border="1" class="table table-bordered">
 	<tr>
 		<td colspan="13" align="center" height="50px">무대</td>
@@ -111,22 +229,30 @@
 	</tr>
 </table>
 <h5>좌석을 예매할 매수만큼 선택해 주세요.</h5>
-<fieldset style="width:200px;" class="border bg-secondary-subtle col-md-6">
-	<legend>색 구분</legend>
-	<table>
-		<tr>
-			<td><input type="color" value="#FF0000" disabled="disabled" class="form-control form-control-color"></td>
-			<td><label>선택한 좌석</label></td>
-		</tr>
-		<tr>
-			<td><input type="color" value="#FF7F00" disabled="disabled" class="form-control form-control-color"></td>
-			<td><label>예매된 좌석</label></td>
-		</tr>
-		<tr>
-			<td><input type="color" value="#FFFFFF" disabled="disabled" class="form-control form-control-color"></td>
-			<td><label>남은 좌석</label></td>
-		</tr>
-	</table>
-	
-</fieldset>
+<div>
+	<fieldset style="width:200px;" class="border bg-secondary-subtle col-md-6">
+		<legend>색 구분</legend>
+		<table>
+			<tr>
+				<td><input type="color" value="#FF0000" disabled="disabled" class="form-control form-control-color"></td>
+				<td><label>선택한 좌석</label></td>
+			</tr>
+			<tr>
+				<td><input type="color" value="#FF7F00" disabled="disabled" class="form-control form-control-color"></td>
+				<td><label>예매된 좌석</label></td>
+			</tr>
+			<tr>
+				<td><input type="color" value="#FFFFFF" disabled="disabled" class="form-control form-control-color"></td>
+				<td><label>남은 좌석</label></td>
+			</tr>
+		</table>
+		
+	</fieldset>
+</div>
 <input type="button" value="선택완료" name="seatselect" id="seatselect" class="btn btn-outline-secondary">
+<!-- 푸터 부분 -->	
+<footer>
+	<tiles:insertAttribute name="footer" />
+</footer>
+</body>
+</html>

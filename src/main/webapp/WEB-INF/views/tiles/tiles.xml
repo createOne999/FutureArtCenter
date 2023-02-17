@@ -5,8 +5,6 @@
 	<definition name="mainLayout" template="/WEB-INF/views/client/main/mainLayout.jsp">
 		<put-attribute name="title" value="Main" />
 		<put-attribute name="header" value="/WEB-INF/views/client/main/header.jsp" />
-		<put-attribute name="aside1" value="/WEB-INF/views/client/main/aside1.jsp" />
-		<put-attribute name="aside2" value="/WEB-INF/views/client/main/aside2.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/client/main/footer.jsp" />
 	</definition>
 	
@@ -64,6 +62,11 @@
 	<definition name="show/detail/*" extends="mainLayout">
 		<put-attribute name="title" value="ShowDetail" />
 		<put-attribute name="content" value="/WEB-INF/views/client/showdetail/{1}.jsp" />
+	</definition>
+	
+	<definition name="show/detail/seatselect" template="/WEB-INF/views/client/showdetail/seatselect.jsp">
+		<put-attribute name="title" value="seatselect" />
+		<put-attribute name="footer" value="/WEB-INF/views/client/main/footer.jsp" />
 	</definition>
 	
 	<!-- 예매 페이지에 대한 템플릿 -->

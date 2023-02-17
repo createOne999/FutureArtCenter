@@ -2,6 +2,76 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<style>
+/* 부트스트랩 방지 */
+#header .header_login *{
+    text-decoration: none;
+}
+#header .header_nav *{
+    text-decoration: none;
+    color: #000000;
+}
+#header .menu_main li a:hover{
+	color: #ccb6a3;
+}
+#header h1{
+	font-size: 2em;
+}
+/* 기본 css가 부트스트랩에 영향 방지 */
+.slide{
+	height: auto;
+	top: 0;
+	padding-top: 0;
+	overflow: auto;
+}
+.nav-pills .nav-link.active{
+	background-color: #ccb6a3;
+}
+.nav{
+	--bs-nav-link-color: #000000;
+}
+.header_title h1{
+	margin-bottom: 0;
+	font-weight: bold;
+}
+.btn-outline-secondary {
+    --bs-btn-color: #ccb6a3;
+    --bs-btn-border-color: #ccb6a3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ccb6a3;
+    --bs-btn-hover-border-color: #ccb6a3;
+    --bs-btn-focus-shadow-rgb: 108,117,125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ccb6a3;
+    --bs-btn-active-border-color: #ccb6a3;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #ccb6a3;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #ccb6a3;
+    --bs-gradient: none;
+}
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ccb6a3;
+    --bs-btn-border-color: #ccb6a3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ccb6a3;
+    --bs-btn-hover-border-color: #ccb6a3;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ccb6a3;
+    --bs-btn-active-border-color: #ccb6a3;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ccb6a3;
+    --bs-btn-disabled-border-color: #ccb6a3;
+}
+.table{
+	border-color: #ccb6a3;
+}
+</style>
 <c:if test="${user.user_id == null or user.user_id == ''}">
 	<div>
 		<fieldset>

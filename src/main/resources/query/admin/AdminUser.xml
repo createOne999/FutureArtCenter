@@ -43,6 +43,7 @@
 	
 	<!-- with 함수를 사용하여 최초로 가입한 날 ~ 마지막으로 가입 or 탈퇴한 날짜 까지의 월별 가입 유저수를 구함 -->
 	<select id="userMonthList" resultType="Map">
+		/* 회원 가입일과 탈퇴일 각각 최소일과 최대일을 뽑아서 TEMP_DATES로 저장 -> TEMP_DATES에서 최소, 최대일을 추출하여 DATES에 저장 */
 		WITH TEMP_DATES AS (
     		SELECT TRUNC(MIN(user_regdate), 'MM') AS MIN_DATE, TRUNC(MAX(user_regdate), 'MM') AS MAX_DATE
     		FROM user_tb
@@ -55,12 +56,15 @@
 		DATES AS (
    			 SELECT TRUNC(MIN(MIN_DATE)) AS MIN_DATE, TRUNC(MAX(MAX_DATE), 'MM') AS MAX_DATE
    			 FROM TEMP_DATES
-		),<![CDATA[
+		),
+		/* 최소, 최대일이 포함된 연도를 기준으로 최소연도 1월 ~ 최대연도 12월 까지 월별 날짜 컬럼 추출*/
+		<![CDATA[
 		DATE_RANGE AS (
 		    SELECT TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') - 1 + LEVEL AS THE_DATE
 		    FROM DATES
 		    CONNECT BY LEVEL <= TO_DATE(TO_CHAR(MAX_DATE, 'yyyy')||'12', 'yyyy-MM') - TO_DATE(TO_CHAR(MIN_DATE, 'yyyy')||'01', 'yyyy-MM') + 1
 		)]]>
+		/* 월별로 가입한 회원과 탈퇴한 회원의 수를 구함 */
 		SELECT 
 		  TO_CHAR(THE_DATE, 'YY-MM') AS MONTH, 
 		  SUM(CASE WHEN user_regdate IS NOT NULL AND TRUNC(user_regdate, 'MM') =THE_DATE THEN 1 ELSE 0 END) AS REGISTERED_USERS,
