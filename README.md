@@ -36,7 +36,7 @@ This project includes the following third-party libraries:
 - [Lombok](https://projectlombok.org/): licensed under the MIT License.
 - [Jasper](https://community.jaspersoft.com/project/jasperreports-library): licensed under the Apache License 2.0.
 - [JSTL](https://jcp.org/en/jsr/detail?id=52): licensed under the CDDL License.
-- [Tiles JSP](https://tiles.apache.org/3/framework/tiles-jsp/): licensed under the Apache License 2.0.
+- [Tiles JSP](https://tiles.apache.org/framework/license.html): licensed under the Apache License 2.0.
 - [Hibernate Validation](https://hibernate.org/validator/): licensed under the Apache License 2.0.
 - [Spring Security Taglibs](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#ns-taglibs): licensed under the Apache License 2.0.
 - [Apache Commons IO](https://commons.apache.org/proper/commons-io/): licensed under the Apache License 2.0.
