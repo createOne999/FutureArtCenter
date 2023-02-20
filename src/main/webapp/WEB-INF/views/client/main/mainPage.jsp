@@ -48,10 +48,10 @@
     font-weight: bold;
 }
 </style>
-<body onload="fullset(),call_js()">
+<body onload="fullset(), call_js()">
 	<!-- page ONE -->
     <section id="fullpage">
-         <div class='quick'>
+		<div class='quick'>
             <ul></ul>
         </div>
         <!-- page TWO -->
@@ -71,14 +71,14 @@
                     <a href="#" class="next"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-           </div>   
+		</div>   
        
         <div class="fullsection full1" pageNum="1">
             <div class="section_body">
                 <div class="section_title">
                 	<div class="content_main2">
 	            		<div class="title_img1"><img src="/image/quote3.png" /></div>
-	            		<p class="title_main2">미래의 전당 소개</p>
+	            			<p class="title_main2">미래의 전당 소개</p>
 	            		<div class="title_img2"><img src="/image/quote4.png" /></div>
             		</div>
                     <p class="content">
@@ -89,7 +89,7 @@
                     </p>
                 </div>
             </div>
-          </div>
+		</div>
         <!-- page THREE -->
         <div class="fullsection full3" pageNum="3">
         	<div class="content_bottom">

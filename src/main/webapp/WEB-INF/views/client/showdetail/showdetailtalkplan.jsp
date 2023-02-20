@@ -159,53 +159,6 @@
 				</div>
 				<!-- 좌석안내 -->
 				<div>
-					<p>좌석 안내</p><br>
-					<table border="1">
-						<tr>
-							<td colspan="13">무대</td>
-						</tr>
-						<tr>
-							<td rowspan="3">길</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td rowspan="3">길</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td rowspan="3">길</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
 					<p>
 						1) 위의 좌석 배치도는 예매 시 이해를 돕기 위한 이미지이며, 무대 연출에 따라 변경될 수 있으니 양해 부탁드립니다.<br>
 						2) 주변 관람객의 신장 차이, 공연 관람 위치 및 구조물, 카메라, 기타 연출상의 이유로 일부 시야가 제한될 수 있으며, 공연 당일 시야 방해로 인한 티켓 환불 및 변경은 불가하오니 양해 부탁드립니다.
