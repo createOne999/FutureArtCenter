@@ -43,5 +43,5 @@ This project includes the following third-party libraries:
 - [Gson](https://github.com/google/gson): licensed under the Apache License 2.0.
 - [Commons FileUpload](https://commons.apache.org/proper/commons-fileupload/): licensed under the Apache License 2.0.
 - [JavaORMPlugin](https://sourceforge.net/projects/java-orm-plugin/): licensed under the Eclipse Public License 2.0.
-- [ojdbc8](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html): licensed under the [Oracle Technology Network License Agreement for Oracle Java SE](https://www.oracle.com/downloads/licenses/javase-license1.html) and the [Futurama Technology Consulting LLC (FUTC) License](https://www.oracle.com/downloads/licenses/oracle-free-license.html).
+- [ojdbc8](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html): licensed under the [Oracle Technology Network License Agreement for Oracle Java SE](https://www.oracle.com/downloads/licenses/javase-license1.html) and the [Oracle Free Use Terms and Conditions (FUTC) License]([https://github.com/oracle/java-1.8.0-openjdk/blob/master/LICENSE](https://www.oracle.com/downloads/licenses/oracle-free-license.html)). 
 
