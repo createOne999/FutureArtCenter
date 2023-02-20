@@ -42,3 +42,4 @@ This project includes the following third-party libraries:
 - [Apache Commons IO](https://commons.apache.org/proper/commons-io/): licensed under the Apache License 2.0.
 - [Gson](https://github.com/google/gson): licensed under the Apache License 2.0.
 - [Commons FileUpload](https://commons.apache.org/proper/commons-fileupload/): licensed under the Apache License 2.0.
+- [JavaORMPlugin](https://sourceforge.net/projects/java-orm-plugin/): licensed under the Eclipse Public License 2.0.
