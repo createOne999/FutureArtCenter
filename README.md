@@ -25,7 +25,7 @@
 
 프로젝트 기여자와 각각의 역할
 
-## Licese
+## License
 
 This project includes the following third-party libraries:
 
