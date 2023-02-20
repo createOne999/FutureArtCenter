@@ -27,8 +27,18 @@
 
 ## Licese
 
-ex
+This project includes the following third-party libraries:
 
-라이브러리 A: Apache 라이선스 버전 2.0에 따라 라이선스가 부여되었습니다.
-
-라이브러리 B: BSD 3절 "신규" 또는 "개정" 라이선스에 따라 라이선스가 부여되었습니다.
+- [Bootstrap](https://getbootstrap.com/): licensed under the MIT License.
+- [jQuery](https://jquery.com/): licensed under the MIT License.
+- [MyBatis](https://mybatis.org/mybatis-2/): licensed under the Apache License 2.0.
+- [Spring Boot](https://spring.io/projects/spring-boot): licensed under the Apache License 2.0.
+- [Lombok](https://projectlombok.org/): licensed under the MIT License.
+- [Jasper](https://community.jaspersoft.com/project/jasperreports-library): licensed under the Apache License 2.0.
+- [JSTL](https://jcp.org/en/jsr/detail?id=52): licensed under the CDDL License.
+- [Tiles JSP](https://tiles.apache.org/3/framework/tiles-jsp/): licensed under the Apache License 2.0.
+- [Hibernate Validation](https://hibernate.org/validator/): licensed under the Apache License 2.0.
+- [Spring Security Taglibs](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#ns-taglibs): licensed under the Apache License 2.0.
+- [Apache Commons IO](https://commons.apache.org/proper/commons-io/): licensed under the Apache License 2.0.
+- [Gson](https://github.com/google/gson): licensed under the Apache License 2.0.
+- [Commons FileUpload](https://commons.apache.org/proper/commons-fileupload/): licensed under the Apache License 2.0.
