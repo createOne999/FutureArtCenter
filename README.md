@@ -31,7 +31,7 @@ This project includes the following third-party libraries:
 
 - [Bootstrap](https://getbootstrap.com/): licensed under the MIT License.
 - [jQuery](https://jquery.com/): licensed under the MIT License.
-- [MyBatis](https://mybatis.org/mybatis-2/): licensed under the Apache License 2.0.
+- [MyBatis](https://mybatis.org/mybatis-3/): licensed under the Apache License 2.0.
 - [Spring Boot](https://spring.io/projects/spring-boot): licensed under the Apache License 2.0.
 - [Lombok](https://projectlombok.org/): licensed under the MIT License.
 - [Jasper](https://community.jaspersoft.com/project/jasperreports-library): licensed under the Apache License 2.0.
