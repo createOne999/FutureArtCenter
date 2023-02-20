@@ -12,9 +12,9 @@
 		<script src="https://kit.fontawesome.com/b6529ca95b.js" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="/js/main/main.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://code.jquery.com/jquery-1.12.4.js" defer="defer"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" defer="defer"></script>
-	   	<script type="text/javascript" src="/js/main/slide.js" defer="defer"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	   	<script type="text/javascript" src="/js/main/slide.js"></script>
 	   	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	</head>
 <script>

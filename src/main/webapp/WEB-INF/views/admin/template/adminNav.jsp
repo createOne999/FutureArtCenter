@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>home test</title>
+		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/css/adminNav.css">
 		<script type="text/javascript">
 		 function collapse(element) {
@@ -47,7 +48,7 @@
 				<button type="button" class="collapsible" onclick="collapse(this);">게시판 관리</button>
 			    <div class="sub_menu">
 			        <p><a href="/admin/notice/list">공지사항</a></p>
-			        <p><a href="/admin/faq/list">FAO</a></p>
+			        <p><a href="/admin/faq/list">FAQ</a></p>
 				</div>
 			</div>
 		</div>

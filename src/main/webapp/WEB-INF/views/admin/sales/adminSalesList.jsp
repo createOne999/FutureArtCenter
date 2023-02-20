@@ -6,15 +6,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>FutureArtCenter</title>
+		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/sales/adminSalesList.css">
 	</head>
 	<body>
 		<div class="content">
 			<div class="title">
 				<p class="sub-header">예매 현황 리스트</p>
 			</div>
-			<table border="1">
-				<tr>
+			<table>
+				<tr id="col0">
 					<th class="tac">회원 번호</th>
 					<th class="tac">아이디</th>
 					<th class="tac">공연 번호</th>

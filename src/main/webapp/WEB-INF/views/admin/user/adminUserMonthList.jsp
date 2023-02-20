@@ -6,6 +6,16 @@
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+	#columnchart_material{
+		margin-top: 40px;
+	}
+	
+	#year{
+		margin-top: 40px;
+	}
+</style>
+
 <div id="columnchart_material" style="width: 800px; height: 500px;">
 	
 </div>
@@ -49,7 +59,7 @@ $(document).ready(function(){
 	var selectedyear = 0; // 선택된 연도 순서 0, 1 ,2
 	var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 	var options = {
-		    chart: {title: '월별 회원 통계',uration: 100 },  
+		    chart: {title: '월별 회원 통계',uration: 100 }
 		     };
 	var year = document.getElementById('year');// select 값 가져오기
 	year.addEventListener('change', drawChart, false);// 차트 값 변경 이벤트

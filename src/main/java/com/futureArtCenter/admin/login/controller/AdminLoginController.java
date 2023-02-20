@@ -59,6 +59,15 @@ public class AdminLoginController {
 		}
 		return "redirect:/admin/fac";
 	}
+	
+	@RequestMapping(value="/adminLogout.do", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request) throws Exception {
+		log.info("logOut");
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/admin/fac";
+	}
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public void list(Model model) throws Exception {

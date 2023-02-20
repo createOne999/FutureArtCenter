@@ -21,7 +21,6 @@ public class AdminSalesDAOImpl implements AdminSalesDAO {
 	private String Namespace = "com.futureArtCenter.admin.sales.dao.AdminSalesDAO";
 
 	// 예매 현황 리스트
-
 	@Override
 	public List<Map<String, Object>> salesConcertList() throws Exception {
 		return session.selectList(Namespace + "salesConcertList!");

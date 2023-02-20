@@ -17,11 +17,12 @@ html, body {
 }
 
 .content {
-	margin-top: 90px;
+	margin-top: 70px;
 }
 
 .well {
 	display: flex;
+	margin-bottom: 10px;
 }
 
 .title {
@@ -53,24 +54,24 @@ th {
 #col4 {
 	font-weight: bold;
 	color: #FFFFFF;
-	background-color: #503b29;
+	background-color: #5C350E;
 }
 
 .form-inline {
-	margin: 0;
-	width: 500px;
+	margin-right: 0;
+	width: 170px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 .sub-header {
 	font-size: 22px;
 	font-weight: bold;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .inputShow{
 	display: flex;
-	justify-content: flex-end;
 }
 
 button {
@@ -78,10 +79,30 @@ button {
 }
 
 #register_Btn{
-	border: 3px solid #ce6d39;
+	border: 3px solid #5C350E;
 	background-color: #FFFFFF;
 	color: #000000;
-	border-radius: 15px;
+	border-radius: 10px;
 	font-weight: bold;
+	margin-right: 10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
+#delete_Btn{
+	border: 3px solid #5C350E;
+	background-color: #FFFFFF;
+	color: #000000;
+	border-radius: 10px;
+	font-weight: bold;
+	padding: 5px 7px 5px 7px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+#status1, #status2{
+	background-color: #ccb6a3;
+	color: #000000;
+	border: 1px solid #ccb6a3;
+	border-radius: 20px;
+	font-weight: bold;
+	padding: 3px;
+}

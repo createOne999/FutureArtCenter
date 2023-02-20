@@ -5,16 +5,23 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-		<title>Tiles Layout Main</title>
+		<title>FutureArtCenter</title>
 		<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 		<style type="text/css">
 			body{
 				overflow: hidden;
+				height: 100%;
+			}
+			
+			.main_content {
+				min-height: 100%;
+				width: 100vw;
+				overflow: auto;
+				padding-bottom: -30px;
 			}
 			
 			.sec{
-				height: 100vh;
-				overflow-y: scroll;
+				height: 100%;
 				flex-grow: 3;
 				display: flex;
 				
@@ -23,14 +30,15 @@
 			.adminBody {
 				display: flex;
 				min-height: 100%;
-			    position: relative;
-			    padding-bottom: 100px;
+				padding-bottom: 60px;
 			}
 			
-			footer{
-				position: relative;
-				transform: translateY(100%);
-			}
+			footer {
+				padding-top:20px;
+				width: 100%;
+				height: 100px;
+				background-color: #696969;
+			} 
 		</style>
 		
 	</head>
@@ -44,13 +52,16 @@
 				<tiles:insertAttribute name="adminNav" />
 			</div>
 			
-			<div class="sec">
-				<tiles:insertAttribute name="content" />
+			<div class="main_content">
+				<div class="sec">
+					<tiles:insertAttribute name="content" />
+				</div>
+				<footer>
+					<tiles:insertAttribute name="footer" />
+				</footer>
 			</div>
 		</div>
 		
-		<footer>
-			<tiles:insertAttribute name="footer" />
-		</footer>
+		
 	</body>
 </html>

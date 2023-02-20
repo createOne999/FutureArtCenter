@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif;
+}
+
+.content {
+	margin-top: 70px;
+}
+
+.title_refund{
+	margin-top: 30px;
+}
+
+.sub-header {
+	font-size: 22px;
+	font-weight: bold;
+	font-family: 'Nanum Gothic', sans-serif;
+	margin-bottom: 10px;
+}
+
+table {
+	border-collapse: collapse;
+	border-radius: 3px;
+	border: 1px #a39485 solid;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
+	overflow: hidden;
+}
+
+#user {
+	width: 600px;
+}
+
+
+td, th {
+	padding: 5px;
+}
+
+td {
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	text-align: center;
+	border-right: 1px solid rgba(0, 0, 0, .1);
+}
+
+th {
+	text-align: center;
+}
+
+#col0 {
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #5C350E;
+}
+

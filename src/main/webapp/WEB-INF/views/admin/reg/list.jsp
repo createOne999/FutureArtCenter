@@ -30,8 +30,6 @@
 				//자신(팝업)을 종료한다.
 				self.close();
 			}
-			
-			
 		</script>
 		<style type="text/css">
 			.content{
@@ -67,8 +65,6 @@
 			#search2 {
 				margin-right: 15px;
 			}
-			
-			
 			
 			.list{
 				margin-top: 10px;

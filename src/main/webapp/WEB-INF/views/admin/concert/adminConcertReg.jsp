@@ -25,7 +25,6 @@
 					return fileName.substr(idx);
 				}
 			});
-			
 		</script>
 	</head>
 	<body>
@@ -98,25 +97,21 @@
 							<form:input path="concert_bandname" id="concert_bandname" name="concert_bandname" placeholder="Ex) 누가 들으면 놀라" />
 						</td>
 					</tr>
-					
 					<tr>
 						<td>아티스트</td>
 						<td>
 							<form:input path="concert_artist" id="concert_artist" name="concert_artist" placeholder="Ex) 김노래, 장드럼, 이건반" />
 						</td>
 					</tr>
-					
 					<tr id="poster">
 						<td class="col1">공연 포스터</td>
 						<td class="col2"><img id="posterIMG"/></td>
 						<td class="col3"><input type="file" name="poster" id="show_poster" onchange="readURL(this);"/></td>	
 					</tr>
-					
 					<tr>
 						<td>공연 내용<td>
 						<form:textarea path="show_content1" id="show_content1" name="show_content1" />
 					</tr>
-					
 					<tr>
 						<td>공연 사진</td>
 						<td><input type="file" name="content2" id="show_content2"/></td>
@@ -129,7 +124,5 @@
 			</div>
 		</form:form>
 		</div>
-		
-		
 	</body>
 </html>

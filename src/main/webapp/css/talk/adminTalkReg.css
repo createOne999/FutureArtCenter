@@ -8,14 +8,14 @@
 	text-decoration: none;
 }
 
-html, body {
+body {
 	font-family: sans-serif;
 }
 
 .talk{
 	width: 100%;
 	height: 100%;
-	padding: 30px;
+	padding: 20px;
 }
 
 table{
@@ -52,6 +52,21 @@ h2{
 
 .register_Btn{
 	text-align: center;
+	margin-top: 5px;
+}
+
+
+#registerBtn {
+	padding: 2px 40px 2px 40px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#cancelBtn {
+	padding: 2px 40px 2px 40px;
+	background-color: #000000;
+	color: #FFFFFF;
 }
 
 

@@ -6,28 +6,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<style type="text/css">
-			.content{
-				margin-top: 50px;
-			}
-			
-			.sub-header{
-				font-size: 20px;
-			}
-			
-			table{
-				margin-top: 10px;
-			}
-		</style>
+		<title>FutureArtCenter</title>
+		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/user/adminUserList.css">
+		
 	</head>
 	<body>
 		<div class="content">
-			<div class="title">
+			<div class="title_user">
 				<p class="sub-header">가입 회원 정보</p>
 			</div>
-			<table border="1">
-				<tr>
+			<table id="user">
+				<tr id="col0">
 					<th class="tac">회원번호</th>
 					<th class="tac">아이디</th>
 					<th class="tac">이름</th>
@@ -48,11 +38,11 @@
 				</c:forEach>
 			</table>
 			
-			<div class="title">
+			<div class="title_refund">
 				<p class="sub-header">탈퇴 회원 정보</p>
 			</div>
-			<table border="1">
-				<tr>
+			<table id="refund_user">
+				<tr id="col0">
 					<th class="tac">회원번호</th>
 					<th class="tac">아이디</th>
 					<th class="tac">이름</th>

@@ -7,7 +7,6 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript">
-			
 			function check(){
 				var form = document.reg;
 				//첫번째 라디오 버튼을 선택한 경우

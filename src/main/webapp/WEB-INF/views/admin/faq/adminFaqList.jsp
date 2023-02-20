@@ -8,14 +8,21 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>faq</title>
-    
+    <title>FutureArtCenter</title>
+	<link rel="stylesheet" type="text/css" href="/css/faq/adminFaqList.css">
 </head>
 <body>
-<div style="text-align: center;">
-    <h1>faq 목록</h1>
+<div class="content">
+	<div class="well">
+		<div class="title">
+		    <p class="sub-header">faq 목록</p>
+		</div>
+		<div class="reg">
+	    	<a href="/admin/faq/register">새글 등록</a>
+	    </div>
+    </div>
     <table border="1">
-        <tr>
+        <tr id="col0">
 		<th align="center" width="320">제목</th>
         </tr>
         <c:forEach items="${list}" var="AdminFaqVO">
@@ -24,7 +31,6 @@
             </tr>
         </c:forEach>
     </table>
-    <a href="/admin/faq/register">새글 등록</a>
 </div>
 </body>
 </html>

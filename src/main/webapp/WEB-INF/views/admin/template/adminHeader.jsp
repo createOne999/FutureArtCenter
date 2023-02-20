@@ -13,8 +13,12 @@
 		<header>
 			<div class="header_main">
 				<div class="logo">
-					<img src="/image/logo.png">
+					 <a href="/main"><img src="/image/logo.png"></a>
 					<h2>FutureArtCenter</h2>
+				</div>
+				
+				<div class="log_out">
+					<a href="/admin/adminLogout.do"><input type="button" value="로그아웃" id="logOut"></a>
 				</div>
 			</div>
 		</header>

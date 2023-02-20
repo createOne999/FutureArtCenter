@@ -6,6 +6,15 @@
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+	#linechart_material{
+		margin-top: 40px;
+	}
+	
+	#sales{
+		margin-top: 40px;
+	}
+</style>
 <div id="linechart_material" style="width: 800px; height: 500px;">
 	
 </div>
