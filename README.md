@@ -8,10 +8,10 @@
 
 목차
 
-  + 목차1
-  + 목차2
-  + 목차3
-  + 목차4
+  - [Getting Started](#getting-started)
+  - [Features](#features)
+  - [Contributes](#contributes)
+  - [License](#license)
 
 ## Getting Started
 
