@@ -7,6 +7,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+
+.notice_submit {
+	background-color: #ccb6a3;
+	padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.can {
+	background-color: #ccb6a3;
+	padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+</style>
+
+
 <!-- 게시판 등록 파일 -->
 
 <meta charset="UTF-8">
@@ -40,7 +61,6 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글쓰기</title>
 </head>
 <body>
 	<div style="text-align: center;">
@@ -51,23 +71,25 @@
 
 				<tr>
 					<td width="70"
-						style="background-color: dodgerblue; color: cornsilk">제목</td>
+						style="background-color: #5C350E; color: cornsilk">제목</td>
 					<td><input type="text" name="notice_title" id="notice_title" /></td>
 				</tr>
 				<tr>
-					<td class="col1">포스터</td>
+					<td width="70"
+						style="background-color: #5C350E; color: cornsilk">포스터</td>
 					<td class="col2"><img id="posterIMG" /></td>
 					<td class="col3"><input type="file" name="poster"
 						id="notice_poster" onchange="readURL(this);" /></td>
 				</tr>
 				<tr>
-					<td style="background-color: dodgerblue; color: cornsilk">내용</td>
+					<td style="background-color: #5C350E; color: cornsilk">내용</td>
 					<td><textarea name="notice_content" cols="40" rows="10" id="notice_content"></textarea></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2" align="center"><input type="submit" class="notice_submit" value="등록" />
-						<button>
+					<td colspan="2" align="center">
+					<a href="#" class="btn-gradient red"><input type="submit" class="notice_submit" value="등록" /></a>
+						<button class="can">
 							<a href="/admin/notice/list">취소</a>
 						</button></td>
 				</tr>
@@ -79,7 +101,7 @@
 
 <script>
 
-//faq 등록 버튼
+//notice 등록 버튼
 $(".notice_submit").click(function(){
 	 
 	if (!$("#notice_title").val()){
@@ -92,7 +114,7 @@ $(".notice_submit").click(function(){
 		return false;
 	}
 	
-	// faq 메서드 서버 요청
+	// notice 메서드 서버 요청
 	$("#notice_RegForm").attr("action", "/admin/notice/register");
     $("#notice_RegForm").submit();
    
@@ -118,3 +140,18 @@ $(".notice_submit").click(function(){
 
 	}
 </script>
+
+<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ 
+ <style>
+    #contentForm {
+      width: 40%;
+      margin: 0 auto;
+      padding-top: 12%;
+    }
+ 
+    .table > thead > tr > th, .table > tbody > tr > th {
+      background-color: #e6ecff;
+      text-align: center;
+    }
+  </style>

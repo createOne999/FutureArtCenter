@@ -4,6 +4,30 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<style>
+ table {
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+        }
+        table th {
+            border: 1px solid #444444;
+            text-align: center;
+            height: 30px;
+            background-color: #5C350E;
+            color: cornsilk;
+        }
+        table td {
+            border: 1px solid #444444;
+            text-align: center;
+        }   
+        
+        .reg {
+        	color: #ccb6a3;
+        	font-weight: bold;
+    		font-size: 17px;
+        }    
+    </style>
   
 <html>
 <head>
@@ -22,15 +46,22 @@
 	    </div>
     </div>
     <table border="1">
-        <tr id="col0">
+
+        <tr>
+        <th align="center" width="50">번호</th>
 		<th align="center" width="320">제목</th>
+		<th align="center" width="320">내용</th>
         </tr>
         <c:forEach items="${list}" var="AdminFaqVO">
             <tr>
+            <td>${AdminFaqVO.faq_no}</td>
                 <td class="txt_ct"><a href="${path}/admin/faq/adminFaqRead?faq_no=${AdminFaqVO.faq_no}">${AdminFaqVO.faq_title}</a></td>
+            <td>${AdminFaqVO.faq_content}</td>
             </tr>
         </c:forEach>
     </table>
+
+
 </div>
 </body>
 </html>

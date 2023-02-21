@@ -7,6 +7,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+
+.notice_sub {
+	background-color: #ccb6a3;
+	padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.txt_ct {
+	background-color: #ccb6a3;
+	padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+</style>
+
 <!-- 게시판 수정 -->
 
 <meta charset="UTF-8">
@@ -37,6 +57,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
 </head>
+<div>
 <body>
 	<div class="container">
 		<div class="py-5 text-center">
@@ -44,42 +65,44 @@
 		</div>
 		<form th:action="adminNoticeMod" th:object="${adminNoticeMod}"
 			method="post" enctype="multipart/form-data" id="notice_ModForm">
+			<table style="width: 700px; margin: auto">
 
 			<div>
-				<td width="70" style="background-color: dodgerblue; color: cornsilk">제목</td>
+				<td width="70" style="background-color: #5C350E; color: cornsilk">제목</td>
 				<td><input type="text" name="notice_title" id="notice_title" /></td>
 			</div>
 			<div>
 				<tr>
-					<td class="col1">포스터</td>
+					<td style="background-color: #5C350E; color: cornsilk">포스터</td>
 					<td class="col2"><img id="posterIMG" /></td>
 					<td class="col3"><input type="file" name="poster"
 						id="notice_poster" onchange="readURL(this);" /></td>
 				</tr>
 			</div>
 			<div>
-				<td style="background-color: dodgerblue; color: cornsilk">내용</td>
+				<td style="background-color: #5C350E; color: cornsilk">내용</td>
 				<td><textarea name="notice_content" cols="40" rows="10" id="notice_content" ></textarea></td>
 			</div>
 			
 
 
-			<hr class="my-4">
 			
 			
-
+			<tr>
+			<td colspan="2" align="center">
 			<button type="button" id="btn-modify" class="notice_sub">수정</button>
-
-
-			<button class="btn btn-secondary" type="button">
-				<td class="txt_ct"><a
-					href="${path}/admin/notice/adminNoticeRead?notice_no=${AdminNoticeVO.notice_no}">취소</a></td>
+			
+			<button class="txt_ct" type="button"><a	href="${path}/admin/notice/adminNoticeRead?notice_no=${AdminNoticeVO.notice_no}">취소</a>
 			</button>
-
+			</td>
+			</tr>
+			
+		</table>
 		</form>
 
 	</div>
 </body>
+</div>
 
 <script>
 

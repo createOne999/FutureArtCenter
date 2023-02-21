@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
  table {
-            width: 100%;
+            width: 50%;
             border: 1px solid #444444;
             border-collapse: collapse;
         }
