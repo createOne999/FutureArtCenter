@@ -39,9 +39,9 @@ This project includes the following third-party libraries:
 - [Tiles JSP](https://tiles.apache.org/framework/license.html): licensed under the Apache License 2.0.
 - [Hibernate Validation](https://mvnrepository.com/artifact/org.hibernate/hibernate-validator/6.1.6.Final): licensed under the Apache License 2.0.
 - [Spring Security Taglibs](https://docs.spring.io/spring-security/reference/community.html): licensed under the Apache License 2.0.
-- [Apache Commons IO](https://commons.apache.org/proper/commons-io/): licensed under the Apache License 2.0.
+- [Apache Commons IO](https://commons.apache.org/proper/commons-io/dependencies.html): licensed under the Apache License 2.0.
 - [Gson](https://github.com/google/gson): licensed under the Apache License 2.0.
-- [Commons FileUpload](https://commons.apache.org/proper/commons-fileupload/): licensed under the Apache License 2.0.
+- [Commons FileUpload](https://commons.apache.org/proper/commons-fileupload/dependencies.html): licensed under the Apache License 2.0.
 - [JavaORMPlugin](https://sourceforge.net/projects/java-orm-plugin/): licensed under the Eclipse Public License 2.0.
 - [ojdbc8](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html): licensed under the [Oracle Technology Network License Agreement for Oracle Java SE](https://www.oracle.com/downloads/licenses/javase-license1.html) and the [Oracle Free Use Terms and Conditions (FUTC) License](https://www.oracle.com/downloads/licenses/oracle-free-license.html). 
 
