@@ -18,7 +18,7 @@
             color: cornsilk;
         }
         table td {
-            border: 1px solid #444444;
+            border: 1px solid rgba(0, 0, 0, .1);
             text-align: center;
         }   
         
@@ -39,10 +39,10 @@
 <div class="content">
 	<div class="well">
 		<div class="title">
-		    <p class="sub-header">faq 목록</p>
+		    <p class="sub-header">faq 리스트</p>
 		</div>
 		<div class="reg">
-	    	<a href="/admin/faq/register">새글 등록</a>
+	    	<a href="/admin/faq/register"><button type="button" id="notice_reg">새글 등록</button></a>
 	    </div>
     </div>
     <table border="1">

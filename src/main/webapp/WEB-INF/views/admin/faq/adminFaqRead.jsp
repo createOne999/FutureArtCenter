@@ -6,96 +6,118 @@
 
 <style>
 
-
-table {
-width:100%;
-	font-size: 15px;
-	margin-left: 50px;
-	border-collapse: collapse; 
+.content{
+	width: 450px;
+	height: 300px;
+	border: 2px solid #5C350E;
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+#faq_content {
+	width: 100%;
+	height: 100%;
+	float: left; 
 }
 
-.title {
-	border-bottom: 1px solid none;
-	width: 100px;
-	height: 50px;
-	color: white;
+#faq_btn{
 	text-align: center;
+	margin-top: 10px;
+}
+
+#faq_btn tr{
+	text-align: center;
+	border: 0;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+tr{
+	width: 600px;
+	border-bottom: 1px solid #CCC;
+}
+
+.title{
+	padding: 10px;
+	padding-right: 10px;
+	width: 80px;
 	background-color: #5C350E;
+	color: #FFFFFF;
 }
 
-.content {
-	border: 1px solid none;
-	width: 500px;
-	border: thin;
-}
-
-input {
-	border: none;
+#modify_btn {
+	padding: 2px 20px 2px 20px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-size: 15px;
 }
 
 #btn-delete {
-	width: 50px;
-	background-color: #CD853F;
-	border: none;
-	border-radius: 5px;
+	padding: 2px 20px 2px 20px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
 }
 
-.btnbtn-primarylist-btn {
-	width: 50px;
-	background-color: #CD853F;
-	border: none;
-	border-radius: 5px;
-	
-}
-
-.one{
-	width: 50px;
-	background-color: #CD853F;
-	border: none;
-	color: black;
-	border-radius: 5px;
+#list_btn {
+	padding: 2px 20px 2px 20px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
 }
 
 .mb-3{
-	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 40px;
 }
 
+#one{
+	height: 40px;
+}
 </style>
-<div>
+
 <form:form modelAttribute="AdminFaqVO">
 	<form:hidden path="faq_no" />
 	<body>
-		<h3 class="mb-3">faq 상세 페이지</h3>
-		<br><br>
+		<h3 class="mb-3">faq</h3>
 	</body>
-	<table>
-		<tr>
-		<td class="title" >번호</td>
-			<td class="content"><form:input path="faq_no" readonly="true" /></td>
+	<div class="content">
+	<table id="faq_content">
+		<tr id="one">
+			<td class="title" >번호</td>
+			<td>${AdminFaqVO.faq_no}</td>
 			<td><font color="red"><form:errors path="faq_no" /></font></td>
 		</tr>
 		<tr>
-		<td class="title">제목</td>
-			<td class="content"><form:input path="faq_title" readonly="true" /></td>
+			<td class="title">제목</td>
+			<td>${AdminFaqVO.faq_title}</td>
 			<td><font color="red"><form:errors path="faq_title" /></font></td>
 		</tr>
 		<tr>
-		<td class="title">내용</td>
-			<td class="content"><form:input path="faq_content" readonly="true" /></td>
+			<td class="title">내용</td>
+			
+			<td>${AdminFaqVO.faq_content}</td>
 			<td><font color="red"><form:errors path="faq_content" /></font></td>
 		</tr>
 	</table>
+	</div>
+	<div>
+<table id="faq_btn">
+	<tr align="center" valign="middle">
+		<td>
+		
+		<a href="${path}/admin/faq/modify?faq_no=${AdminFaqVO.faq_no}" id="modify_btn">수정</a>
+		<button id="btn-delete" onclick="location.href='/admin/faq/delete?faq_no=${AdminFaqVO.faq_no}'">삭제</button>
+			<button type="button" class="btn btn-primary list-btn"
+				onclick="location.href='/admin/faq/list'" id="list_btn">목록</button></td>
+	</tr>
+	</table>
+</div>
 </form:form>
 
-<div>
-		<br><br>
-		<button type="button" class="one"><a href="${path}/admin/faq/modify?faq_no=${AdminFaqVO.faq_no}">수정</a></button>
-		<button id="btn-delete" onclick="location.href='/admin/faq/delete?faq_no=${AdminFaqVO.faq_no}'">삭제</button>
-			<button type="button" class="btnbtn-primarylist-btn"
-				onclick="location.href='/admin/faq/list'">목록</button>
-				
-</div>
-</div>
 
 <script>
 	$(document).ready(function() {

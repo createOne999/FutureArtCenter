@@ -40,7 +40,7 @@ h2{
 #poster{
 	position: absolute;
 	top: 0;
-	right: -10px;
+	right: 10px;
 	display: flex;
 	flex-direction: column;
 }
@@ -69,4 +69,11 @@ h2{
 	color: #FFFFFF;
 }
 
+#show_poster{
+	width: 200px;
+}
+
+input[type="file"] {
+	margin-left: 30px;
+}
 

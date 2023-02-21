@@ -18,7 +18,7 @@
 		<div class="content">
 			<div class="well">
 				<div class="title">
-					<p class="sub-header">게시판 리스트</p>
+					<p class="sub-header">공연정보 리스트</p>
 				</div>
 				<form class="form-inline" id="search">
 						
@@ -53,7 +53,7 @@
 								<c:if test="${AdminMediaVO.show_round eq '1'}">1회차</c:if>
 								<c:if test="${AdminMediaVO.show_round eq '2'}">1회차,2회차</c:if>
 							</td>
-							<td>${AdminMediaVO.show_time1}~ ${AdminMediaVO.show_time2}</td>
+							<td>${AdminMediaVO.show_time1}, ${AdminMediaVO.show_time2}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${AdminMediaVO.show_startdate}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${AdminMediaVO.show_closedate}" /></td>
 							<td>${AdminMediaVO.show_price}</td>

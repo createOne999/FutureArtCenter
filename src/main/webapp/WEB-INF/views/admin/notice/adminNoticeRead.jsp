@@ -6,77 +6,135 @@
 
 <style>
 
-table {
+.content{
+	width: 600px;
+	height: 450px;
+	border: 2px solid #5C350E;
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+#notice_content {
 	width: 100%;
-	font-size: 20px;
-	margin-left: 50px;
-	border-collapse: collapse; 
-	
+	height: 100%;
+	float: left; 
 }
 
-input {
-	border: none;
-}
-
-.title {
-	border-bottom: 1px solid none;
-	width: 100px;
-	height: 50px;
-	color: white;
+#notice_btn{
 	text-align: center;
-	background-color: #5C350E;
-	font-size: 20px;
+	margin-top: 10px;
 }
 
+#notice_btn tr{
+	text-align: center;
+	border: 0;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+tr{
+	width: 600px;
+	border-bottom: 1px solid #CCC;
+}
+
+tr last:last-child {
+	border-bottom: none;
+}
+
+.title{
+	padding: 10px;
+	padding-right: 10px;
+	width: 80px;
+	background-color: #5C350E;
+	color: #FFFFFF;
+}
+
+#reg {
+	padding: 2px 30px 2px 30px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#btn-delete {
+	padding: 2px 30px 2px 30px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#list {
+	padding: 2px 30px 2px 30px;
+	margin-right: 15px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#notice_img{
+	padding: 5px;
+}
+
+.mb-3{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 40px;
+}
 </style>
 
-<div>
+
 <form:form modelAttribute="AdminNoticeVO">
 	<form:hidden path="notice_no" />
 	<body>
-		<h3 class="mb-3">공지사항 상세 페이지</h3>
-		<br>
+		<h3 class="mb-3">공지사항</h3>
 	</body>
-	<table>
+	
+	<div class="content">
+	<table id="notice_content">
 		<tr>
-		<td class="title" >번호</td>
-			<td><form:input path="notice_no" readonly="true" /></td>
+      		<td class="title" >번호</td>
+			<td>${AdminNoticeVO.notice_no}</td>
 			<td><font color="red"><form:errors path="notice_no" /></font></td>
 		</tr>
 		<tr>
-		<td class="title" >제목</td>
-			<td><form:input path="notice_title" readonly="true" /></td>
+      		<td class="title" >제목</td>
+			<td>${AdminNoticeVO.notice_title}</td>
 			<td><font color="red"><form:errors path="notice_title" /></font></td>
 		</tr>
 		<tr>
-			<img
-				src="adminNotice_poster?notice_no=${AdminNoticeVO.notice_no }&adminNoticePoster=${AdminNoticeVO.notice_poster}"
-				height="200px">
+			<td class="title">사진</td>
+			<td id="notice_img">
+				<img src="adminNotice_poster?notice_no=${AdminNoticeVO.notice_no }&adminNoticePoster=${AdminNoticeVO.notice_poster}"
+					height="250px" width="500px">
+			</td>
 		</tr>
 		<tr>
-		<td class="title" >내용</td>
-			<td><form:input path="notice_content" readonly="true" /></td>
+      		<td class="title" >내용</td>
+			<td>${AdminNoticeVO.notice_content}</td>
 			<td><font color="red"><form:errors path="notice_content" /></font></td>
 		</tr>
 		<tr>
-		<td class="title" >날짜</td>
-			<td><form:input path="notice_date" readonly="true" /></td>
+			<td class="title" >날짜</td>
+			<td>${AdminNoticeVO.notice_date}</td>
 			<td><font color="red"><form:errors path="notice_date" /></font></td>
 		</tr>
 	</table>
-</form:form>
-<br>
-<div>
-	<tr align="center" valign="middle">
-		<td><a
-			href="${path}/admin/notice/modify?notice_no=${AdminNoticeVO.notice_no}">수정</a>
+	
+	
+	</div>
+	<div>
+	<table id="notice_btn">
+	<tr>
+		<td><a href="${path}/admin/notice/modify?notice_no=${AdminNoticeVO.notice_no}"><button type="button" id="reg">수정</button></a>
 			<button id="btn-delete"
 				onclick="location.href='/admin/notice/delete?notice_no=${AdminNoticeVO.notice_no}'">삭제</button>
 			<button type="button" class="btn btn-primary list-btn"
-				onclick="location.href='/admin/notice/list'">목록</button></td>
+				onclick="location.href='/admin/notice/list'" id="list">목록</button></td>
 	</tr>
-</div>
-</div>
+	</table>
+	</div>
+</form:form>
+
 <script>
 	$(document).ready(function() {
 
