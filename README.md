@@ -29,7 +29,7 @@
 
 This project includes the following third-party libraries:
 
-- [Bootstrap](https://getbootstrap.com/): licensed under the MIT License.
+- [Bootstrap](https://getbootstrap.com/docs/5.3/about/license/): licensed under the MIT License.
 - [jQuery](https://jquery.com/): licensed under the MIT License.
 - [MyBatis](https://mybatis.org/mybatis-3/): licensed under the Apache License 2.0.
 - [Spring Boot](https://spring.io/projects/spring-boot): licensed under the Apache License 2.0.
