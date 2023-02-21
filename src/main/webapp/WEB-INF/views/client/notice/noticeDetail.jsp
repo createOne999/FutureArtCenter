@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 
@@ -52,6 +53,11 @@ textarea {
 		<h3 class="mb-3">공지사항 상세 페이지</h3>
 	</body>
 	<table>
+			<c:if test="${NoticeVO.notice_poster ne 'none'}">
+				<img
+					src="notice_poster?notice_no=${NoticeVO.notice_no }&noticePoster=${NoticeVO.notice_poster}"
+					height="200px">
+			</c:if>
 		<tr>
 		<td class="title" >번호</td>
 			<td><form:input path="notice_no" readonly="true" /></td>
@@ -61,13 +67,6 @@ textarea {
 		<td class="title" >제목</td>
 			<td><form:input path="notice_title" readonly="true" /></td>
 			<td><font color="red"><form:errors path="notice_title" /></font></td>
-		</tr>
-		<tr>
-			<td><a
-				href='FileDownloadAction.bo?file_name=${AdminNoticeVO.notice_poster}'>${AdminNoticeVO.notice_poster}</a></td>
-			<img
-				src="notice_poster?notice_no=${NoticeVO.notice_no }&noticePoster=${NoticeVO.notice_poster}"
-				height="200px">
 		</tr>
 		<tr>
 		<td class="title" >내용</td>

@@ -63,8 +63,9 @@
 		<div class="py-5 text-center">
 			<h2>게시글 수정</h2>
 		</div>
-		<form th:action="adminNoticeMod" th:object="${adminNoticeMod}"
-			method="post" enctype="multipart/form-data" id="notice_ModForm">
+		<form action="adminNoticeMod" method="post" enctype="multipart/form-data" id="notice_ModForm">
+			<input type="hidden" name="notice_no" value="${AdminNoticeVO.notice_no}" />
+			
 			<table style="width: 700px; margin: auto">
 
 			<div>
@@ -120,7 +121,7 @@ $(".notice_sub").click(function(){
 	}
 	
 	// faq 메서드 서버 요청
-	$("#notice_ModForm").attr("action", "/admin/faq/adminNoticeMod");
+	$("#notice_ModForm").attr("action", "/admin/notice/adminNoticeMod");
     $("#notice_ModForm").submit();
    
 })

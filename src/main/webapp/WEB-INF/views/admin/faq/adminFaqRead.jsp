@@ -78,7 +78,7 @@ tr{
 	height: 40px;
 }
 </style>
-
+<div>
 <form:form modelAttribute="AdminFaqVO">
 	<form:hidden path="faq_no" />
 	<body>
@@ -103,21 +103,20 @@ tr{
 			<td><font color="red"><form:errors path="faq_content" /></font></td>
 		</tr>
 	</table>
+	</form:form>
 	</div>
-	<div>
-<table id="faq_btn">
-	<tr align="center" valign="middle">
-		<td>
-		
+	
+	
+
+<div>
+		<br><br>
 		<a href="${path}/admin/faq/modify?faq_no=${AdminFaqVO.faq_no}" id="modify_btn">수정</a>
 		<button id="btn-delete" onclick="location.href='/admin/faq/delete?faq_no=${AdminFaqVO.faq_no}'">삭제</button>
-			<button type="button" class="btn btn-primary list-btn"
-				onclick="location.href='/admin/faq/list'" id="list_btn">목록</button></td>
-	</tr>
-	</table>
+			<button type="button" id="list_btn"
+				onclick="location.href='/admin/faq/list'">목록</button>
+				
 </div>
-</form:form>
-
+</div>
 
 <script>
 	$(document).ready(function() {

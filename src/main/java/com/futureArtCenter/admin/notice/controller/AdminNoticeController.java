@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -58,9 +59,15 @@ public class AdminNoticeController {
 		
 		MultipartFile posterFile = adminNoticeVO.getPoster();
 		
+		if(!posterFile.getOriginalFilename().equals("")) {
 		String createdPosterFilename = uploadFile(posterFile.getOriginalFilename(), posterFile.getBytes());
 		
 		adminNoticeVO.setNotice_poster(createdPosterFilename);
+		} else {
+			String createdPosterFilename = "none";
+			adminNoticeVO.setNotice_poster(createdPosterFilename);
+		}
+		
 		
 		adminNoticeService.register(adminNoticeVO);
 		log.info("register");
@@ -186,7 +193,7 @@ public class AdminNoticeController {
 	
 	// 공지사항 수정 페이지
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String modifyForm(int notice_no, Model model) throws Exception {
+	public String modifyForm(@RequestParam("notice_no") int notice_no, Model model) throws Exception {
 		log.info("modify");
 		model.addAttribute("AdminNoticeVO", adminNoticeService.read(notice_no));
 		
@@ -194,12 +201,11 @@ public class AdminNoticeController {
 	}
 	
 	// 공지사항 수정 처리
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminNoticeMod", method = RequestMethod.POST)
 	public String modify(AdminNoticeVO adminNoticeVO, RedirectAttributes rttr) throws Exception {
 		MultipartFile posterFile = adminNoticeVO.getPoster();
 		
 		String createdPosterFilename = uploadFile(posterFile.getOriginalFilename(), posterFile.getBytes());
-		
 		adminNoticeVO.setNotice_poster(createdPosterFilename);
 		
 		adminNoticeService.modify(adminNoticeVO);
@@ -225,6 +231,7 @@ public class AdminNoticeController {
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
 		  public String list(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception{ 
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
+			
 			model.addAttribute("list", adminNoticeService.page(pageRequest));
 		  
 		  // 페이징 네비게이션 정보를 뷰에 전달한다. 

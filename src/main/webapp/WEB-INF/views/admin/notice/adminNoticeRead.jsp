@@ -82,15 +82,16 @@ tr last:last-child {
 }
 </style>
 
-
+<div>
 <form:form modelAttribute="AdminNoticeVO">
 	<form:hidden path="notice_no" />
 	<body>
-		<h3 class="mb-3">공지사항</h3>
+		<h3 class="mb-3">공지사항 상세 페이지</h3>
 	</body>
 	
 	<div class="content">
 	<table id="notice_content">
+			<div>
 		<tr>
       		<td class="title" >번호</td>
 			<td>${AdminNoticeVO.notice_no}</td>
@@ -102,10 +103,15 @@ tr last:last-child {
 			<td><font color="red"><form:errors path="notice_title" /></font></td>
 		</tr>
 		<tr>
-			<td class="title">사진</td>
+			<td class="title" >사진</td>
 			<td id="notice_img">
+			<c:if test="${AdminNoticeVO.notice_poster ne 'none'}">
 				<img src="adminNotice_poster?notice_no=${AdminNoticeVO.notice_no }&adminNoticePoster=${AdminNoticeVO.notice_poster}"
 					height="250px" width="500px">
+			</c:if>
+			<c:if test="${AdminNoticeVO.notice_poster eq 'none'}">사진 없음</c:if>
+			
+				
 			</td>
 		</tr>
 		<tr>
@@ -119,13 +125,13 @@ tr last:last-child {
 			<td><font color="red"><form:errors path="notice_date" /></font></td>
 		</tr>
 	</table>
-	
-	
+	</form:form>
 	</div>
 	<div>
 	<table id="notice_btn">
-	<tr>
-		<td><a href="${path}/admin/notice/modify?notice_no=${AdminNoticeVO.notice_no}"><button type="button" id="reg">수정</button></a>
+	<tr >
+		<td>
+		<a href="${path}/admin/notice/modify?notice_no=${AdminNoticeVO.notice_no}"><button type="button" id="reg">수정</button></a>
 			<button id="btn-delete"
 				onclick="location.href='/admin/notice/delete?notice_no=${AdminNoticeVO.notice_no}'">삭제</button>
 			<button type="button" class="btn btn-primary list-btn"
@@ -133,7 +139,7 @@ tr last:last-child {
 	</tr>
 	</table>
 	</div>
-</form:form>
+</div>
 
 <script>
 	$(document).ready(function() {
