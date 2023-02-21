@@ -43,4 +43,4 @@ This project includes the following third-party libraries:
 - [JavaORMPlugin](https://sourceforge.net/projects/java-orm-plugin/): licensed under the Eclipse Public License 2.0.
 - [ojdbc8](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html): licensed under the [Oracle Technology Network License Agreement for Oracle Java SE](https://www.oracle.com/downloads/licenses/javase-license1.html) and the [Oracle Free Use Terms and Conditions (FUTC) License](https://www.oracle.com/downloads/licenses/oracle-free-license.html). 
 - [timepicker](https://github.com/wvega/timepicker): licensed under the MIT License.
-
+- [Google Fonts](https://developers.google.com/fonts/terms): licensed under the Apache License 2.0.
