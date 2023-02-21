@@ -6,8 +6,6 @@
 
 ## index 
 
-목차
-
   - [Getting Started](#getting-started)
   - [Features](#features)
   - [Contributes](#contributes)
