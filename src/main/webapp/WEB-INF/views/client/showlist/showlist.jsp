@@ -154,14 +154,14 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="filter: invert(100%);">
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="filter: invert(100%);">
 	   				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	   				<span class="visually-hidden">Previous</span>
-	 			 </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="filter: invert(100%);">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
+	 			</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="filter: invert(100%);">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
 		</div>
 		<div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">

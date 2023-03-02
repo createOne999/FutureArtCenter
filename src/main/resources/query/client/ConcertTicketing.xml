@@ -100,7 +100,7 @@
 		<!-- 티켓코드 1 -->
 		TO_CHAR(#{inputVO.showDate} , 'YYMMDD') ||
 		TO_CHAR( #{inputVO.ticketingRound} ) ||
-		'1' ||
+		'2' ||
 		LPAD(TO_CHAR(( SELECT NVL(SUM( ticketing_amount ), 0) + 1 FROM
 		ticketing2_tb WHERE show_no = #{inputVO.showNo} AND ticketing_round =
 		#{inputVO.ticketingRound} and show_date = #{inputVO.showDate} )) ,3, '0')
@@ -110,7 +110,7 @@
 			TO_CHAR
 			( #{inputVO.showDate} , 'YYMMDD') ||
 			TO_CHAR( #{inputVO.ticketingRound} ) ||
-			'1' ||
+			'2' ||
 			LPAD(TO_CHAR(( SELECT NVL(SUM( ticketing_amount ), 0) + 2 FROM
 			ticketing2_tb WHERE show_no = #{inputVO.showNo} AND ticketing_round =
 			#{inputVO.ticketingRound} and show_date = #{inputVO.showDate} )) ,3, '0')
