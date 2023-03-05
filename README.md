@@ -6,18 +6,8 @@
 
 ## index 
 
-  - [Getting Started](#getting-started)
-  - [Features](#features)
   - [Contributes](#contributes)
   - [License](#license)
-
-## Getting Started
-
-애플리케이션 배포 및 실행 방법
-
-## Features
-
-주요기능
 
 ## Contributes
 
